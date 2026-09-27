@@ -16,6 +16,7 @@ const seo = pagesSeo.careers;
   description={seo.description}
   path={seo.path}
   ogImage={seo.ogImage}
+  robots={seo.robots}
   jsonLd={[
     webpageJsonLd({ name: seo.title, description: seo.description, path: seo.path }),
     breadcrumbJsonLd([
@@ -68,7 +69,7 @@ const seo = pagesSeo.careers;
           </ul>
           <p class="card__text">
             Prefer email? Use the form so applications stay structured.
-            Learn more about the team on <a href={p('/about')}>About Us</a>, or browse
+            Read about the team on <a href={p('/about')}>About Us</a>, or browse
             <a href={p('/odoo-apps')}>Odoo Apps</a> and
             <a href={brand.github} target="_blank" rel="noopener noreferrer">GitHub</a>.
           </p>

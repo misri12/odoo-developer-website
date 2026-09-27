@@ -2,7 +2,7 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
-const siteUrl = (process.env.SITE_URL || 'https://example.com').replace(/\/$/, '');
+const siteUrl = (process.env.SITE_URL || 'https://yourdomain.com').replace(/\/$/, '');
 let base = '/';
 try {
   const pathname = new URL(siteUrl).pathname.replace(/\/$/, '');
@@ -19,8 +19,8 @@ export default defineConfig({
   compressHTML: true,
   integrations: [
     sitemap({
-      // Exclude noindex / non-content utility routes from the sitemap
-      filter: (page) => !page.includes('/blog'),
+      // Exclude noindex utility / future-content routes from the sitemap
+      filter: (page) => !page.includes('/blog') && !page.includes('/careers'),
       changefreq: 'weekly',
       priority: 0.7,
       lastmod: new Date(),

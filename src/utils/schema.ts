@@ -1,4 +1,4 @@
-import { brand, SITE_URL, social } from '../data/site';
+import { brand, social } from '../data/site';
 import { absoluteUrl } from '../data/seo';
 
 type JsonLd = Record<string, unknown> | Record<string, unknown>[];
@@ -8,13 +8,13 @@ export function websiteJsonLd(): Record<string, unknown> {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: `${brand.name} — ${brand.title}`,
-    url: SITE_URL,
+    url: absoluteUrl('/'),
     description: brand.tagline,
     inLanguage: 'en',
     publisher: {
       '@type': 'Person',
       name: brand.name,
-      url: SITE_URL,
+      url: absoluteUrl('/'),
     },
   };
 }
@@ -66,7 +66,7 @@ export function webpageJsonLd(opts: {
     isPartOf: {
       '@type': 'WebSite',
       name: `${brand.name} — ${brand.title}`,
-      url: SITE_URL,
+      url: absoluteUrl('/'),
     },
     about: {
       '@type': 'Person',
@@ -89,7 +89,7 @@ export function serviceJsonLd(opts: {
     provider: {
       '@type': 'Person',
       name: brand.name,
-      url: SITE_URL,
+      url: absoluteUrl('/'),
     },
     areaServed: 'Worldwide',
     serviceType: opts.name,
@@ -114,7 +114,7 @@ export function softwareApplicationJsonLd(opts: {
     author: {
       '@type': 'Person',
       name: brand.name,
-      url: SITE_URL,
+      url: absoluteUrl('/'),
     },
   };
 }
@@ -135,7 +135,7 @@ export function breadcrumbJsonLd(
 }
 
 export function faqJsonLd(
-  faqs: { question: string; answer: string }[],
+  faqs: readonly { question: string; answer: string }[],
 ): Record<string, unknown> {
   return {
     '@context': 'https://schema.org',

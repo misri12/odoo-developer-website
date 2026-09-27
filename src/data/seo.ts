@@ -104,6 +104,7 @@ export const pagesSeo: Record<string, PageSeo> = {
     h1: 'Careers — Work With Us',
     primaryKeyword: 'Odoo developer jobs',
     secondaryKeywords: ['Odoo career', 'hire Odoo developer team', 'Node.js developer job'],
+    robots: 'noindex, follow',
     ogImage: '/images/og/about.png',
   },
   contact: {

@@ -147,9 +147,9 @@ const founder = team[0];
   .about-founder__photo {
     width: 100%;
     max-width: 420px;
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-xl);
     border: 1px solid var(--border);
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-lg);
     justify-self: center;
   }
 
@@ -173,11 +173,23 @@ const founder = team[0];
   }
 
   .team-card {
-    background: var(--bg-elevated);
+    background:
+      linear-gradient(165deg, rgba(255, 255, 255, 0.04), transparent 50%),
+      var(--bg-elevated);
     border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-xl);
     overflow: hidden;
     box-shadow: var(--shadow-sm);
+    transition:
+      border-color 0.25s var(--ease),
+      transform 0.25s var(--ease),
+      box-shadow 0.25s var(--ease);
+  }
+
+  .team-card:hover {
+    border-color: rgba(56, 189, 248, 0.4);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-glow);
   }
 
   .team-card img {

@@ -38,7 +38,7 @@ import { p } from '../../utils/paths';
     <div class="container grid-2">
       {
         odooApps.map((app) => (
-          <article class="card app-card">
+          <article class="card app-card reveal">
             {
               app.banner ? (
                 <a class="app-card__media" href={p(app.href)} aria-label={`View ${app.name}`}>
@@ -73,7 +73,7 @@ import { p } from '../../utils/paths';
 
   .app-card__media {
     display: block;
-    margin: -1.35rem -1.35rem 0;
+    margin: -1.5rem -1.5rem 0;
   }
 
   .app-card__media img {
@@ -87,11 +87,18 @@ import { p } from '../../utils/paths';
 
   .app-card__body {
     display: grid;
-    grid-template-columns: 72px 1fr;
-    gap: 1rem;
+    grid-template-columns: auto 1fr;
+    gap: 1.15rem;
+    align-items: start;
   }
 
   .app-card__body > img {
-    border-radius: 14px;
+    width: 72px;
+    height: 72px;
+    padding: 0.65rem;
+    object-fit: contain;
+    border-radius: 0.85rem;
+    background: var(--accent-soft);
+    border: 1px solid rgba(56, 189, 248, 0.2);
   }
 </style>

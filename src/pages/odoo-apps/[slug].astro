@@ -183,7 +183,7 @@ const hasScreenshots = Boolean(app.screenshots && app.screenshots.length > 0);
   .app-hero img {
     border-radius: 18px;
     border: 1px solid var(--border);
-    background: #fff;
+    background: var(--bg-elevated);
   }
 
   .app-tags {
@@ -247,11 +247,21 @@ const hasScreenshots = Boolean(app.screenshots && app.screenshots.length > 0);
 
   .app-shot {
     margin: 0;
-    background: #fff;
+    background: var(--bg-elevated);
     border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-xl);
     overflow: hidden;
     box-shadow: var(--shadow-sm);
+    transition:
+      border-color 0.25s var(--ease),
+      transform 0.25s var(--ease),
+      box-shadow 0.25s var(--ease);
+  }
+
+  .app-shot:hover {
+    border-color: rgba(56, 189, 248, 0.4);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-glow);
   }
 
   .app-shot img {

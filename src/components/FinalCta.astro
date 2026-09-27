@@ -29,7 +29,7 @@ const resolve = (href: string) => {
 ---
 
 <section class:list={['final-cta', { 'final-cta--dark': dark }]} aria-labelledby="final-cta-title">
-  <div class="container final-cta__inner">
+  <div class="container final-cta__inner reveal">
     <h2 id="final-cta-title">{title}</h2>
     <p>{lead}</p>
     <div class="final-cta__actions">
@@ -43,14 +43,16 @@ const resolve = (href: string) => {
 
 <style>
   .final-cta {
-    padding: clamp(3.5rem, 7vw, 5rem) 0;
+    padding: clamp(4.5rem, 9vw, 6.5rem) 0;
+    position: relative;
   }
 
   .final-cta--dark {
     background:
-      radial-gradient(700px 300px at 20% 0%, rgba(15, 110, 106, 0.35), transparent 60%),
-      linear-gradient(145deg, #0b1220, #12343a 70%);
+      radial-gradient(700px 280px at 50% 0%, rgba(56, 189, 248, 0.18), transparent 60%),
+      linear-gradient(180deg, #0b1220, #070d18);
     color: #fff;
+    border-top: 1px solid var(--border);
   }
 
   .final-cta__inner {
@@ -58,35 +60,36 @@ const resolve = (href: string) => {
   }
 
   .final-cta h2 {
-    margin: 0 0 0.75rem;
+    margin: 0 0 0.85rem;
     font-family: var(--font-display);
     font-size: clamp(1.85rem, 3.5vw, 2.6rem);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.025em;
     line-height: 1.15;
   }
 
   .final-cta p {
-    margin: 0 auto 1.5rem;
+    margin: 0 auto 1.75rem;
     max-width: 34rem;
-    color: #b7c5d3;
+    color: #94a3b8;
     font-size: 1.1rem;
+    line-height: 1.7;
   }
 
   .final-cta__actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.75rem;
+    gap: 0.85rem;
     justify-content: center;
   }
 
   .final-cta__secondary {
-    border-color: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.28);
     color: #fff;
   }
 
   .final-cta__secondary:hover {
     background: rgba(255, 255, 255, 0.08);
     color: #fff;
-    border-color: rgba(255, 255, 255, 0.5);
+    border-color: rgba(56, 189, 248, 0.5);
   }
 </style>

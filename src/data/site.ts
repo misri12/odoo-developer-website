@@ -6,7 +6,7 @@
 export const SITE_URL = (
   import.meta.env.SITE_URL ||
   import.meta.env.SITE ||
-  'https://example.com'
+  'https://yourdomain.com'
 ).replace(/\/$/, '');
 
 export const brand = {

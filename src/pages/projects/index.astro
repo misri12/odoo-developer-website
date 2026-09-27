@@ -27,7 +27,7 @@ import { p } from '../../utils/paths';
       <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Projects' }]} />
       <h1 class="page-hero__title">{seo.h1}</h1>
       <p class="page-hero__lead">
-        Selected Odoo development and integration work. Placeholders are labeled until additional documented case studies are available — no invented client results.
+        Selected Odoo development and integration work — packaged modules and connectors. No invented client names or revenue claims.
       </p>
     </div>
   </section>
@@ -36,17 +36,39 @@ import { p } from '../../utils/paths';
     <div class="container grid-2">
       {
         projects.map((project) => (
-          <article class="card project-card">
-            {project.placeholder && <span class="badge badge--warn">Placeholder</span>}
+          <article class="card project-card reveal">
+            {project.placeholder && (
+              <span class="badge">Project details available on request</span>
+            )}
             <h2 class="card__title">{project.name}</h2>
             <p class="card__text"><strong>Problem:</strong> {project.problem}</p>
             <p class="card__text"><strong>Solution:</strong> {project.solution}</p>
             <p class="card__text"><strong>Technology:</strong> {project.technology.join(', ')}</p>
+            {project.odooVersion && (
+              <p class="card__text"><strong>Odoo version:</strong> {project.odooVersion}</p>
+            )}
+            {project.integration && (
+              <p class="card__text"><strong>Integration:</strong> {project.integration}</p>
+            )}
+            {project.architecture && (
+              <p class="card__text"><strong>Architecture:</strong> {project.architecture}</p>
+            )}
+            {project.keyFunctionality && project.keyFunctionality.length > 0 && (
+              <p class="card__text">
+                <strong>Key functionality:</strong> {project.keyFunctionality.join('; ')}
+              </p>
+            )}
             <p class="card__text"><strong>Outcome:</strong> {project.outcome}</p>
             <div class="project-card__links">
-              {project.href && <a class="card__link" href={p(project.href)}>View Case Study →</a>}
+              {project.href && (
+                <a class="card__link" href={p(project.href)}>
+                  View project details →
+                </a>
+              )}
               {project.relatedServices.map((link) => (
-                <a class="card__link" href={p(link.href)}>{link.label} →</a>
+                <a class="card__link" href={p(link.href)}>
+                  {link.label} →
+                </a>
               ))}
             </div>
           </article>
@@ -60,6 +82,11 @@ import { p } from '../../utils/paths';
 <style>
   .project-card .badge {
     margin-bottom: 0.75rem;
+  }
+
+  .project-card .card__text strong {
+    color: var(--ink-soft);
+    font-weight: 650;
   }
 
   .project-card__links {

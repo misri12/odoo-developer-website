@@ -7,7 +7,18 @@ export type Project = {
   outcome: string;
   relatedServices: { label: string; href: string }[];
   href?: string;
-  /** When true, content is a clearly marked placeholder — not a real client case study. */
+  /** Odoo version(s) when known — optional, factual only. */
+  odooVersion?: string;
+  /** Primary integration target when known — optional, factual only. */
+  integration?: string;
+  /** Short architecture note when known — optional, factual only. */
+  architecture?: string;
+  /** Key functionality bullets when known — optional, factual only. */
+  keyFunctionality?: string[];
+  /**
+   * When true, this entry is incomplete as a client case study.
+   * UI should say details are available on request — never invent outcomes.
+   */
   placeholder: boolean;
 };
 
@@ -30,6 +41,8 @@ export const projects: Project[] = [
       { label: 'Custom Odoo Modules', href: '/custom-odoo-modules' },
     ],
     href: '/odoo-apps/ai-commerce-assistant',
+    odooVersion: '12.0–19.0',
+    integration: 'Odoo Website & eCommerce',
     placeholder: false,
   },
   {
@@ -46,6 +59,8 @@ export const projects: Project[] = [
       { label: 'Shopify ↔ Odoo', href: '/shopify-odoo-integration' },
     ],
     href: '/odoo-apps/shopify-connector-pro',
+    odooVersion: '19',
+    integration: 'Shopify',
     placeholder: false,
   },
   {
@@ -62,6 +77,8 @@ export const projects: Project[] = [
       { label: 'WooCommerce ↔ Odoo', href: '/woocommerce-odoo-integration' },
     ],
     href: '/odoo-apps/woocommerce-connector-pro',
+    odooVersion: '12–19',
+    integration: 'WooCommerce',
     placeholder: false,
   },
   {
@@ -78,6 +95,8 @@ export const projects: Project[] = [
       { label: 'Amazon ↔ Odoo', href: '/amazon-odoo-integration' },
     ],
     href: '/odoo-apps/amazon-connector',
+    odooVersion: '19',
+    integration: 'Amazon SP-API',
     placeholder: false,
   },
   {
@@ -94,6 +113,8 @@ export const projects: Project[] = [
       { label: 'Shopify ↔ Odoo', href: '/shopify-odoo-integration' },
     ],
     href: '/odoo-apps/shopify-cod-settlement-reconciliation',
+    odooVersion: '19',
+    integration: 'Shopify COD / courier settlements',
     placeholder: false,
   },
   {
@@ -110,6 +131,8 @@ export const projects: Project[] = [
       { label: 'Custom Odoo Modules', href: '/custom-odoo-modules' },
     ],
     href: '/odoo-apps/b2b-pallet-management',
+    odooVersion: '14 / 17 / 19',
+    integration: 'Odoo Website / Inventory',
     placeholder: false,
   },
   {
@@ -126,6 +149,8 @@ export const projects: Project[] = [
       { label: 'Tally ↔ Odoo', href: '/tally-odoo-integration' },
     ],
     href: '/odoo-apps/odoo-tally-connector',
+    odooVersion: '14–17',
+    integration: 'Tally',
     placeholder: false,
   },
 ];

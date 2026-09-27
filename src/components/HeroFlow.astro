@@ -32,39 +32,57 @@
   .hero-flow {
     display: grid;
     gap: 0.85rem;
-    padding: 1.25rem;
+    padding: 1.35rem;
     border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-xl);
     background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(232, 238, 243, 0.7)),
-      #fff;
-    box-shadow: var(--shadow-md);
+      linear-gradient(165deg, rgba(56, 189, 248, 0.08), transparent 45%),
+      rgba(17, 24, 39, 0.85);
+    box-shadow: var(--shadow-lg), 0 0 40px rgba(56, 189, 248, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
   }
 
   .hero-flow__card {
     padding: 0.9rem 1rem;
-    border-radius: 12px;
+    border-radius: 0.85rem;
     border: 1px solid var(--border);
-    background: #fff;
+    background: rgba(255, 255, 255, 0.03);
     font-weight: 650;
     text-align: center;
     color: var(--ink-soft);
+    transition:
+      border-color 0.25s var(--ease),
+      transform 0.25s var(--ease),
+      box-shadow 0.25s var(--ease);
+  }
+
+  .hero-flow__card:hover {
+    border-color: rgba(56, 189, 248, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
   }
 
   .hero-flow__card--odoo,
   .hero-flow__card--ops {
-    background: linear-gradient(145deg, #12343a, #0f6e6a);
+    background: linear-gradient(145deg, #0c4a6e, #0284c7 55%, #38bdf8);
     border-color: transparent;
-    color: #fff;
+    color: #0b1220;
     display: grid;
     gap: 0.15rem;
+    box-shadow: 0 8px 28px rgba(56, 189, 248, 0.25);
+  }
+
+  .hero-flow__card--odoo:hover,
+  .hero-flow__card--ops:hover {
+    border-color: transparent;
   }
 
   .hero-flow__label {
     font-size: 0.72rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    opacity: 0.8;
+    opacity: 0.75;
     font-weight: 600;
   }
 
@@ -91,7 +109,7 @@
 
   @media (min-width: 768px) {
     .hero-flow {
-      padding: 1.5rem;
+      padding: 1.6rem;
     }
   }
 </style>

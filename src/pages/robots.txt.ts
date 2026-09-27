@@ -1,16 +1,13 @@
 import type { APIRoute } from 'astro';
 
-const site = (import.meta.env.SITE || 'https://example.com').replace(/\/$/, '');
+const site = (import.meta.env.SITE || 'https://yourdomain.com').replace(/\/$/, '');
 
 export const GET: APIRoute = () => {
   const body = `User-agent: *
 Allow: /
 
-# Form handler — not a content page
+# Form / utility endpoint — not a content page
 Disallow: /api/
-
-# Prepared blog index is noindex until articles exist
-Disallow: /blog
 
 Sitemap: ${site}/sitemap-index.xml
 `;

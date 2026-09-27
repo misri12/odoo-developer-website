@@ -4,6 +4,7 @@ import { p } from '../utils/paths';
 ---
 
 <footer class="site-footer">
+  <div class="site-footer__glow" aria-hidden="true"></div>
   <div class="container site-footer__grid">
     <div class="site-footer__brand">
       <a class="logo" href={p('/')}>
@@ -50,37 +51,80 @@ import { p } from '../utils/paths';
 
 <style>
   .site-footer {
-    margin-top: 2rem;
-    padding: 3.5rem 0 1.5rem;
-    background: #0b1220;
+    position: relative;
+    margin-top: 0;
+    padding: 4.5rem 0 1.75rem;
+    background: #070d18;
     color: #c9d3df;
+    overflow: hidden;
+  }
+
+  .site-footer__glow {
+    position: absolute;
+    inset: 0 0 auto;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(56, 189, 248, 0.55) 30%,
+      rgba(56, 189, 248, 0.55) 70%,
+      transparent
+    );
+  }
+
+  .site-footer__glow::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: min(60%, 480px);
+    height: 120px;
+    transform: translateX(-50%);
+    background: radial-gradient(ellipse at top, rgba(56, 189, 248, 0.12), transparent 70%);
+    pointer-events: none;
   }
 
   .site-footer a {
     color: #dce5ef;
     text-decoration: none;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0 1px;
+    transition:
+      color 0.25s var(--ease),
+      background-size 0.25s var(--ease);
   }
 
   .site-footer a:hover {
     color: #fff;
+    background-size: 100% 1px;
   }
 
   .site-footer__grid {
     display: grid;
-    gap: 2rem;
+    gap: 2.5rem;
+    align-items: start;
   }
 
   .site-footer__brand p {
-    margin: 1rem 0;
+    margin: 1.15rem 0;
     max-width: 28rem;
-    color: #9aabbc;
+    color: #8fa0b2;
     font-size: 0.98rem;
+    line-height: 1.7;
   }
 
   .logo {
     display: inline-flex;
     gap: 0.7rem;
     align-items: center;
+    background-image: none;
+  }
+
+  .logo:hover {
+    background-size: 0;
+    opacity: 0.92;
   }
 
   .logo__mark {
@@ -88,12 +132,13 @@ import { p } from '../utils/paths';
     height: 40px;
     display: grid;
     place-items: center;
-    border-radius: 11px;
-    background: linear-gradient(145deg, #1a4f4c, #0f6e6a);
-    color: #fff;
+    border-radius: 0.75rem;
+    background: linear-gradient(145deg, #0c4a6e, #38bdf8);
+    color: #0b1220;
     font-family: var(--font-display);
     font-size: 0.85rem;
     font-weight: 700;
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
   }
 
   .logo__text {
@@ -114,11 +159,13 @@ import { p } from '../utils/paths';
   }
 
   .site-footer__heading {
-    margin: 0 0 0.85rem;
+    margin: 0 0 1rem;
     color: #fff;
     font-family: var(--font-display);
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     font-weight: 650;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
 
   .site-footer ul {
@@ -128,26 +175,41 @@ import { p } from '../utils/paths';
   }
 
   .site-footer li + li {
-    margin-top: 0.45rem;
+    margin-top: 0.55rem;
+  }
+
+  .site-footer li a {
+    font-size: 0.95rem;
+    color: #a8b7c8;
   }
 
   .site-footer__social {
     display: flex;
-    gap: 1rem;
+    flex-wrap: wrap;
+    gap: 1.15rem;
     font-weight: 600;
   }
 
+  .site-footer__social a {
+    color: var(--accent);
+  }
+
   .site-footer__bottom {
-    margin-top: 2.5rem;
-    padding-top: 1.25rem;
+    margin-top: 3rem;
+    padding-top: 1.35rem;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     font-size: 0.9rem;
-    color: #8092a5;
+    color: #6b7c90;
+  }
+
+  .site-footer__bottom p {
+    margin: 0;
   }
 
   @media (min-width: 800px) {
     .site-footer__grid {
-      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      grid-template-columns: 1.6fr 1fr 1fr 1fr;
+      gap: 2rem 2.5rem;
     }
   }
 </style>
