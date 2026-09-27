@@ -148,6 +148,17 @@ import { p } from '../utils/paths';
     font-weight: 700;
     letter-spacing: 0.02em;
     box-shadow: 0 0 20px var(--accent-glow);
+    animation: logo-glow 3.5s ease-in-out infinite;
+  }
+
+  @keyframes logo-glow {
+    0%,
+    100% {
+      box-shadow: 0 0 16px var(--accent-glow);
+    }
+    50% {
+      box-shadow: 0 0 28px rgba(56, 189, 248, 0.55);
+    }
   }
 
   .logo__text {
@@ -188,6 +199,7 @@ import { p } from '../utils/paths';
   }
 
   .nav__link {
+    position: relative;
     display: inline-flex;
     align-items: center;
     gap: 0.3rem;
@@ -202,9 +214,27 @@ import { p } from '../utils/paths';
       background 0.25s var(--ease);
   }
 
+  .nav__link::after {
+    content: '';
+    position: absolute;
+    left: 0.8rem;
+    right: 0.8rem;
+    bottom: 0.35rem;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.28s var(--ease);
+  }
+
   .nav__link:hover {
-    color: var(--accent);
+    color: var(--accent-hover);
     background: var(--accent-soft);
+  }
+
+  .nav__link:hover::after {
+    transform: scaleX(1);
   }
 
   .nav__chevron {
@@ -278,7 +308,7 @@ import { p } from '../utils/paths';
     padding-inline: 1.2rem;
     font-size: 0.92rem;
     border-radius: 999px;
-    box-shadow: 0 4px 18px rgba(56, 189, 248, 0.3);
+    box-shadow: 0 4px 18px rgba(14, 165, 233, 0.4);
   }
 
   .nav-toggle {
@@ -419,8 +449,13 @@ import { p } from '../utils/paths';
   @media (prefers-reduced-motion: reduce) {
     .mobile-nav,
     .nav__dropdown,
-    .nav__chevron {
+    .nav__chevron,
+    .nav__link::after {
       transition: none;
+    }
+
+    .logo__mark {
+      animation: none;
     }
   }
 </style>

@@ -293,7 +293,7 @@ import { p } from '../utils/paths';
 
   .hero__role {
     margin: 0.35rem 0 1.15rem;
-    color: var(--accent);
+    color: var(--accent-hover);
     font-weight: 650;
     font-size: 0.98rem;
   }
@@ -478,16 +478,22 @@ import { p } from '../utils/paths';
     height: 2.75rem;
     margin: 0;
     border-radius: 0.85rem;
-    border: 1px solid rgba(56, 189, 248, 0.35);
+    border: 1px solid rgba(56, 189, 248, 0.4);
     background:
-      linear-gradient(145deg, rgba(56, 189, 248, 0.18), rgba(14, 165, 233, 0.06)),
+      linear-gradient(145deg, rgba(56, 189, 248, 0.22), rgba(14, 165, 233, 0.08)),
       var(--bg-elevated);
-    color: var(--accent);
+    color: var(--accent-hover);
     font-family: var(--font-display);
     font-weight: 700;
     font-size: 0.8rem;
     letter-spacing: 0.04em;
-    box-shadow: 0 0 20px rgba(56, 189, 248, 0.12);
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.14);
+    transition:
+      border-color 0.3s var(--ease),
+      background 0.3s var(--ease),
+      color 0.3s var(--ease),
+      box-shadow 0.3s var(--ease),
+      transform 0.3s var(--ease);
   }
 
   .process__body {
@@ -514,6 +520,7 @@ import { p } from '../utils/paths';
     background: linear-gradient(145deg, #0c4a6e, var(--accent));
     color: var(--on-accent);
     box-shadow: 0 0 24px rgba(56, 189, 248, 0.35);
+    transform: scale(1.06);
   }
 
   .process__body h3 {
