@@ -21,7 +21,7 @@ import { technologies } from '../data/site';
   .tech-strip {
     padding: 1.35rem 0;
     border-block: 1px solid var(--border);
-    background: rgba(17, 24, 39, 0.45);
+    background: var(--bg-tint);
   }
 
   .tech-strip__label {
@@ -49,7 +49,7 @@ import { technologies } from '../data/site';
     padding: 0.35rem 0.85rem;
     border: 1px solid var(--border);
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--bg-elevated);
     color: var(--ink-soft);
     font-size: 0.9rem;
     font-weight: 600;
@@ -60,7 +60,7 @@ import { technologies } from '../data/site';
   }
 
   .tech-chip:hover {
-    border-color: rgba(56, 189, 248, 0.4);
+    border-color: color-mix(in srgb, var(--accent) 45%, transparent);
     color: var(--accent);
     background: var(--accent-soft);
   }

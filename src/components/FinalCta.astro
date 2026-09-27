@@ -49,9 +49,9 @@ const resolve = (href: string) => {
 
   .final-cta--dark {
     background:
-      radial-gradient(700px 280px at 50% 0%, rgba(56, 189, 248, 0.18), transparent 60%),
-      linear-gradient(180deg, #0b1220, #070d18);
-    color: #fff;
+      radial-gradient(700px 280px at 50% 0%, rgba(56, 189, 248, 0.1), transparent 60%),
+      linear-gradient(180deg, var(--bg), var(--bg-deep));
+    color: var(--ink);
     border-top: 1px solid var(--border);
   }
 
@@ -65,12 +65,13 @@ const resolve = (href: string) => {
     font-size: clamp(1.85rem, 3.5vw, 2.6rem);
     letter-spacing: -0.025em;
     line-height: 1.15;
+    color: var(--ink);
   }
 
   .final-cta p {
     margin: 0 auto 1.75rem;
     max-width: 34rem;
-    color: #94a3b8;
+    color: var(--muted);
     font-size: 1.1rem;
     line-height: 1.7;
   }
@@ -83,13 +84,13 @@ const resolve = (href: string) => {
   }
 
   .final-cta__secondary {
-    border-color: rgba(255, 255, 255, 0.28);
-    color: #fff;
+    border-color: var(--border-strong);
+    color: var(--ink);
   }
 
   .final-cta__secondary:hover {
     background: rgba(255, 255, 255, 0.08);
-    color: #fff;
-    border-color: rgba(56, 189, 248, 0.5);
+    color: var(--ink);
+    border-color: color-mix(in srgb, var(--accent) 50%, transparent);
   }
 </style>

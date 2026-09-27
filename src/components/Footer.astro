@@ -54,8 +54,8 @@ import { p } from '../utils/paths';
     position: relative;
     margin-top: 0;
     padding: 4.5rem 0 1.75rem;
-    background: #070d18;
-    color: #c9d3df;
+    background: var(--bg-deep);
+    color: var(--muted);
     overflow: hidden;
   }
 
@@ -66,8 +66,8 @@ import { p } from '../utils/paths';
     background: linear-gradient(
       90deg,
       transparent,
-      rgba(56, 189, 248, 0.55) 30%,
-      rgba(56, 189, 248, 0.55) 70%,
+      color-mix(in srgb, var(--accent) 55%, transparent) 30%,
+      color-mix(in srgb, var(--accent) 55%, transparent) 70%,
       transparent
     );
   }
@@ -80,12 +80,12 @@ import { p } from '../utils/paths';
     width: min(60%, 480px);
     height: 120px;
     transform: translateX(-50%);
-    background: radial-gradient(ellipse at top, rgba(56, 189, 248, 0.12), transparent 70%);
+    background: radial-gradient(ellipse at top, rgba(56, 189, 248, 0.1), transparent 70%);
     pointer-events: none;
   }
 
   .site-footer a {
-    color: #dce5ef;
+    color: var(--ink-soft);
     text-decoration: none;
     background-image: linear-gradient(currentColor, currentColor);
     background-position: 0 100%;
@@ -97,7 +97,7 @@ import { p } from '../utils/paths';
   }
 
   .site-footer a:hover {
-    color: #fff;
+    color: var(--ink);
     background-size: 100% 1px;
   }
 
@@ -110,7 +110,7 @@ import { p } from '../utils/paths';
   .site-footer__brand p {
     margin: 1.15rem 0;
     max-width: 28rem;
-    color: #8fa0b2;
+    color: var(--muted);
     font-size: 0.98rem;
     line-height: 1.7;
   }
@@ -133,12 +133,12 @@ import { p } from '../utils/paths';
     display: grid;
     place-items: center;
     border-radius: 0.75rem;
-    background: linear-gradient(145deg, #0c4a6e, #38bdf8);
-    color: #0b1220;
+    background: linear-gradient(145deg, #0c4a6e, var(--accent));
+    color: var(--on-accent);
     font-family: var(--font-display);
     font-size: 0.85rem;
     font-weight: 700;
-    box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+    box-shadow: 0 0 20px var(--accent-glow);
   }
 
   .logo__text {
@@ -148,19 +148,19 @@ import { p } from '../utils/paths';
   }
 
   .logo__name {
-    color: #fff;
+    color: var(--ink);
     font-family: var(--font-display);
     font-weight: 700;
   }
 
   .logo__role {
     font-size: 0.75rem;
-    color: #8fa0b2;
+    color: var(--muted-2);
   }
 
   .site-footer__heading {
     margin: 0 0 1rem;
-    color: #fff;
+    color: var(--ink);
     font-family: var(--font-display);
     font-size: 0.85rem;
     font-weight: 650;
@@ -180,7 +180,7 @@ import { p } from '../utils/paths';
 
   .site-footer li a {
     font-size: 0.95rem;
-    color: #a8b7c8;
+    color: var(--muted);
   }
 
   .site-footer__social {
@@ -197,9 +197,9 @@ import { p } from '../utils/paths';
   .site-footer__bottom {
     margin-top: 3rem;
     padding-top: 1.35rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 1px solid var(--border);
     font-size: 0.9rem;
-    color: #6b7c90;
+    color: var(--muted-2);
   }
 
   .site-footer__bottom p {

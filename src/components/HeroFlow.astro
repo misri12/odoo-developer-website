@@ -37,8 +37,8 @@
     border-radius: var(--radius-xl);
     background:
       linear-gradient(165deg, rgba(56, 189, 248, 0.08), transparent 45%),
-      rgba(17, 24, 39, 0.85);
-    box-shadow: var(--shadow-lg), 0 0 40px rgba(56, 189, 248, 0.08);
+      var(--bg-elevated);
+    box-shadow: var(--shadow-lg);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
   }
@@ -47,7 +47,7 @@
     padding: 0.9rem 1rem;
     border-radius: 0.85rem;
     border: 1px solid var(--border);
-    background: rgba(255, 255, 255, 0.03);
+    background: color-mix(in srgb, var(--bg) 55%, var(--bg-elevated));
     font-weight: 650;
     text-align: center;
     color: var(--ink-soft);
@@ -58,19 +58,19 @@
   }
 
   .hero-flow__card:hover {
-    border-color: rgba(56, 189, 248, 0.4);
+    border-color: color-mix(in srgb, var(--accent) 45%, transparent);
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    box-shadow: var(--shadow-md);
   }
 
   .hero-flow__card--odoo,
   .hero-flow__card--ops {
-    background: linear-gradient(145deg, #0c4a6e, #0284c7 55%, #38bdf8);
+    background: linear-gradient(145deg, #0c4a6e, #0284c7 55%, var(--accent));
     border-color: transparent;
-    color: #0b1220;
+    color: var(--on-accent);
     display: grid;
     gap: 0.15rem;
-    box-shadow: 0 8px 28px rgba(56, 189, 248, 0.25);
+    box-shadow: 0 8px 28px var(--accent-glow);
   }
 
   .hero-flow__card--odoo:hover,

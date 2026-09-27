@@ -99,15 +99,15 @@ import { p } from '../utils/paths';
   }
 
   .site-header.is-scrolled {
-    background: rgba(11, 18, 32, 0.78);
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
     backdrop-filter: blur(16px) saturate(1.2);
     -webkit-backdrop-filter: blur(16px) saturate(1.2);
     border-bottom-color: var(--border);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    box-shadow: var(--shadow-md);
   }
 
   .site-header.is-open {
-    background: rgba(11, 18, 32, 0.96);
+    background: color-mix(in srgb, var(--bg) 96%, transparent);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-bottom-color: var(--border);
@@ -141,13 +141,13 @@ import { p } from '../utils/paths';
     display: grid;
     place-items: center;
     border-radius: 0.75rem;
-    background: linear-gradient(145deg, #0c4a6e, #38bdf8);
-    color: #0b1220;
+    background: linear-gradient(145deg, #0c4a6e, var(--accent));
+    color: var(--on-accent);
     font-family: var(--font-display);
     font-size: 0.85rem;
     font-weight: 700;
     letter-spacing: 0.02em;
-    box-shadow: 0 0 20px rgba(56, 189, 248, 0.25);
+    box-shadow: 0 0 20px var(--accent-glow);
   }
 
   .logo__text {
@@ -226,10 +226,10 @@ import { p } from '../utils/paths';
     margin: 0;
     padding: 0.55rem;
     list-style: none;
-    background: rgba(17, 24, 39, 0.92);
+    background: var(--bg-glass);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    box-shadow: var(--shadow-lg), 0 0 0 1px rgba(56, 189, 248, 0.06);
+    box-shadow: var(--shadow-lg);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     opacity: 0;
@@ -348,7 +348,7 @@ import { p } from '../utils/paths';
 
   .mobile-nav {
     border-top: 1px solid var(--border);
-    background: rgba(11, 18, 32, 0.98);
+    background: var(--bg);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     max-height: calc(100vh - var(--header-h));

@@ -66,12 +66,12 @@ import { p } from '../utils/paths';
     display: grid;
     place-items: center;
     border-radius: 1.5rem;
-    background: linear-gradient(145deg, #0c4a6e, #0284c7 55%, #38bdf8);
-    color: #0b1220;
+    background: linear-gradient(145deg, #0c4a6e, #0284c7 55%, var(--accent));
+    color: var(--on-accent);
     font-family: var(--font-display);
     font-weight: 700;
     font-size: 1.25rem;
-    box-shadow: var(--shadow-lg), 0 0 40px rgba(56, 189, 248, 0.25);
+    box-shadow: var(--shadow-lg), 0 0 40px var(--accent-glow);
   }
 
   .integrations__ring {
@@ -110,7 +110,7 @@ import { p } from '../utils/paths';
     border: 1px solid var(--border);
     border-radius: var(--radius-xl);
     background:
-      linear-gradient(165deg, rgba(255, 255, 255, 0.04), transparent 50%),
+      linear-gradient(165deg, rgba(255, 255, 255, 0.05), transparent 50%),
       var(--bg-elevated);
     text-decoration: none;
     color: var(--ink);
