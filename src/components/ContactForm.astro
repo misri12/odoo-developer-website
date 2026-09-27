@@ -385,31 +385,54 @@ const contactEmail = brand.email;
         }
 
         const contentType = response.headers.get('content-type') || '';
-        if (!contentType.includes('application/json')) {
-          throw new Error('Unexpected response');
+        const rawText = await response.text();
+        let data: Record<string, unknown> = {};
+        try {
+          data = contentType.includes('application/json') || rawText.trim().startsWith('{')
+            ? JSON.parse(rawText)
+            : {};
+        } catch {
+          data = {};
         }
 
-        const data = await response.json();
+        const msg = typeof data.message === 'string' ? data.message : rawText;
+        const msgLower = msg.toLowerCase();
+        const needsActivation =
+          msgLower.includes('activate') ||
+          msgLower.includes('activation') ||
+          msgLower.includes('confirm');
+
+        if (needsActivation) {
+          status.hidden = false;
+          status.dataset.state = 'success';
+          status.replaceChildren();
+          const p1 = document.createElement('p');
+          p1.style.margin = '0 0 0.5rem';
+          p1.textContent =
+            'Almost ready — FormSubmit emailed an “Activate Form” link to gultajkhan980@gmail.com. Open that email (check Spam/Promotions), click Activate once, then submit this form again.';
+          const p2 = document.createElement('p');
+          p2.style.margin = '0';
+          const link = document.createElement('a');
+          link.href = buildMailto();
+          link.className = 'card__link';
+          link.textContent = 'Or open an email draft now →';
+          p2.append(link);
+          status.append(p1, p2);
+          return;
+        }
+
         const ok = Boolean(data.success === true || data.success === 'true' || data.ok);
         if (!response.ok || !ok) {
-          const msg = typeof data.message === 'string' ? data.message : '';
-          if (msg.toLowerCase().includes('activate') || msg.toLowerCase().includes('confirm')) {
-            throw new Error('ACTIVATE');
-          }
-          throw new Error('Submission rejected');
+          throw new Error(msg || 'Submission rejected');
         }
 
         form.reset();
         status.hidden = false;
         status.dataset.state = 'success';
-        status.textContent =
-          'Thank you. Your project inquiry was sent. Check your inbox for a reply (and spam folder on first setup).';
-      } catch (error) {
-        const activate = error instanceof Error && error.message === 'ACTIVATE';
+        status.textContent = 'Thank you. Your project inquiry was sent. I will reply by email.';
+      } catch {
         showMailtoFallback(
-          activate
-            ? 'FormSubmit sent an activation email to the site inbox. Open that email, confirm once, then submit the form again. Or use the draft link below.'
-            : 'Could not send through the email service right now. Use the button below to open an email draft, or try again after confirming FormSubmit activation.',
+          'Could not send through the email service right now. Check gultajkhan980@gmail.com for a FormSubmit “Activate Form” email (including Spam), confirm once, then try again — or use the draft link below.',
         );
       } finally {
         submitBtn.disabled = false;
