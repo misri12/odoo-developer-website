@@ -9,6 +9,7 @@ import { breadcrumbJsonLd, faqJsonLd, serviceJsonLd, webpageJsonLd } from '../ut
 
 const seo = pagesSeo.apiErp;
 const pageFaqs = [faqs[5], faqs[7], faqs[8], faqs[0]];
+import { p } from '../utils/paths';
 ---
 
 <BaseLayout
@@ -34,8 +35,8 @@ const pageFaqs = [faqs[5], faqs[7], faqs[8], faqs[0]];
         Connect Odoo to payment gateways, shipping platforms, accounting tools and custom services with REST APIs designed for operations — not demos.
       </p>
       <div style="margin-top:1.25rem;display:flex;flex-wrap:wrap;gap:.75rem;">
-        <a class="btn btn--primary" href="/contact">Discuss Your Project</a>
-        <a class="btn btn--secondary" href="/ecommerce-integrations">eCommerce integrations</a>
+        <a class="btn btn--primary" href={p('/contact')}>Discuss Your Project</a>
+        <a class="btn btn--secondary" href={p('/ecommerce-integrations')}>eCommerce integrations</a>
       </div>
     </div>
   </section>
@@ -52,7 +53,7 @@ const pageFaqs = [faqs[5], faqs[7], faqs[8], faqs[0]];
         <li>Shipping and logistics platforms ↔ Odoo</li>
         <li>Custom internal systems and partner APIs</li>
         <li>Accounting and reporting pipelines</li>
-        <li>Storefront and marketplace bridges (see <a href="/ecommerce-integrations">eCommerce integrations</a>)</li>
+        <li>Storefront and marketplace bridges (see <a href={p('/ecommerce-integrations')}>eCommerce integrations</a>)</li>
       </ul>
       <h2>ERP automation outcomes</h2>
       <ul>
@@ -61,7 +62,7 @@ const pageFaqs = [faqs[5], faqs[7], faqs[8], faqs[0]];
         <li>Traceable sync history when something fails</li>
       </ul>
       <p>
-        Also explore <a href="/custom-odoo-modules">custom modules</a> when the business logic belongs inside Odoo rather than only in an external connector.
+        Also explore <a href={p('/custom-odoo-modules')}>custom modules</a> when the business logic belongs inside Odoo rather than only in an external connector.
       </p>
     </div>
   </section>

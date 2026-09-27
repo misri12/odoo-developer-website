@@ -9,6 +9,7 @@ import { breadcrumbJsonLd, faqJsonLd, serviceJsonLd, webpageJsonLd } from '../ut
 
 const seo = pagesSeo.ecommerceIntegrations;
 const pageFaqs = [faqs[2], faqs[3], faqs[4], faqs[5]];
+import { p } from '../utils/paths';
 ---
 
 <BaseLayout
@@ -34,8 +35,8 @@ const pageFaqs = [faqs[2], faqs[3], faqs[4], faqs[5]];
         Connect storefronts and marketplaces to Odoo so products, inventory, orders and customers stay aligned without manual re-entry.
       </p>
       <div style="margin-top:1.25rem;display:flex;flex-wrap:wrap;gap:.75rem;">
-        <a class="btn btn--primary" href="/contact">Discuss Your Project</a>
-        <a class="btn btn--secondary" href="/shopify-odoo-integration">Shopify ↔ Odoo</a>
+        <a class="btn btn--primary" href={p('/contact')}>Discuss Your Project</a>
+        <a class="btn btn--secondary" href={p('/shopify-odoo-integration')}>Shopify ↔ Odoo</a>
       </div>
     </div>
   </section>
@@ -51,7 +52,7 @@ const pageFaqs = [faqs[2], faqs[3], faqs[4], faqs[5]];
           integrations
             .filter((i) => ['Shopify', 'WooCommerce', 'Amazon', 'Tally'].includes(i.name))
             .map((item) => (
-              <a class="card" href={item.href} style="text-decoration:none;color:inherit;">
+              <a class="card" href={p(item.href)} style="text-decoration:none;color:inherit;">
                 <h3 class="card__title">{item.label}</h3>
                 <p class="card__text">Explore synchronization scope, typical problems and how the integration is approached.</p>
                 <span class="card__link">Open page →</span>
@@ -74,8 +75,8 @@ const pageFaqs = [faqs[2], faqs[3], faqs[4], faqs[5]];
         <li>Logging, retries and conflict handling for production reliability</li>
       </ul>
       <p>
-        Related: <a href="/api-erp-integrations">payment gateways, shipping platforms and REST APIs</a>, plus
-        <a href="/odoo-development">broader Odoo development</a>.
+        Related: <a href={p('/api-erp-integrations')}>payment gateways, shipping platforms and REST APIs</a>, plus
+        <a href={p('/odoo-development')}>broader Odoo development</a>.
       </p>
     </div>
   </section>

@@ -6,6 +6,7 @@ import { pagesSeo } from '../data/seo';
 import { breadcrumbJsonLd, serviceJsonLd, webpageJsonLd } from '../utils/schema';
 
 const seo = pagesSeo.tally;
+import { p } from '../utils/paths';
 ---
 
 <BaseLayout
@@ -37,8 +38,8 @@ const seo = pagesSeo.tally;
         Connect Tally and Odoo to reduce duplicate accounting entry and keep financial workflows aligned with ERP operations.
       </p>
       <div style="margin-top:1.25rem;display:flex;flex-wrap:wrap;gap:.75rem;">
-        <a class="btn btn--primary" href="/contact">Discuss Your Project</a>
-        <a class="btn btn--secondary" href="/api-erp-integrations">API &amp; ERP integrations</a>
+        <a class="btn btn--primary" href={p('/contact')}>Discuss Your Project</a>
+        <a class="btn btn--secondary" href={p('/api-erp-integrations')}>API &amp; ERP integrations</a>
       </div>
     </div>
   </section>
@@ -56,9 +57,9 @@ const seo = pagesSeo.tally;
         Accounting integrations succeed when mapping rules are explicit: which system owns ledgers, invoices, parties and tax treatment. The implementation focuses on those rules, validation and a supportable sync path.
       </p>
       <p>
-        Related: <a href="/api-erp-integrations">API &amp; ERP integrations</a>,
-        <a href="/odoo-development">Odoo development</a>,
-        <a href="/contact">start a project discussion</a>.
+        Related: <a href={p('/api-erp-integrations')}>API &amp; ERP integrations</a>,
+        <a href={p('/odoo-development')}>Odoo development</a>,
+        <a href={p('/contact')}>start a project discussion</a>.
       </p>
     </div>
   </section>

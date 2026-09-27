@@ -1,4 +1,6 @@
 ---
+import { p } from '../utils/paths';
+
 interface Props {
   title?: string;
   lead?: string;
@@ -18,6 +20,12 @@ const {
   secondaryLabel = 'Send Project Details',
   dark = true,
 } = Astro.props;
+
+const resolve = (href: string) => {
+  const [path, hash] = href.split('#');
+  const base = p(path || '/');
+  return hash ? `${base}#${hash}` : base;
+};
 ---
 
 <section class:list={['final-cta', { 'final-cta--dark': dark }]} aria-labelledby="final-cta-title">
@@ -25,8 +33,8 @@ const {
     <h2 id="final-cta-title">{title}</h2>
     <p>{lead}</p>
     <div class="final-cta__actions">
-      <a class:list={['btn', dark ? 'btn--ghost' : 'btn--primary']} href={primaryHref}>{primaryLabel}</a>
-      <a class:list={['btn', dark ? 'btn--secondary final-cta__secondary' : 'btn--secondary']} href={secondaryHref}
+      <a class:list={['btn', dark ? 'btn--ghost' : 'btn--primary']} href={resolve(primaryHref)}>{primaryLabel}</a>
+      <a class:list={['btn', dark ? 'btn--secondary final-cta__secondary' : 'btn--secondary']} href={resolve(secondaryHref)}
         >{secondaryLabel}</a
       >
     </div>

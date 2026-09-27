@@ -2,11 +2,19 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
-const site = process.env.SITE_URL || 'https://example.com';
+const siteUrl = (process.env.SITE_URL || 'https://example.com').replace(/\/$/, '');
+let base = '/';
+try {
+  const pathname = new URL(siteUrl).pathname.replace(/\/$/, '');
+  if (pathname) base = pathname;
+} catch {
+  base = '/';
+}
 
 // https://astro.build/config
 export default defineConfig({
-  site,
+  site: siteUrl,
+  base,
   trailingSlash: 'never',
   compressHTML: true,
   integrations: [

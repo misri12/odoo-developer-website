@@ -1,5 +1,6 @@
 ---
 import { integrations } from '../data/site';
+import { p } from '../utils/paths';
 ---
 
 <section class="section section--tint" aria-labelledby="integrations-title">
@@ -22,7 +23,7 @@ import { integrations } from '../data/site';
         {
           integrations.map((item) => (
             <li>
-              <a class="integrations__item" href={item.href}>
+              <a class="integrations__item" href={p(item.href)}>
                 <span class="integrations__name">{item.name}</span>
                 <span class="integrations__arrow" aria-hidden="true">↔</span>
                 <span class="integrations__odoo">Odoo</span>

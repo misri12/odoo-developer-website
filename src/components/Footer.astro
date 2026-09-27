@@ -1,11 +1,12 @@
 ---
 import { brand, footerNav, social } from '../data/site';
+import { p } from '../utils/paths';
 ---
 
 <footer class="site-footer">
   <div class="container site-footer__grid">
     <div class="site-footer__brand">
-      <a class="logo" href="/">
+      <a class="logo" href={p('/')}>
         <span class="logo__mark" aria-hidden="true">GK</span>
         <span class="logo__text">
           <span class="logo__name">{brand.name}</span>
@@ -16,28 +17,28 @@ import { brand, footerNav, social } from '../data/site';
       <div class="site-footer__social">
         <a href={social.github} rel="noopener noreferrer" target="_blank">GitHub</a>
         <a href={social.linkedin} rel="noopener noreferrer" target="_blank">LinkedIn</a>
-        <a href="/contact">Contact</a>
+        <a href={p('/contact')}>Contact</a>
       </div>
     </div>
 
     <div>
       <h2 class="site-footer__heading">Services</h2>
       <ul>
-        {footerNav.services.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+        {footerNav.services.map((item) => <li><a href={p(item.href)}>{item.label}</a></li>)}
       </ul>
     </div>
 
     <div>
       <h2 class="site-footer__heading">Integrations</h2>
       <ul>
-        {footerNav.integrations.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+        {footerNav.integrations.map((item) => <li><a href={p(item.href)}>{item.label}</a></li>)}
       </ul>
     </div>
 
     <div>
       <h2 class="site-footer__heading">Explore</h2>
       <ul>
-        {footerNav.company.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+        {footerNav.company.map((item) => <li><a href={p(item.href)}>{item.label}</a></li>)}
       </ul>
     </div>
   </div>

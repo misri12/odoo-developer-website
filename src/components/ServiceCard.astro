@@ -1,4 +1,6 @@
 ---
+import { p } from '../utils/paths';
+
 interface Props {
   href: string;
   title: string;
@@ -26,5 +28,5 @@ const icons: Record<string, string> = {
   </div>
   <h3 class="card__title">{title}</h3>
   <p class="card__text">{description}</p>
-  <a class="card__link" href={href}>Learn more <span aria-hidden="true">→</span></a>
+  <a class="card__link" href={p(href)}>Learn more <span aria-hidden="true">→</span></a>
 </article>

@@ -5,6 +5,7 @@ import { pagesSeo } from '../../data/seo';
 import { breadcrumbJsonLd, webpageJsonLd } from '../../utils/schema';
 
 const seo = pagesSeo.blog;
+import { p } from '../../utils/paths';
 ---
 
 <BaseLayout
@@ -44,9 +45,9 @@ const seo = pagesSeo.blog;
           <li>Odoo migration considerations</li>
         </ul>
         <p class="card__text">
-          Meanwhile, explore <a href="/odoo-development">Odoo development</a>,
-          <a href="/ecommerce-integrations">eCommerce integrations</a> and
-          <a href="/contact">contact</a>.
+          Meanwhile, explore <a href={p('/odoo-development')}>Odoo development</a>,
+          <a href={p('/ecommerce-integrations')}>eCommerce integrations</a> and
+          <a href={p('/contact')}>contact</a>.
         </p>
       </div>
     </div>

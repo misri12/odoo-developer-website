@@ -7,6 +7,7 @@ import { pagesSeo } from '../../data/seo';
 import { breadcrumbJsonLd, webpageJsonLd } from '../../utils/schema';
 
 const seo = pagesSeo.odooApps;
+import { p } from '../../utils/paths';
 ---
 
 <BaseLayout
@@ -38,12 +39,12 @@ const seo = pagesSeo.odooApps;
       {
         odooApps.map((app) => (
           <article class="card app-card">
-            <img src={app.icon} alt={`${app.name} icon`} width="72" height="72" loading="lazy" />
+            <img src={p(app.icon)} alt={`${app.name} icon`} width="72" height="72" loading="lazy" />
             <div>
               <p class="badge">{app.version} · {app.category}</p>
               <h2 class="card__title">{app.name}</h2>
               <p class="card__text">{app.shortDescription}</p>
-              <a class="card__link" href={app.href}>View App →</a>
+              <a class="card__link" href={p(app.href)}>View App →</a>
             </div>
           </article>
         ))

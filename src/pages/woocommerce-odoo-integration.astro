@@ -6,6 +6,7 @@ import { pagesSeo } from '../data/seo';
 import { breadcrumbJsonLd, serviceJsonLd, webpageJsonLd } from '../utils/schema';
 
 const seo = pagesSeo.woocommerce;
+import { p } from '../utils/paths';
 ---
 
 <BaseLayout
@@ -37,8 +38,8 @@ const seo = pagesSeo.woocommerce;
         Connect WooCommerce to Odoo for catalog, stock, order and customer synchronization built around your WordPress store setup.
       </p>
       <div style="margin-top:1.25rem;display:flex;flex-wrap:wrap;gap:.75rem;">
-        <a class="btn btn--primary" href="/contact">Discuss Your Project</a>
-        <a class="btn btn--secondary" href="/ecommerce-integrations">All eCommerce integrations</a>
+        <a class="btn btn--primary" href={p('/contact')}>Discuss Your Project</a>
+        <a class="btn btn--secondary" href={p('/ecommerce-integrations')}>All eCommerce integrations</a>
       </div>
     </div>
   </section>
@@ -60,9 +61,9 @@ const seo = pagesSeo.woocommerce;
         <li>Order mapping that ignores refunds, cancellations or multi-currency details</li>
       </ul>
       <p>
-        Related: <a href="/shopify-odoo-integration">Shopify ↔ Odoo</a>,
-        <a href="/api-erp-integrations">REST API integrations</a>,
-        <a href="/odoo-development">Odoo development</a>.
+        Related: <a href={p('/shopify-odoo-integration')}>Shopify ↔ Odoo</a>,
+        <a href={p('/api-erp-integrations')}>REST API integrations</a>,
+        <a href={p('/odoo-development')}>Odoo development</a>.
       </p>
     </div>
   </section>

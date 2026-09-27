@@ -5,6 +5,7 @@ import Footer from '../components/Footer.astro';
 import { brand } from '../data/site';
 import { absoluteUrl, defaultOgImage } from '../data/seo';
 import { stringifyJsonLd } from '../utils/schema';
+import { p } from '../utils/paths';
 
 interface Props {
   title: string;
@@ -65,10 +66,10 @@ const bingVerification = import.meta.env.BING_SITE_VERIFICATION;
     <meta name="author" content={brand.name} />
     <meta name="generator" content={Astro.generator} />
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" sizes="32x32" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href={p('/favicon.svg')} />
+    <link rel="icon" href={p('/favicon.ico')} sizes="32x32" />
+    <link rel="apple-touch-icon" href={p('/apple-touch-icon.png')} />
+    <link rel="manifest" href={p('/site.webmanifest')} />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

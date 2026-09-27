@@ -15,6 +15,7 @@ const pageFaqs = [
   faqs[7],
   faqs[8],
 ];
+import { p } from '../utils/paths';
 ---
 
 <BaseLayout
@@ -40,8 +41,8 @@ const pageFaqs = [
         Custom Odoo development for businesses that need ERP workflows, modules and integrations shaped around how their teams actually operate.
       </p>
       <div class="hero__actions" style="margin-top:1.25rem;display:flex;flex-wrap:wrap;gap:.75rem;">
-        <a class="btn btn--primary" href="/contact">Discuss Your Project</a>
-        <a class="btn btn--secondary" href="/custom-odoo-modules">Custom Modules</a>
+        <a class="btn btn--primary" href={p('/contact')}>Discuss Your Project</a>
+        <a class="btn btn--secondary" href={p('/custom-odoo-modules')}>Custom Modules</a>
       </div>
     </div>
   </section>
@@ -57,7 +58,7 @@ const pageFaqs = [
         <li>Business process customization across Sales, Inventory, Accounting, Manufacturing and Project</li>
         <li>Custom models, views, security rules, wizards and scheduled actions</li>
         <li>Odoo Website and eCommerce storefront customization</li>
-        <li><a href="/ecommerce-integrations">eCommerce integrations</a> and <a href="/api-erp-integrations">API / ERP integrations</a></li>
+        <li><a href={p('/ecommerce-integrations')}>eCommerce integrations</a> and <a href={p('/api-erp-integrations')}>API / ERP integrations</a></li>
         <li>Version migration planning and controlled upgrades</li>
         <li>Performance review of slow views, heavy queries and fragile customizations</li>
       </ul>
@@ -70,10 +71,10 @@ const pageFaqs = [
       </ul>
       <h2>Related services</h2>
       <ul>
-        <li><a href="/custom-odoo-modules">Custom Odoo module development</a></li>
-        <li><a href="/ecommerce-integrations">eCommerce &amp; Odoo integrations</a></li>
-        <li><a href="/api-erp-integrations">API &amp; ERP integrations</a></li>
-        <li><a href="/projects">Projects &amp; case studies</a></li>
+        <li><a href={p('/custom-odoo-modules')}>Custom Odoo module development</a></li>
+        <li><a href={p('/ecommerce-integrations')}>eCommerce &amp; Odoo integrations</a></li>
+        <li><a href={p('/api-erp-integrations')}>API &amp; ERP integrations</a></li>
+        <li><a href={p('/projects')}>Projects &amp; case studies</a></li>
       </ul>
     </div>
   </section>

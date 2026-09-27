@@ -19,6 +19,7 @@ if (!app) {
 const title = `${app.name} | Odoo App | ${brand.name}`;
 const description = app.shortDescription;
 const path = app.href;
+import { p } from '../../utils/paths';
 ---
 
 <BaseLayout
@@ -53,13 +54,13 @@ const path = app.href;
         ]}
       />
       <div class="app-hero">
-        <img src={app.icon} alt={`${app.name} icon`} width="88" height="88" />
+        <img src={p(app.icon)} alt={`${app.name} icon`} width="88" height="88" />
         <div>
           <p class="badge">{app.version} · {app.category}</p>
           <h1 class="page-hero__title">{app.name}</h1>
           <p class="page-hero__lead">{app.shortDescription}</p>
           <div style="margin-top:1.25rem;display:flex;flex-wrap:wrap;gap:.75rem;">
-            <a class="btn btn--primary" href="/contact">Discuss Your Project</a>
+            <a class="btn btn--primary" href={p('/contact')}>Discuss Your Project</a>
             {
               app.github && (
                 <a class="btn btn--secondary" href={app.github} target="_blank" rel="noopener noreferrer">
@@ -79,7 +80,7 @@ const path = app.href;
         app.banner && (
           <img
             class="app-banner"
-            src={app.banner}
+            src={p(app.banner)}
             alt={`${app.name} banner`}
             width="1200"
             height="400"
@@ -101,14 +102,14 @@ const path = app.href;
               <ul>
                 {app.relatedServices.map((link) => (
                   <li>
-                    <a href={link.href}>{link.label}</a>
+                    <a href={p(link.href)}>{link.label}</a>
                   </li>
                 ))}
                 <li>
-                  <a href="/odoo-apps">All Odoo Apps</a>
+                  <a href={p('/odoo-apps')}>All Odoo Apps</a>
                 </li>
                 <li>
-                  <a href="/projects">Projects</a>
+                  <a href={p('/projects')}>Projects</a>
                 </li>
               </ul>
             </>
@@ -120,7 +121,7 @@ const path = app.href;
           <img
             class="app-banner"
             style="margin-top:2rem;"
-            src={app.hero}
+            src={p(app.hero)}
             alt={`${app.name} screenshot`}
             width="1200"
             height="675"

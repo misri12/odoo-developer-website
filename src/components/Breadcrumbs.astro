@@ -1,4 +1,6 @@
 ---
+import { p } from '../utils/paths';
+
 interface Props {
   items: { name: string; href?: string }[];
 }
@@ -13,7 +15,7 @@ const { items } = Astro.props;
         <li>
           {index > 0 && <span class="breadcrumbs__sep" aria-hidden="true"> / </span>}
           {item.href && index < items.length - 1 ? (
-            <a href={item.href}>{item.name}</a>
+            <a href={p(item.href)}>{item.name}</a>
           ) : (
             <span aria-current={index === items.length - 1 ? 'page' : undefined}>{item.name}</span>
           )}

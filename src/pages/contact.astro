@@ -7,6 +7,7 @@ import { pagesSeo } from '../data/seo';
 import { breadcrumbJsonLd, webpageJsonLd } from '../utils/schema';
 
 const seo = pagesSeo.contact;
+import { p } from '../utils/paths';
 ---
 
 <BaseLayout
@@ -52,7 +53,7 @@ const seo = pagesSeo.contact;
           Prefer email? Use the form so messages are structured and spam-filtered. Direct email is available on request after your inquiry is received.
         </p>
         <p class="card__text">
-          <a href="/projects">View projects</a> · <a href="/odoo-apps">Odoo Apps</a> ·
+          <a href={p('/projects')}>View projects</a> · <a href={p('/odoo-apps')}>Odoo Apps</a> ·
           <a href={brand.github} target="_blank" rel="noopener noreferrer">GitHub</a>
         </p>
       </aside>

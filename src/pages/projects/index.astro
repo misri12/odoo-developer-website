@@ -6,6 +6,7 @@ import { projects } from '../../data/projects';
 import { pagesSeo } from '../../data/seo';
 import { breadcrumbJsonLd, webpageJsonLd } from '../../utils/schema';
 const seo = pagesSeo.projects;
+import { p } from '../../utils/paths';
 ---
 
 <BaseLayout
@@ -43,9 +44,9 @@ const seo = pagesSeo.projects;
             <p class="card__text"><strong>Technology:</strong> {project.technology.join(', ')}</p>
             <p class="card__text"><strong>Outcome:</strong> {project.outcome}</p>
             <div class="project-card__links">
-              {project.href && <a class="card__link" href={project.href}>View Case Study →</a>}
+              {project.href && <a class="card__link" href={p(project.href)}>View Case Study →</a>}
               {project.relatedServices.map((link) => (
-                <a class="card__link" href={link.href}>{link.label} →</a>
+                <a class="card__link" href={p(link.href)}>{link.label} →</a>
               ))}
             </div>
           </article>

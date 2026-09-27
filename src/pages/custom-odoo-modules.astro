@@ -10,6 +10,7 @@ import { breadcrumbJsonLd, faqJsonLd, serviceJsonLd, webpageJsonLd } from '../ut
 
 const seo = pagesSeo.customModules;
 const pageFaqs = [faqs[1], faqs[7], faqs[0], faqs[8]];
+import { p } from '../utils/paths';
 ---
 
 <BaseLayout
@@ -35,8 +36,8 @@ const pageFaqs = [faqs[1], faqs[7], faqs[0], faqs[8]];
         Purpose-built Odoo modules for industry workflows, automation and ERP extensions — structured for readability, security and safer upgrades.
       </p>
       <div style="margin-top:1.25rem;display:flex;flex-wrap:wrap;gap:.75rem;">
-        <a class="btn btn--primary" href="/contact">Discuss Your Project</a>
-        <a class="btn btn--secondary" href="/odoo-apps">Browse Odoo Apps</a>
+        <a class="btn btn--primary" href={p('/contact')}>Discuss Your Project</a>
+        <a class="btn btn--secondary" href={p('/odoo-apps')}>Browse Odoo Apps</a>
       </div>
     </div>
   </section>
@@ -57,13 +58,13 @@ const pageFaqs = [faqs[1], faqs[7], faqs[0], faqs[8]];
       </ul>
       <h2>Example packaged module</h2>
       <p>
-        <a href={odooApps[0].href}>{odooApps[0].name}</a> is a real Odoo App for Website &amp; eCommerce AI assistance — available across Odoo 12.0–19.0. See the <a href="/odoo-apps">Odoo Apps</a> page for details.
+        <a href={p(odooApps[0].href)}>{odooApps[0].name}</a> is a real Odoo App for Website &amp; eCommerce AI assistance — available across Odoo 12.0–19.0. See the <a href={p('/odoo-apps')}>Odoo Apps</a> page for details.
       </p>
       <h2>Related work</h2>
       <ul>
-        <li><a href="/odoo-development">Odoo development services</a></li>
-        <li><a href="/api-erp-integrations">API &amp; ERP integrations</a></li>
-        <li><a href="/projects">Projects</a></li>
+        <li><a href={p('/odoo-development')}>Odoo development services</a></li>
+        <li><a href={p('/api-erp-integrations')}>API &amp; ERP integrations</a></li>
+        <li><a href={p('/projects')}>Projects</a></li>
       </ul>
     </div>
   </section>

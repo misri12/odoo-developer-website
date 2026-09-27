@@ -14,6 +14,7 @@ import { faqJsonLd, personJsonLd, webpageJsonLd, websiteJsonLd } from '../utils/
 
 const seo = pagesSeo.home;
 const featured = projects.slice(0, 6);
+import { p } from '../utils/paths';
 ---
 
 <BaseLayout
@@ -33,8 +34,8 @@ const featured = projects.slice(0, 6);
           Odoo development, eCommerce integrations and ERP automation built around the way your business actually works.
         </p>
         <div class="hero__actions">
-          <a class="btn btn--primary" href="/contact">Discuss Your Project</a>
-          <a class="btn btn--secondary" href="/projects">View My Work</a>
+          <a class="btn btn--primary" href={p('/contact')}>Discuss Your Project</a>
+          <a class="btn btn--secondary" href={p('/projects')}>View My Work</a>
         </div>
         <p class="hero__note">{brand.locationFocus}</p>
       </div>
@@ -114,9 +115,9 @@ const featured = projects.slice(0, 6);
               <p class="card__text"><strong>Technology:</strong> {project.technology.join(', ')}</p>
               <p class="card__text"><strong>Outcome:</strong> {project.outcome}</p>
               {project.href ? (
-                <a class="card__link" href={project.href}>View Case Study →</a>
+                <a class="card__link" href={p(project.href)}>View Case Study →</a>
               ) : (
-                <a class="card__link" href="/projects">View projects →</a>
+                <a class="card__link" href={p('/projects')}>View projects →</a>
               )}
             </article>
           ))
@@ -156,7 +157,7 @@ const featured = projects.slice(0, 6);
           odooApps.map((app) => (
             <article class="card app-card">
               <img
-                src={app.icon}
+                src={p(app.icon)}
                 alt={`${app.name} icon`}
                 width="64"
                 height="64"
@@ -166,7 +167,7 @@ const featured = projects.slice(0, 6);
                 <p class="badge">{app.version} · {app.category}</p>
                 <h3 class="card__title">{app.name}</h3>
                 <p class="card__text">{app.shortDescription}</p>
-                <a class="card__link" href={app.href}>View App →</a>
+                <a class="card__link" href={p(app.href)}>View App →</a>
               </div>
             </article>
           ))

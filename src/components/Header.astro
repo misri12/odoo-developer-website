@@ -1,10 +1,11 @@
 ---
 import { brand, nav } from '../data/site';
+import { p } from '../utils/paths';
 ---
 
 <header class="site-header" data-header>
   <div class="container site-header__inner">
-    <a class="logo" href="/" aria-label={`${brand.name} — home`}>
+    <a class="logo" href={p('/')} aria-label={`${brand.name} — home`}>
       <span class="logo__mark" aria-hidden="true">GK</span>
       <span class="logo__text">
         <span class="logo__name">{brand.name}</span>
@@ -17,14 +18,14 @@ import { brand, nav } from '../data/site';
         {
           nav.map((item) => (
             <li class:list={['nav__item', { 'nav__item--has-children': !!item.children }]}>
-              <a class="nav__link" href={item.href}>
+              <a class="nav__link" href={p(item.href)}>
                 {item.label}
               </a>
               {item.children && (
                 <ul class="nav__dropdown" aria-label={`${item.label} submenu`}>
                   {item.children.map((child) => (
                     <li>
-                      <a href={child.href}>{child.label}</a>
+                      <a href={p(child.href)}>{child.label}</a>
                     </li>
                   ))}
                 </ul>
@@ -35,7 +36,7 @@ import { brand, nav } from '../data/site';
       </ul>
     </nav>
 
-    <a class="btn btn--primary site-header__cta" href="/contact">Discuss Your Project</a>
+    <a class="btn btn--primary site-header__cta" href={p('/contact')}>Discuss Your Project</a>
 
     <button
       class="nav-toggle"
@@ -56,18 +57,18 @@ import { brand, nav } from '../data/site';
           nav.map((item) => (
             <>
               <li>
-                <a href={item.href}>{item.label}</a>
+                <a href={p(item.href)}>{item.label}</a>
               </li>
               {item.children?.map((child) => (
                 <li class="mobile-nav__child">
-                  <a href={child.href}>{child.label}</a>
+                  <a href={p(child.href)}>{child.label}</a>
                 </li>
               ))}
             </>
           ))
         }
         <li>
-          <a class="btn btn--primary btn--block" href="/contact">Discuss Your Project</a>
+          <a class="btn btn--primary btn--block" href={p('/contact')}>Discuss Your Project</a>
         </li>
       </ul>
     </nav>

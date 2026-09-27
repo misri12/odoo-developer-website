@@ -1,4 +1,6 @@
 ---
+import { p } from '../utils/paths';
+
 interface Props {
   faqs: { question: string; answer: string; link?: { href: string; label: string } }[];
   title?: string;
@@ -22,7 +24,7 @@ const { faqs, title = 'Frequently asked questions' } = Astro.props;
               <p>{faq.answer}</p>
               {faq.link && (
                 <p>
-                  <a href={faq.link.href}>{faq.link.label}</a>
+                  <a href={p(faq.link.href)}>{faq.link.label}</a>
                 </p>
               )}
             </div>
