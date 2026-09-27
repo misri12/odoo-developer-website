@@ -88,12 +88,22 @@ export const pagesSeo: Record<string, PageSeo> = {
   },
   about: {
     path: '/about',
-    title: `About ${brand.name} | Odoo Developer & Integration Specialist`,
+    title: `About Us | ${brand.name} — Odoo Team & Cybersecurity`,
     description:
-      'About Gultaj Khan — Odoo developer focused on custom modules, eCommerce integrations and practical ERP automation for international clients.',
-    h1: `About ${brand.name}`,
-    primaryKeyword: 'Odoo developer',
+      'About Gultaj Khan and the team — Odoo development, custom addons, web scraping, Node.js, cybersecurity advisory, and finance & junior development support.',
+    h1: 'About Us',
+    primaryKeyword: 'Odoo developer team',
     ogType: 'profile',
+    ogImage: '/images/team/gultaj-khan.webp',
+  },
+  careers: {
+    path: '/careers',
+    title: `Careers | Join the Odoo Development Team | ${brand.name}`,
+    description:
+      'Apply for Odoo, Node.js, Python, integration or related development roles. Open applications for developers who want to join Gultaj Khan’s team.',
+    h1: 'Careers — Work With Us',
+    primaryKeyword: 'Odoo developer jobs',
+    secondaryKeywords: ['Odoo career', 'hire Odoo developer team', 'Node.js developer job'],
     ogImage: '/images/og/about.png',
   },
   contact: {

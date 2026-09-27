@@ -74,6 +74,7 @@ Do not hardcode the production domain in application code. Set `SITE_URL` before
 | `/odoo-apps/product-uploader` | Product Uploader |
 | `/odoo-apps/odoo-helpdesk` | Odoo Helpdesk |
 | `/about` | About |
+| `/careers` | Careers / job applications |
 | `/contact` | Project inquiry form |
 | `/blog` | Architecture placeholder (noindex until articles exist) |
 

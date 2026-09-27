@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CareerForm from '../components/CareerForm.astro';
+import { brand } from '../data/site';
+import { careerRoles } from '../data/team';
+import { pagesSeo } from '../data/seo';
+import { breadcrumbJsonLd, webpageJsonLd } from '../utils/schema';
+import { p } from '../utils/paths';
+
+const seo = pagesSeo.careers;
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  path={seo.path}
+  ogImage={seo.ogImage}
+  jsonLd={[
+    webpageJsonLd({ name: seo.title, description: seo.description, path: seo.path }),
+    breadcrumbJsonLd([
+      { name: 'Home', path: '/' },
+      { name: 'Careers', path: seo.path },
+    ]),
+  ]}
+>
+  <section class="page-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Careers' }]} />
+      <h1 class="page-hero__title">{seo.h1}</h1>
+      <p class="page-hero__lead">
+        Looking for Odoo, Node.js, integrations or related development work? Send an open application —
+        we review candidates for current and upcoming roles on the team.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container careers-layout">
+      <div>
+        <h2 class="section__title" style="font-size:1.5rem;">Apply to join</h2>
+        <p class="section__lead" style="margin-bottom:1.25rem;">
+          Tell us what you want to work on, your stack, and how you prefer to collaborate. Clear applications get clearer replies.
+        </p>
+        <CareerForm />
+      </div>
+
+      <aside class="careers-aside">
+        <div class="card card--static">
+          <h2 class="card__title">Roles we often need</h2>
+          <ul>
+            {careerRoles.map((role) => (
+              <li>{role}</li>
+            ))}
+          </ul>
+          <p class="card__text">
+            Even if a role is not listed as open right now, send an application — strong Odoo and integration profiles are kept for upcoming work.
+          </p>
+        </div>
+
+        <div class="card card--static">
+          <h2 class="card__title">What helps your application</h2>
+          <ul>
+            <li>Odoo / Python / JavaScript experience (or clear motivation to learn)</li>
+            <li>GitHub, portfolio or sample module work</li>
+            <li>Honest experience level and availability</li>
+            <li>Interest in integrations, ERP workflows or security-minded delivery</li>
+          </ul>
+          <p class="card__text">
+            Prefer email? Use the form so applications stay structured.
+            Learn more about the team on <a href={p('/about')}>About Us</a>, or browse
+            <a href={p('/odoo-apps')}>Odoo Apps</a> and
+            <a href={brand.github} target="_blank" rel="noopener noreferrer">GitHub</a>.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .careers-layout {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .careers-aside {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .careers-aside ul {
+    margin: 0 0 1rem;
+    padding-left: 1.1rem;
+    color: var(--muted);
+  }
+
+  .careers-aside li + li {
+    margin-top: 0.35rem;
+  }
+
+  @media (min-width: 960px) {
+    .careers-layout {
+      grid-template-columns: 1.4fr 0.8fr;
+      align-items: start;
+    }
+  }
+</style>

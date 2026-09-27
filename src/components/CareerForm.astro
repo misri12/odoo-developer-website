@@ -1,0 +1,420 @@
+---
+import { brand } from '../data/site';
+import { careerRoles, experienceLevels, workPreferences } from '../data/team';
+
+const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY || '';
+const contactEmail = brand.email;
+---
+
+<form
+  class="project-form"
+  id="career-form"
+  data-career-form
+  data-contact-email={contactEmail}
+  novalidate
+>
+  <input type="hidden" name="access_key" value={web3Key} data-web3-key />
+  <input type="checkbox" name="botcheck" class="sr-only" tabindex="-1" autocomplete="off" />
+  <input type="hidden" name="subject" value="New career / job application" />
+  <input type="hidden" name="from_name" value="Website Careers Form" />
+  <input type="hidden" name="form_type" value="careers" />
+
+  <div class="project-form__grid">
+    <div class="field">
+      <label for="career_name">Full name <span aria-hidden="true">*</span></label>
+      <input id="career_name" name="name" type="text" autocomplete="name" required maxlength="100" />
+      <p class="field__error" data-error-for="name" hidden></p>
+    </div>
+
+    <div class="field">
+      <label for="career_email">Email <span aria-hidden="true">*</span></label>
+      <input id="career_email" name="email" type="email" autocomplete="email" required maxlength="120" />
+      <p class="field__error" data-error-for="email" hidden></p>
+    </div>
+
+    <div class="field">
+      <label for="career_phone">Phone / WhatsApp</label>
+      <input id="career_phone" name="phone" type="tel" autocomplete="tel" maxlength="40" />
+    </div>
+
+    <div class="field">
+      <label for="career_location">Location / city</label>
+      <input id="career_location" name="location" type="text" maxlength="120" placeholder="City, country" />
+    </div>
+
+    <div class="field">
+      <label for="career_role">Role of interest <span aria-hidden="true">*</span></label>
+      <select id="career_role" name="role" required>
+        <option value="">Select a role</option>
+        {careerRoles.map((item) => <option value={item}>{item}</option>)}
+      </select>
+      <p class="field__error" data-error-for="role" hidden></p>
+    </div>
+
+    <div class="field">
+      <label for="career_experience">Experience level</label>
+      <select id="career_experience" name="experience">
+        <option value="">Select level</option>
+        {experienceLevels.map((item) => <option value={item}>{item}</option>)}
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="career_work">Work preference</label>
+      <select id="career_work" name="work_preference">
+        <option value="">Select preference</option>
+        {workPreferences.map((item) => <option value={item}>{item}</option>)}
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="career_portfolio">Portfolio / GitHub / LinkedIn</label>
+      <input
+        id="career_portfolio"
+        name="portfolio"
+        type="url"
+        maxlength="200"
+        placeholder="https://"
+      />
+    </div>
+
+    <div class="field field--full">
+      <label for="career_skills">Skills <span aria-hidden="true">*</span></label>
+      <input
+        id="career_skills"
+        name="skills"
+        type="text"
+        required
+        maxlength="240"
+        placeholder="e.g. Odoo, Python, JavaScript, Node.js, PostgreSQL"
+      />
+      <p class="field__error" data-error-for="skills" hidden></p>
+    </div>
+
+    <div class="field field--full">
+      <label for="career_message">Why do you want to join? <span aria-hidden="true">*</span></label>
+      <textarea
+        id="career_message"
+        name="message"
+        rows="5"
+        required
+        maxlength="4000"
+        placeholder="Tell us about your background, what you want to work on, and the kind of role you are looking for."
+      ></textarea>
+      <p class="field__error" data-error-for="message" hidden></p>
+    </div>
+  </div>
+
+  <div class="project-form__actions">
+    <button class="btn btn--primary" type="submit" data-submit>
+      Send Application
+    </button>
+    <p class="project-form__note">
+      Applications are reviewed for current and upcoming openings. We reply by email when there is a fit.
+    </p>
+  </div>
+
+  <div class="project-form__status" data-form-status role="status" aria-live="polite" hidden></div>
+</form>
+
+<style>
+  .project-form {
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: #fff;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .project-form__grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .field label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .field input,
+  .field select,
+  .field textarea {
+    width: 100%;
+    padding: 0.7rem 0.85rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font: inherit;
+    background: #fff;
+    color: var(--ink);
+  }
+
+  .field input:focus-visible,
+  .field select:focus-visible,
+  .field textarea:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  .field__error {
+    margin: 0.35rem 0 0;
+    color: var(--danger);
+    font-size: 0.88rem;
+  }
+
+  .project-form__actions {
+    margin-top: 1.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.85rem 1.25rem;
+  }
+
+  .project-form__note {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.92rem;
+    max-width: 28rem;
+  }
+
+  .project-form__status {
+    margin-top: 1rem;
+    padding: 0.85rem 1rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+  }
+
+  .project-form__status[data-state='success'] {
+    background: #ecfdf3;
+    border-color: #abefc6;
+    color: var(--success);
+  }
+
+  .project-form__status[data-state='error'] {
+    background: #fef3f2;
+    border-color: #fecdca;
+    color: var(--danger);
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  @media (min-width: 720px) {
+    .project-form__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .field--full {
+      grid-column: 1 / -1;
+    }
+  }
+</style>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('[data-career-form]');
+  if (form) {
+    const status = form.querySelector<HTMLElement>('[data-form-status]');
+    const submitBtn = form.querySelector<HTMLButtonElement>('[data-submit]');
+    const web3Key = (form.querySelector<HTMLInputElement>('[data-web3-key]')?.value || '').trim();
+    const contactEmail = form.dataset.contactEmail || 'gultajkhan980@gmail.com';
+
+    const getField = (name: string) => {
+      const el = form.elements.namedItem(name) as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | null;
+      return (el?.value || '').trim();
+    };
+
+    const setError = (name: string, message: string) => {
+      const err = form.querySelector<HTMLElement>(`[data-error-for="${name}"]`);
+      if (!err) return;
+      if (!message) {
+        err.hidden = true;
+        err.textContent = '';
+        return;
+      }
+      err.hidden = false;
+      err.textContent = message;
+    };
+
+    const validate = () => {
+      let ok = true;
+      const email = getField('email');
+      const checks: [string, string, (v: string) => boolean][] = [
+        ['name', 'Please enter your name.', (v) => v.length >= 2],
+        ['email', 'Please enter a valid email.', (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)],
+        ['role', 'Please select a role.', (v) => v.length > 0],
+        ['skills', 'Please list your main skills.', (v) => v.length >= 3],
+        ['message', 'Please tell us why you want to join.', (v) => v.length >= 20],
+      ];
+      for (const [name, message, test] of checks) {
+        const value = getField(name);
+        if (!test(value)) {
+          setError(name, message);
+          ok = false;
+        } else {
+          setError(name, '');
+        }
+      }
+      return ok;
+    };
+
+    const buildMailto = () => {
+      const subject = encodeURIComponent(`Career application — ${getField('name')}`);
+      const body = encodeURIComponent(
+        [
+          `Name: ${getField('name')}`,
+          `Email: ${getField('email')}`,
+          `Phone: ${getField('phone')}`,
+          `Location: ${getField('location')}`,
+          `Role: ${getField('role')}`,
+          `Experience: ${getField('experience')}`,
+          `Work preference: ${getField('work_preference')}`,
+          `Portfolio: ${getField('portfolio')}`,
+          `Skills: ${getField('skills')}`,
+          '',
+          getField('message'),
+        ].join('\n'),
+      );
+      return `mailto:${contactEmail}?subject=${subject}&body=${body}`;
+    };
+
+    const payload = () => ({
+      name: getField('name'),
+      email: getField('email'),
+      phone: getField('phone'),
+      location: getField('location'),
+      role: getField('role'),
+      experience: getField('experience'),
+      work_preference: getField('work_preference'),
+      portfolio: getField('portfolio'),
+      skills: getField('skills'),
+      message: getField('message'),
+      form_type: 'careers',
+      _subject: `Career application from ${getField('name')} — ${getField('role')}`,
+      _template: 'table',
+      _captcha: 'false',
+      _honey: (form.elements.namedItem('botcheck') as HTMLInputElement)?.checked ? '1' : '',
+    });
+
+    const showMailtoFallback = (reason: string) => {
+      if (!status) return;
+      status.hidden = false;
+      status.dataset.state = 'error';
+      status.replaceChildren();
+      const message = document.createElement('p');
+      message.style.margin = '0 0 0.5rem';
+      message.textContent = reason;
+      const link = document.createElement('a');
+      link.href = buildMailto();
+      link.className = 'card__link';
+      link.textContent = 'Open email draft instead →';
+      status.append(message, link);
+    };
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!status || !submitBtn) return;
+      status.hidden = true;
+      status.replaceChildren();
+
+      if (!validate()) {
+        status.hidden = false;
+        status.dataset.state = 'error';
+        status.textContent = 'Please fix the highlighted fields and try again.';
+        return;
+      }
+
+      if ((form.elements.namedItem('botcheck') as HTMLInputElement)?.checked) {
+        form.reset();
+        status.hidden = false;
+        status.dataset.state = 'success';
+        status.textContent = 'Thank you. Your application was sent.';
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+
+      try {
+        let response: Response;
+        if (web3Key) {
+          const formData = new FormData(form);
+          response = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            body: formData,
+            headers: { Accept: 'application/json' },
+          });
+        } else {
+          response = await fetch(
+            `https://formsubmit.co/ajax/${encodeURIComponent(contactEmail)}`,
+            {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+              },
+              body: JSON.stringify(payload()),
+            },
+          );
+        }
+
+        const contentType = response.headers.get('content-type') || '';
+        const rawText = await response.text();
+        let data: Record<string, unknown> = {};
+        try {
+          data =
+            contentType.includes('application/json') || rawText.trim().startsWith('{')
+              ? JSON.parse(rawText)
+              : {};
+        } catch {
+          data = {};
+        }
+
+        const msg = typeof data.message === 'string' ? data.message : rawText;
+        const msgLower = msg.toLowerCase();
+        if (msgLower.includes('activate') || msgLower.includes('activation') || msgLower.includes('confirm')) {
+          status.hidden = false;
+          status.dataset.state = 'success';
+          status.replaceChildren();
+          const p1 = document.createElement('p');
+          p1.style.margin = '0 0 0.5rem';
+          p1.textContent =
+            'Almost ready — FormSubmit emailed an “Activate Form” link to gultajkhan980@gmail.com. Open that email, click Activate once, then submit again.';
+          const p2 = document.createElement('p');
+          p2.style.margin = '0';
+          const link = document.createElement('a');
+          link.href = buildMailto();
+          link.className = 'card__link';
+          link.textContent = 'Or open an email draft now →';
+          p2.append(link);
+          status.append(p1, p2);
+          return;
+        }
+
+        const ok = Boolean(data.success === true || data.success === 'true' || data.ok);
+        if (!response.ok || !ok) throw new Error(msg || 'Submission rejected');
+
+        form.reset();
+        status.hidden = false;
+        status.dataset.state = 'success';
+        status.textContent = 'Thank you. Your application was sent. We will reply by email if there is a fit.';
+      } catch {
+        showMailtoFallback(
+          'Could not send through the email service right now. Use the draft link below, or try again after FormSubmit activation.',
+        );
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Application';
+      }
+    });
+  }
+</script>

@@ -3,18 +3,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import FinalCta from '../components/FinalCta.astro';
 import { brand, social, whyPoints } from '../data/site';
+import { team, whatsappHref } from '../data/team';
 import { pagesSeo } from '../data/seo';
 import { breadcrumbJsonLd, personJsonLd, webpageJsonLd } from '../utils/schema';
+import { p } from '../utils/paths';
 
 const seo = pagesSeo.about;
-import { p } from '../utils/paths';
+const founder = team[0];
 ---
 
 <BaseLayout
   title={seo.title}
   description={seo.description}
   path={seo.path}
-  ogImage={seo.ogImage}
+  ogImage={founder.photo}
   ogType="profile"
   jsonLd={[
     webpageJsonLd({ name: seo.title, description: seo.description, path: seo.path }),
@@ -27,34 +29,216 @@ import { p } from '../utils/paths';
 >
   <section class="page-hero">
     <div class="container">
-      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'About' }]} />
+      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'About Us' }]} />
       <h1 class="page-hero__title">{seo.h1}</h1>
       <p class="page-hero__lead">
-        {brand.title}. I help businesses and implementation partners connect Odoo with the systems and workflows their operations depend on.
+        We build custom Odoo solutions, eCommerce integrations and automation systems — with practical engineering and security-minded delivery.
       </p>
     </div>
   </section>
 
   <section class="section section--tight">
-    <div class="container prose">
-      <h2>Positioning</h2>
-      <p>{brand.tagline}</p>
-      <p>
-        The focus is practical Odoo engineering: custom modules, eCommerce integrations, REST API connections and ERP automation for international clients across the USA, UK, Europe, Middle East, Australia and other markets.
-      </p>
-      <h2>How I work</h2>
-      <ul>
-        {whyPoints.map((point) => <li><strong>{point.title}.</strong> {point.description}</li>)}
-      </ul>
-      <h2>Profiles</h2>
-      <ul>
-        <li><a href={social.github} target="_blank" rel="noopener noreferrer">GitHub — {brand.githubHandle}</a></li>
-        <li><a href={social.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-        <li><a href={p('/odoo-apps')}>Odoo Apps</a></li>
-        <li><a href={p('/projects')}>Projects</a></li>
-        <li><a href={p('/contact')}>Contact</a></li>
-      </ul>
+    <div class="container about-founder">
+      <img
+        class="about-founder__photo"
+        src={p(founder.photo)}
+        alt={`${founder.name}, ${founder.role}`}
+        width="727"
+        height="1024"
+        loading="eager"
+      />
+      <div class="prose">
+        <p class="badge">Founder &amp; CEO</p>
+        <h2>{founder.name}</h2>
+        <p class="about-founder__role">{founder.role}</p>
+        <p>{founder.bio}</p>
+        <p>
+          Work covers custom Odoo addons, web scraping, Odoo Website &amp; eCommerce builds, Node.js applications,
+          and cybersecurity advisory — for international clients across the USA, UK, Europe, Middle East, Australia and other markets.
+        </p>
+        <ul class="skill-list">
+          {founder.highlights.map((item) => <li>{item}</li>)}
+        </ul>
+        <p>
+          <a href={social.github} target="_blank" rel="noopener noreferrer">GitHub — {brand.githubHandle}</a>
+          ·
+          <a href={social.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          ·
+          <a href={p('/contact')}>Discuss a project</a>
+        </p>
+      </div>
     </div>
   </section>
-  <FinalCta />
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section__title">Our team</h2>
+      <p class="section__lead">
+        A small team focused on Odoo delivery, integrations and day-to-day business operations.
+      </p>
+      <div class="team-grid">
+        {
+          team.map((member) => (
+            <article class="team-card">
+              <img
+                src={p(member.photoCard)}
+                alt={`${member.name} portrait`}
+                width="560"
+                height="700"
+                loading="lazy"
+              />
+              <div class="team-card__body">
+                <h3>{member.name}</h3>
+                <p class="team-card__role">{member.role}</p>
+                <p>{member.bio}</p>
+                <ul>
+                  {member.highlights.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+                {
+                  member.whatsapp && (
+                    <p class="team-card__contact">
+                      <a
+                        href={whatsappHref(member.whatsapp)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        WhatsApp {member.whatsapp}
+                      </a>
+                    </p>
+                  )
+                }
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container prose">
+      <h2>How we work</h2>
+      <ul>
+        {whyPoints.map((point) => (
+          <li>
+            <strong>{point.title}.</strong> {point.description}
+          </li>
+        ))}
+      </ul>
+      <h2>Join the team</h2>
+      <p>
+        Developers and contributors looking for Odoo, Node.js or integration work can apply on the
+        <a href={p('/careers')}>Careers</a> page.
+      </p>
+    </div>
+  </section>
+  <FinalCta title="Want to work together?" lead="Tell us about your Odoo, integration or automation project." />
 </BaseLayout>
+
+<style>
+  .about-founder {
+    display: grid;
+    gap: 1.75rem;
+    align-items: start;
+  }
+
+  .about-founder__photo {
+    width: 100%;
+    max-width: 420px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-md);
+    justify-self: center;
+  }
+
+  .about-founder__role {
+    margin-top: -0.35rem;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  .skill-list {
+    display: grid;
+    gap: 0.35rem;
+    margin: 1rem 0;
+    padding-left: 1.1rem;
+  }
+
+  .team-grid {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 1.75rem;
+  }
+
+  .team-card {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .team-card img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+  }
+
+  .team-card__body {
+    padding: 1.25rem 1.35rem 1.5rem;
+  }
+
+  .team-card__body h3 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+  }
+
+  .team-card__role {
+    margin: 0.35rem 0 0.75rem;
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .team-card__body p {
+    margin: 0 0 0.85rem;
+    color: var(--muted);
+  }
+
+  .team-card__body ul {
+    margin: 0;
+    padding-left: 1.1rem;
+    color: var(--ink-soft);
+  }
+
+  .team-card__body li + li {
+    margin-top: 0.25rem;
+  }
+
+  .team-card__contact {
+    margin: 1rem 0 0;
+  }
+
+  .team-card__contact a {
+    font-weight: 600;
+  }
+
+  @media (min-width: 800px) {
+    .about-founder {
+      grid-template-columns: minmax(260px, 380px) 1fr;
+      gap: 2.5rem;
+    }
+
+    .about-founder__photo {
+      justify-self: stretch;
+      max-width: none;
+    }
+
+    .team-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

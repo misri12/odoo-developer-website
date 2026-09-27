@@ -13,11 +13,13 @@ export const brand = {
   name: 'Gultaj Khan',
   shortName: 'Gultaj',
   title: 'Odoo Developer & eCommerce Integration Specialist',
-  tagline: 'I build custom Odoo solutions, eCommerce integrations and business automation systems that connect your entire workflow.',
+  tagline:
+    'I build custom Odoo solutions, eCommerce integrations and business automation systems — with 3 years of experience in custom addons, web scraping, Odoo & Node.js websites, plus cybersecurity advisory.',
   email: 'gultajkhan980@gmail.com',
   locationFocus: 'International clients — USA, UK, Europe, Middle East, Australia and other markets',
   github: 'https://github.com/misri12',
   githubHandle: 'misri12',
+  experienceYears: 3,
 } as const;
 
 export const social = {
@@ -50,6 +52,7 @@ export const nav = [
   { label: 'Projects', href: '/projects' },
   { label: 'Odoo Apps', href: '/odoo-apps' },
   { label: 'About', href: '/about' },
+  { label: 'Careers', href: '/careers' },
 ] as const;
 
 export const footerNav = {
@@ -69,6 +72,7 @@ export const footerNav = {
     { label: 'Projects', href: '/projects' },
     { label: 'Odoo Apps', href: '/odoo-apps' },
     { label: 'About', href: '/about' },
+    { label: 'Careers', href: '/careers' },
     { label: 'Contact', href: '/contact' },
   ],
 } as const;
@@ -76,10 +80,12 @@ export const footerNav = {
 export const technologies = [
   'Odoo',
   'Python',
+  'Node.js',
   'PostgreSQL',
   'JavaScript',
   'XML / QWeb',
   'REST APIs',
+  'Web scraping',
   'Shopify',
   'WooCommerce',
   'Amazon',
