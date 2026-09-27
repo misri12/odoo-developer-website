@@ -63,7 +63,16 @@ Do not hardcode the production domain in application code. Set `SITE_URL` before
 | `/tally-odoo-integration` | Tally ↔ Odoo |
 | `/projects` | Projects overview |
 | `/odoo-apps` | Odoo Apps listing |
-| `/odoo-apps/ai-commerce-assistant` | Real app case study |
+| `/odoo-apps/ai-commerce-assistant` | AI Commerce Assistant (images + details) |
+| `/odoo-apps/shopify-connector-pro` | Shopify Connector Pro |
+| `/odoo-apps/woocommerce-connector-pro` | WooCommerce Connector Pro |
+| `/odoo-apps/amazon-connector` | Amazon Connector |
+| `/odoo-apps/shopify-cod-settlement-reconciliation` | Shopify COD Reconciliation |
+| `/odoo-apps/b2b-pallet-management` | B2B Pallet Management |
+| `/odoo-apps/odoo-tally-connector` | Odoo Tally Connector |
+| `/odoo-apps/quickbooks-online-connector-pro` | QuickBooks Online Connector Pro |
+| `/odoo-apps/product-uploader` | Product Uploader |
+| `/odoo-apps/odoo-helpdesk` | Odoo Helpdesk |
 | `/about` | About |
 | `/contact` | Project inquiry form |
 | `/blog` | Architecture placeholder (noindex until articles exist) |

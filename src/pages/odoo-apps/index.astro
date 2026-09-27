@@ -39,12 +39,21 @@ import { p } from '../../utils/paths';
       {
         odooApps.map((app) => (
           <article class="card app-card">
-            <img src={p(app.icon)} alt={`${app.name} icon`} width="72" height="72" loading="lazy" />
-            <div>
-              <p class="badge">{app.version} · {app.category}</p>
-              <h2 class="card__title">{app.name}</h2>
-              <p class="card__text">{app.shortDescription}</p>
-              <a class="card__link" href={p(app.href)}>View App →</a>
+            {
+              app.banner ? (
+                <a class="app-card__media" href={p(app.href)} aria-label={`View ${app.name}`}>
+                  <img src={p(app.banner)} alt={`${app.name} preview`} width="640" height="214" loading="lazy" />
+                </a>
+              ) : null
+            }
+            <div class="app-card__body">
+              <img src={p(app.icon)} alt={`${app.name} icon`} width="72" height="72" loading="lazy" />
+              <div>
+                <p class="badge">{app.version} · {app.category}</p>
+                <h2 class="card__title">{app.name}</h2>
+                <p class="card__text">{app.shortDescription}</p>
+                <a class="card__link" href={p(app.href)}>View App →</a>
+              </div>
             </div>
           </article>
         ))
@@ -57,11 +66,32 @@ import { p } from '../../utils/paths';
 <style>
   .app-card {
     display: grid;
+    gap: 1rem;
+    padding-top: 0;
+    overflow: hidden;
+  }
+
+  .app-card__media {
+    display: block;
+    margin: -1.35rem -1.35rem 0;
+  }
+
+  .app-card__media img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 1;
+    object-fit: cover;
+    border-radius: 0;
+    display: block;
+  }
+
+  .app-card__body {
+    display: grid;
     grid-template-columns: 72px 1fr;
     gap: 1rem;
   }
 
-  .app-card img {
+  .app-card__body > img {
     border-radius: 14px;
   }
 </style>

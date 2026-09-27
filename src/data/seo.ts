@@ -107,7 +107,7 @@ export const pagesSeo: Record<string, PageSeo> = {
   },
   shopify: {
     path: '/shopify-odoo-integration',
-    title: `Shopify Odoo Integration | Product, Order & Inventory Sync | ${brand.name}`,
+    title: `Shopify Odoo Integration | Product & Order Sync | ${brand.name}`,
     description:
       'Shopify ↔ Odoo integration for products, inventory, orders and customers. Reliable synchronization designed around your operations.',
     h1: 'Shopify ↔ Odoo Integration',
