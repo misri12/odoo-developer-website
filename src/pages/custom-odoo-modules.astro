@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import FaqSection from '../components/FaqSection.astro';
+import FinalCta from '../components/FinalCta.astro';
+import { faqs } from '../data/site';
+import { odooApps } from '../data/apps';
+import { pagesSeo } from '../data/seo';
+import { breadcrumbJsonLd, faqJsonLd, serviceJsonLd, webpageJsonLd } from '../utils/schema';
+
+const seo = pagesSeo.customModules;
+const pageFaqs = [faqs[1], faqs[7], faqs[0], faqs[8]];
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  path={seo.path}
+  ogImage={seo.ogImage}
+  jsonLd={[
+    webpageJsonLd({ name: seo.title, description: seo.description, path: seo.path }),
+    serviceJsonLd({ name: 'Custom Odoo Module Development', description: seo.description, path: seo.path }),
+    breadcrumbJsonLd([
+      { name: 'Home', path: '/' },
+      { name: 'Custom Odoo Modules', path: seo.path },
+    ]),
+    faqJsonLd(pageFaqs),
+  ]}
+>
+  <section class="page-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Custom Odoo Modules' }]} />
+      <h1 class="page-hero__title">{seo.h1}</h1>
+      <p class="page-hero__lead">
+        Purpose-built Odoo modules for industry workflows, automation and ERP extensions — structured for readability, security and safer upgrades.
+      </p>
+      <div style="margin-top:1.25rem;display:flex;flex-wrap:wrap;gap:.75rem;">
+        <a class="btn btn--primary" href="/contact">Discuss Your Project</a>
+        <a class="btn btn--secondary" href="/odoo-apps">Browse Odoo Apps</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container prose">
+      <h2>When you need a custom Odoo module</h2>
+      <p>
+        Studio tweaks and configuration only go so far. A custom module is the right tool when you need new business objects, specialized workflows, controlled automation or packaged functionality that must survive upgrades and team handovers.
+      </p>
+      <h3>What gets built</h3>
+      <ul>
+        <li>Models, fields, constraints and computed logic</li>
+        <li>Form, list, kanban and search views</li>
+        <li>Access rights, record rules and multi-company considerations</li>
+        <li>Wizards, reports, QWeb templates and scheduled jobs</li>
+        <li>Hooks into Sales, Inventory, Accounting, Website and eCommerce</li>
+      </ul>
+      <h2>Example packaged module</h2>
+      <p>
+        <a href={odooApps[0].href}>{odooApps[0].name}</a> is a real Odoo App for Website &amp; eCommerce AI assistance — available across Odoo 12.0–19.0. See the <a href="/odoo-apps">Odoo Apps</a> page for details.
+      </p>
+      <h2>Related work</h2>
+      <ul>
+        <li><a href="/odoo-development">Odoo development services</a></li>
+        <li><a href="/api-erp-integrations">API &amp; ERP integrations</a></li>
+        <li><a href="/projects">Projects</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <FaqSection faqs={pageFaqs} title="Custom module FAQ" />
+  <FinalCta />
+</BaseLayout>

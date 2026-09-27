@@ -1,0 +1,420 @@
+---
+import { brand, budgetRanges, odooVersions, platforms, projectTypes, timelines } from '../data/site';
+
+const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY || '';
+const contactEmail = brand.email;
+---
+
+<form
+  class="project-form"
+  id="project-form"
+  data-project-form
+  data-contact-email={contactEmail}
+  novalidate
+>
+  <input type="hidden" name="access_key" value={web3Key} data-web3-key />
+  <input type="checkbox" name="botcheck" class="sr-only" tabindex="-1" autocomplete="off" />
+  <input type="hidden" name="subject" value="New Odoo project inquiry" />
+  <input type="hidden" name="from_name" value="Website Project Form" />
+
+  <div class="project-form__grid">
+    <div class="field">
+      <label for="name">Name <span aria-hidden="true">*</span></label>
+      <input id="name" name="name" type="text" autocomplete="name" required maxlength="100" />
+      <p class="field__error" data-error-for="name" hidden></p>
+    </div>
+
+    <div class="field">
+      <label for="company">Business / Company</label>
+      <input id="company" name="company" type="text" autocomplete="organization" maxlength="120" />
+    </div>
+
+    <div class="field">
+      <label for="email">Email <span aria-hidden="true">*</span></label>
+      <input id="email" name="email" type="email" autocomplete="email" required maxlength="120" />
+      <p class="field__error" data-error-for="email" hidden></p>
+    </div>
+
+    <div class="field">
+      <label for="project_type">Project Type <span aria-hidden="true">*</span></label>
+      <select id="project_type" name="project_type" required>
+        <option value="">Select project type</option>
+        {projectTypes.map((item) => <option value={item}>{item}</option>)}
+      </select>
+      <p class="field__error" data-error-for="project_type" hidden></p>
+    </div>
+
+    <div class="field">
+      <label for="platform">Current Platform</label>
+      <select id="platform" name="platform">
+        <option value="">Select platform</option>
+        {platforms.map((item) => <option value={item}>{item}</option>)}
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="odoo_version">Odoo Version</label>
+      <select id="odoo_version" name="odoo_version">
+        <option value="">Select version</option>
+        {odooVersions.map((item) => <option value={item}>{item}</option>)}
+      </select>
+    </div>
+
+    <div class="field field--full">
+      <label for="integration">Required Integration</label>
+      <input
+        id="integration"
+        name="integration"
+        type="text"
+        maxlength="160"
+        placeholder="e.g. Shopify ↔ Odoo inventory and orders"
+      />
+    </div>
+
+    <div class="field field--full">
+      <label for="description">Project Description <span aria-hidden="true">*</span></label>
+      <textarea
+        id="description"
+        name="description"
+        rows="5"
+        required
+        maxlength="4000"
+        placeholder="Describe the problem, systems involved and what success looks like."></textarea>
+      <p class="field__error" data-error-for="description" hidden></p>
+    </div>
+
+    <div class="field">
+      <label for="budget">Budget Range</label>
+      <select id="budget" name="budget">
+        <option value="">Select range</option>
+        {budgetRanges.map((item) => <option value={item}>{item}</option>)}
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="timeline">Timeline</label>
+      <select id="timeline" name="timeline">
+        <option value="">Select timeline</option>
+        {timelines.map((item) => <option value={item}>{item}</option>)}
+      </select>
+    </div>
+  </div>
+
+  <div class="project-form__actions">
+    <button class="btn btn--primary" type="submit" data-submit>
+      Send Project Inquiry
+    </button>
+    <p class="project-form__note">
+      Your details are used only to respond about this project inquiry.
+    </p>
+  </div>
+
+  <div class="project-form__status" data-form-status role="status" aria-live="polite" hidden></div>
+</form>
+
+<style>
+  .project-form {
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: #fff;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .project-form__grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .field {
+    display: grid;
+    gap: 0.4rem;
+  }
+
+  .field label {
+    font-weight: 650;
+    font-size: 0.95rem;
+  }
+
+  .field input,
+  .field select,
+  .field textarea {
+    width: 100%;
+    min-height: 48px;
+    padding: 0.7rem 0.85rem;
+    border: 1px solid var(--border-strong);
+    border-radius: 10px;
+    background: #fff;
+    color: var(--ink);
+    font: inherit;
+    transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+  }
+
+  .field textarea {
+    min-height: 140px;
+    resize: vertical;
+  }
+
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(15, 110, 106, 0.15);
+    outline: none;
+  }
+
+  .field input[aria-invalid='true'],
+  .field select[aria-invalid='true'],
+  .field textarea[aria-invalid='true'] {
+    border-color: var(--danger);
+  }
+
+  .field__error {
+    margin: 0;
+    color: var(--danger);
+    font-size: 0.88rem;
+  }
+
+  .project-form__actions {
+    margin-top: 1.25rem;
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .project-form__note {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  .project-form__status {
+    margin-top: 1rem;
+    padding: 0.9rem 1rem;
+    border-radius: 10px;
+    font-weight: 600;
+  }
+
+  .project-form__status[data-state='success'] {
+    background: #ecfdf3;
+    color: var(--success);
+  }
+
+  .project-form__status[data-state='error'] {
+    background: #fef3f2;
+    color: var(--danger);
+  }
+
+  @media (min-width: 720px) {
+    .project-form {
+      padding: 1.75rem;
+    }
+
+    .project-form__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .field--full {
+      grid-column: 1 / -1;
+    }
+  }
+</style>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('[data-project-form]');
+  if (form) {
+    const status = form.querySelector<HTMLElement>('[data-form-status]');
+    const submitBtn = form.querySelector<HTMLButtonElement>('[data-submit]');
+    const web3Input = form.querySelector<HTMLInputElement>('[data-web3-key]');
+    const web3Key = web3Input?.value?.trim() || '';
+    const contactEmail = form.dataset.contactEmail || '';
+
+    const getField = (name: string) =>
+      (
+        (form.elements.namedItem(name) as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement)
+          ?.value || ''
+      ).trim();
+
+    const setError = (name: string, message: string | null) => {
+      const field = form.querySelector<HTMLElement>(`[name="${name}"]`);
+      const error = form.querySelector<HTMLElement>(`[data-error-for="${name}"]`);
+      if (!field || !error) return;
+      if (message) {
+        field.setAttribute('aria-invalid', 'true');
+        error.hidden = false;
+        error.textContent = message;
+      } else {
+        field.removeAttribute('aria-invalid');
+        error.hidden = true;
+        error.textContent = '';
+      }
+    };
+
+    const validate = () => {
+      let valid = true;
+      const name = getField('name');
+      const email = getField('email');
+      const projectType = getField('project_type');
+      const description = getField('description');
+
+      setError('name', name ? null : 'Please enter your name.');
+      if (!name) valid = false;
+
+      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      setError('email', emailOk ? null : 'Enter a valid email address.');
+      if (!emailOk) valid = false;
+
+      setError('project_type', projectType ? null : 'Select a project type.');
+      if (!projectType) valid = false;
+
+      setError(
+        'description',
+        description.length >= 20
+          ? null
+          : 'Please describe the project in a bit more detail (at least 20 characters).',
+      );
+      if (description.length < 20) valid = false;
+
+      return valid;
+    };
+
+    const buildMailto = () => {
+      const body = [
+        `Name: ${getField('name')}`,
+        `Email: ${getField('email')}`,
+        `Company: ${getField('company')}`,
+        `Project Type: ${getField('project_type')}`,
+        `Platform: ${getField('platform')}`,
+        `Odoo Version: ${getField('odoo_version')}`,
+        `Integration: ${getField('integration')}`,
+        `Budget: ${getField('budget')}`,
+        `Timeline: ${getField('timeline')}`,
+        '',
+        'Description:',
+        getField('description'),
+      ].join('\n');
+
+      return `mailto:${contactEmail}?subject=${encodeURIComponent(
+        `Odoo project inquiry from ${getField('name')}`,
+      )}&body=${encodeURIComponent(body)}`;
+    };
+
+    const inquiryPayload = () => ({
+      name: getField('name'),
+      email: getField('email'),
+      company: getField('company'),
+      project_type: getField('project_type'),
+      platform: getField('platform'),
+      odoo_version: getField('odoo_version'),
+      integration: getField('integration'),
+      description: getField('description'),
+      budget: getField('budget'),
+      timeline: getField('timeline'),
+      _subject: `Odoo project inquiry from ${getField('name')}`,
+      _template: 'table',
+      _captcha: 'false',
+      _honey: (form.elements.namedItem('botcheck') as HTMLInputElement)?.checked ? '1' : '',
+    });
+
+    const showMailtoFallback = (reason: string) => {
+      if (!status) return;
+      status.hidden = false;
+      status.dataset.state = 'error';
+      status.replaceChildren();
+
+      const message = document.createElement('p');
+      message.style.margin = '0 0 0.5rem';
+      message.textContent = reason;
+
+      const link = document.createElement('a');
+      link.href = buildMailto();
+      link.className = 'card__link';
+      link.textContent = 'Open email draft instead →';
+
+      status.append(message, link);
+    };
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!status || !submitBtn) return;
+      status.hidden = true;
+      status.replaceChildren();
+
+      if (!validate()) {
+        status.hidden = false;
+        status.dataset.state = 'error';
+        status.textContent = 'Please fix the highlighted fields and try again.';
+        return;
+      }
+
+      // Honeypot tripped — pretend success
+      if ((form.elements.namedItem('botcheck') as HTMLInputElement)?.checked) {
+        form.reset();
+        status.hidden = false;
+        status.dataset.state = 'success';
+        status.textContent = 'Thank you. Your project inquiry was sent. I will reply by email.';
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+
+      try {
+        let response: Response;
+
+        if (web3Key) {
+          const formData = new FormData(form);
+          response = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            body: formData,
+            headers: { Accept: 'application/json' },
+          });
+        } else {
+          // FormSubmit works on localhost and Hostinger (no PHP required).
+          // First submission: check gultajkhan980@gmail.com and confirm the activation email.
+          response = await fetch(
+            `https://formsubmit.co/ajax/${encodeURIComponent(contactEmail)}`,
+            {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+              },
+              body: JSON.stringify(inquiryPayload()),
+            },
+          );
+        }
+
+        const contentType = response.headers.get('content-type') || '';
+        if (!contentType.includes('application/json')) {
+          throw new Error('Unexpected response');
+        }
+
+        const data = await response.json();
+        const ok = Boolean(data.success === true || data.success === 'true' || data.ok);
+        if (!response.ok || !ok) {
+          const msg = typeof data.message === 'string' ? data.message : '';
+          if (msg.toLowerCase().includes('activate') || msg.toLowerCase().includes('confirm')) {
+            throw new Error('ACTIVATE');
+          }
+          throw new Error('Submission rejected');
+        }
+
+        form.reset();
+        status.hidden = false;
+        status.dataset.state = 'success';
+        status.textContent =
+          'Thank you. Your project inquiry was sent. Check your inbox for a reply (and spam folder on first setup).';
+      } catch (error) {
+        const activate = error instanceof Error && error.message === 'ACTIVATE';
+        showMailtoFallback(
+          activate
+            ? 'FormSubmit sent an activation email to the site inbox. Open that email, confirm once, then submit the form again. Or use the draft link below.'
+            : 'Could not send through the email service right now. Use the button below to open an email draft, or try again after confirming FormSubmit activation.',
+        );
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Project Inquiry';
+      }
+    });
+  }
+</script>

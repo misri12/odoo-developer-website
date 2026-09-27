@@ -1,0 +1,82 @@
+---
+interface Props {
+  faqs: { question: string; answer: string; link?: { href: string; label: string } }[];
+  title?: string;
+}
+
+const { faqs, title = 'Frequently asked questions' } = Astro.props;
+---
+
+<section class="section" aria-labelledby="faq-title">
+  <div class="container">
+    <div class="section__header">
+      <p class="section__eyebrow">FAQ</p>
+      <h2 class="section__title" id="faq-title">{title}</h2>
+    </div>
+    <div class="faq">
+      {
+        faqs.map((faq) => (
+          <details class="faq__item">
+            <summary>{faq.question}</summary>
+            <div class="faq__body">
+              <p>{faq.answer}</p>
+              {faq.link && (
+                <p>
+                  <a href={faq.link.href}>{faq.link.label}</a>
+                </p>
+              )}
+            </div>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq {
+    display: grid;
+    gap: 0.75rem;
+    max-width: 48rem;
+  }
+
+  .faq__item {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: #fff;
+    padding: 0 1.1rem;
+  }
+
+  .faq__item summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 1.05rem 0;
+    font-weight: 650;
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+
+  .faq__item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq__item summary::after {
+    content: '+';
+    float: right;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .faq__item[open] summary::after {
+    content: '–';
+  }
+
+  .faq__body {
+    padding: 0 0 1.1rem;
+    color: var(--muted);
+  }
+
+  .faq__body p {
+    margin: 0 0 0.5rem;
+  }
+</style>

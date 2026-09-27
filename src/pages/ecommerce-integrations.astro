@@ -1,0 +1,85 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import FaqSection from '../components/FaqSection.astro';
+import FinalCta from '../components/FinalCta.astro';
+import { faqs, integrations } from '../data/site';
+import { pagesSeo } from '../data/seo';
+import { breadcrumbJsonLd, faqJsonLd, serviceJsonLd, webpageJsonLd } from '../utils/schema';
+
+const seo = pagesSeo.ecommerceIntegrations;
+const pageFaqs = [faqs[2], faqs[3], faqs[4], faqs[5]];
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  path={seo.path}
+  ogImage={seo.ogImage}
+  jsonLd={[
+    webpageJsonLd({ name: seo.title, description: seo.description, path: seo.path }),
+    serviceJsonLd({ name: 'eCommerce & Odoo Integrations', description: seo.description, path: seo.path }),
+    breadcrumbJsonLd([
+      { name: 'Home', path: '/' },
+      { name: 'eCommerce Integrations', path: seo.path },
+    ]),
+    faqJsonLd(pageFaqs),
+  ]}
+>
+  <section class="page-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'eCommerce Integrations' }]} />
+      <h1 class="page-hero__title">{seo.h1}</h1>
+      <p class="page-hero__lead">
+        Connect storefronts and marketplaces to Odoo so products, inventory, orders and customers stay aligned without manual re-entry.
+      </p>
+      <div style="margin-top:1.25rem;display:flex;flex-wrap:wrap;gap:.75rem;">
+        <a class="btn btn--primary" href="/contact">Discuss Your Project</a>
+        <a class="btn btn--secondary" href="/shopify-odoo-integration">Shopify ↔ Odoo</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container">
+      <div class="section__header">
+        <h2 class="section__title">Major integration paths</h2>
+        <p class="section__lead">Each major platform has its own landing page with sync scope and common failure modes.</p>
+      </div>
+      <div class="grid-2">
+        {
+          integrations
+            .filter((i) => ['Shopify', 'WooCommerce', 'Amazon', 'Tally'].includes(i.name))
+            .map((item) => (
+              <a class="card" href={item.href} style="text-decoration:none;color:inherit;">
+                <h3 class="card__title">{item.label}</h3>
+                <p class="card__text">Explore synchronization scope, typical problems and how the integration is approached.</p>
+                <span class="card__link">Open page →</span>
+              </a>
+            ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tint">
+    <div class="container prose">
+      <h2>What eCommerce ↔ Odoo integrations usually cover</h2>
+      <ul>
+        <li>Product and variant synchronization</li>
+        <li>Inventory / stock levels</li>
+        <li>Order import and status updates</li>
+        <li>Customer records</li>
+        <li>Taxes, pricing and shipping-related data where applicable</li>
+        <li>Logging, retries and conflict handling for production reliability</li>
+      </ul>
+      <p>
+        Related: <a href="/api-erp-integrations">payment gateways, shipping platforms and REST APIs</a>, plus
+        <a href="/odoo-development">broader Odoo development</a>.
+      </p>
+    </div>
+  </section>
+
+  <FaqSection faqs={pageFaqs} title="eCommerce integration FAQ" />
+  <FinalCta />
+</BaseLayout>

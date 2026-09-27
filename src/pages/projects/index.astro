@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import FinalCta from '../../components/FinalCta.astro';
+import { projects } from '../../data/projects';
+import { pagesSeo } from '../../data/seo';
+import { breadcrumbJsonLd, webpageJsonLd } from '../../utils/schema';
+const seo = pagesSeo.projects;
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  path={seo.path}
+  ogImage={seo.ogImage}
+  jsonLd={[
+    webpageJsonLd({ name: seo.title, description: seo.description, path: seo.path }),
+    breadcrumbJsonLd([
+      { name: 'Home', path: '/' },
+      { name: 'Projects', path: seo.path },
+    ]),
+  ]}
+>
+  <section class="page-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Projects' }]} />
+      <h1 class="page-hero__title">{seo.h1}</h1>
+      <p class="page-hero__lead">
+        Selected Odoo development and integration work. Placeholders are labeled until additional documented case studies are available — no invented client results.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container grid-2">
+      {
+        projects.map((project) => (
+          <article class="card project-card">
+            {project.placeholder && <span class="badge badge--warn">Placeholder</span>}
+            <h2 class="card__title">{project.name}</h2>
+            <p class="card__text"><strong>Problem:</strong> {project.problem}</p>
+            <p class="card__text"><strong>Solution:</strong> {project.solution}</p>
+            <p class="card__text"><strong>Technology:</strong> {project.technology.join(', ')}</p>
+            <p class="card__text"><strong>Outcome:</strong> {project.outcome}</p>
+            <div class="project-card__links">
+              {project.href && <a class="card__link" href={project.href}>View Case Study →</a>}
+              {project.relatedServices.map((link) => (
+                <a class="card__link" href={link.href}>{link.label} →</a>
+              ))}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+  <FinalCta />
+</BaseLayout>
+
+<style>
+  .project-card .badge {
+    margin-bottom: 0.75rem;
+  }
+
+  .project-card__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1rem;
+  }
+</style>

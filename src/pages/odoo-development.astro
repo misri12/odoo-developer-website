@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import FaqSection from '../components/FaqSection.astro';
+import FinalCta from '../components/FinalCta.astro';
+import { faqs, processSteps } from '../data/site';
+import { pagesSeo } from '../data/seo';
+import { breadcrumbJsonLd, faqJsonLd, serviceJsonLd, webpageJsonLd } from '../utils/schema';
+
+const seo = pagesSeo.odooDevelopment;
+const pageFaqs = [
+  faqs[0],
+  faqs[1],
+  faqs[6],
+  faqs[7],
+  faqs[8],
+];
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  path={seo.path}
+  ogImage={seo.ogImage}
+  jsonLd={[
+    webpageJsonLd({ name: seo.title, description: seo.description, path: seo.path }),
+    serviceJsonLd({ name: 'Odoo Development', description: seo.description, path: seo.path }),
+    breadcrumbJsonLd([
+      { name: 'Home', path: '/' },
+      { name: 'Odoo Development', path: seo.path },
+    ]),
+    faqJsonLd(pageFaqs),
+  ]}
+>
+  <section class="page-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Odoo Development' }]} />
+      <h1 class="page-hero__title">{seo.h1}</h1>
+      <p class="page-hero__lead">
+        Custom Odoo development for businesses that need ERP workflows, modules and integrations shaped around how their teams actually operate.
+      </p>
+      <div class="hero__actions" style="margin-top:1.25rem;display:flex;flex-wrap:wrap;gap:.75rem;">
+        <a class="btn btn--primary" href="/contact">Discuss Your Project</a>
+        <a class="btn btn--secondary" href="/custom-odoo-modules">Custom Modules</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container prose">
+      <h2>What Odoo development includes</h2>
+      <p>
+        Odoo development covers customizations, new modules, workflow automation, reporting, website/eCommerce changes and the glue between Odoo and external systems. The goal is maintainable code that fits your operations — not one-off patches that break on upgrade.
+      </p>
+      <h3>Typical engagement areas</h3>
+      <ul>
+        <li>Business process customization across Sales, Inventory, Accounting, Manufacturing and Project</li>
+        <li>Custom models, views, security rules, wizards and scheduled actions</li>
+        <li>Odoo Website and eCommerce storefront customization</li>
+        <li><a href="/ecommerce-integrations">eCommerce integrations</a> and <a href="/api-erp-integrations">API / ERP integrations</a></li>
+        <li>Version migration planning and controlled upgrades</li>
+        <li>Performance review of slow views, heavy queries and fragile customizations</li>
+      </ul>
+      <h2>Common problems this work solves</h2>
+      <ul>
+        <li>Standard Odoo flows do not match your approval, warehouse or finance process</li>
+        <li>Teams re-enter the same data across storefronts and ERP</li>
+        <li>Existing customizations are hard to maintain or upgrade</li>
+        <li>Integrations fail silently and create inventory or order drift</li>
+      </ul>
+      <h2>Related services</h2>
+      <ul>
+        <li><a href="/custom-odoo-modules">Custom Odoo module development</a></li>
+        <li><a href="/ecommerce-integrations">eCommerce &amp; Odoo integrations</a></li>
+        <li><a href="/api-erp-integrations">API &amp; ERP integrations</a></li>
+        <li><a href="/projects">Projects &amp; case studies</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--tint">
+    <div class="container">
+      <div class="section__header">
+        <h2 class="section__title">Development process</h2>
+        <p class="section__lead">A practical delivery sequence for Odoo custom work and integrations.</p>
+      </div>
+      <div class="grid-3">
+        {
+          processSteps.map((step) => (
+            <article class="card card--static">
+              <p class="section__eyebrow">{step.step}</p>
+              <h3 class="card__title">{step.title}</h3>
+              <p class="card__text">{step.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <FaqSection faqs={pageFaqs} title="Odoo development FAQ" />
+  <FinalCta />
+</BaseLayout>

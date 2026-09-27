@@ -1,0 +1,142 @@
+---
+import { integrations } from '../data/site';
+---
+
+<section class="section section--tint" aria-labelledby="integrations-title">
+  <div class="container">
+    <div class="section__header">
+      <p class="section__eyebrow">Integrations</p>
+      <h2 class="section__title" id="integrations-title">Different systems. One connected workflow.</h2>
+      <p class="section__lead">
+        Connect storefronts, marketplaces, accounting tools and APIs to Odoo so operations run from a single source of truth.
+      </p>
+    </div>
+
+    <div class="integrations">
+      <div class="integrations__hub" aria-hidden="true">
+        <div class="integrations__core">Odoo</div>
+        <div class="integrations__ring"></div>
+      </div>
+
+      <ul class="integrations__list">
+        {
+          integrations.map((item) => (
+            <li>
+              <a class="integrations__item" href={item.href}>
+                <span class="integrations__name">{item.name}</span>
+                <span class="integrations__arrow" aria-hidden="true">↔</span>
+                <span class="integrations__odoo">Odoo</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .integrations {
+    display: grid;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .integrations__hub {
+    position: relative;
+    width: min(100%, 280px);
+    aspect-ratio: 1;
+    margin: 0 auto;
+    display: grid;
+    place-items: center;
+  }
+
+  .integrations__core {
+    position: relative;
+    z-index: 1;
+    width: 110px;
+    height: 110px;
+    display: grid;
+    place-items: center;
+    border-radius: 28px;
+    background: linear-gradient(145deg, #12343a, #0f6e6a);
+    color: #fff;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.25rem;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .integrations__ring {
+    position: absolute;
+    inset: 18%;
+    border: 1px dashed rgba(15, 110, 106, 0.35);
+    border-radius: 50%;
+    animation: spin 28s linear infinite;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .integrations__ring {
+      animation: none;
+    }
+  }
+
+  .integrations__list {
+    display: grid;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .integrations__item {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.95rem 1.1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: #fff;
+    text-decoration: none;
+    color: var(--ink);
+    font-weight: 650;
+    box-shadow: var(--shadow-sm);
+    transition:
+      border-color 0.2s var(--ease),
+      transform 0.2s var(--ease),
+      box-shadow 0.2s var(--ease);
+  }
+
+  .integrations__item:hover {
+    border-color: #b7cdc9;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    color: var(--ink);
+  }
+
+  .integrations__name {
+    flex: 1;
+  }
+
+  .integrations__arrow {
+    color: var(--accent);
+  }
+
+  .integrations__odoo {
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  @media (min-width: 900px) {
+    .integrations {
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 3rem;
+    }
+  }
+</style>

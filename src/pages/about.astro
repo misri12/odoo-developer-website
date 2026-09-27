@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import FinalCta from '../components/FinalCta.astro';
+import { brand, social, whyPoints } from '../data/site';
+import { pagesSeo } from '../data/seo';
+import { breadcrumbJsonLd, personJsonLd, webpageJsonLd } from '../utils/schema';
+
+const seo = pagesSeo.about;
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  path={seo.path}
+  ogImage={seo.ogImage}
+  ogType="profile"
+  jsonLd={[
+    webpageJsonLd({ name: seo.title, description: seo.description, path: seo.path }),
+    personJsonLd(),
+    breadcrumbJsonLd([
+      { name: 'Home', path: '/' },
+      { name: 'About', path: seo.path },
+    ]),
+  ]}
+>
+  <section class="page-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'About' }]} />
+      <h1 class="page-hero__title">{seo.h1}</h1>
+      <p class="page-hero__lead">
+        {brand.title}. I help businesses and implementation partners connect Odoo with the systems and workflows their operations depend on.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container prose">
+      <h2>Positioning</h2>
+      <p>{brand.tagline}</p>
+      <p>
+        The focus is practical Odoo engineering: custom modules, eCommerce integrations, REST API connections and ERP automation for international clients across the USA, UK, Europe, Middle East, Australia and other markets.
+      </p>
+      <h2>How I work</h2>
+      <ul>
+        {whyPoints.map((point) => <li><strong>{point.title}.</strong> {point.description}</li>)}
+      </ul>
+      <h2>Profiles</h2>
+      <ul>
+        <li><a href={social.github} target="_blank" rel="noopener noreferrer">GitHub — {brand.githubHandle}</a></li>
+        <li><a href={social.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="/odoo-apps">Odoo Apps</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </div>
+  </section>
+  <FinalCta />
+</BaseLayout>

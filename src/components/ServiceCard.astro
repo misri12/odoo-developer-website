@@ -1,0 +1,30 @@
+---
+interface Props {
+  href: string;
+  title: string;
+  description: string;
+  icon: string;
+}
+
+const { href, title, description, icon } = Astro.props;
+
+const icons: Record<string, string> = {
+  code: `<path d="M8 8 4 12l4 4M16 8l4 4-4 4M14 4l-4 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>`,
+  modules: `<rect x="4" y="4" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="4" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="4" y="13" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="13" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/>`,
+  cart: `<path d="M3 5h2l2.2 10.2a1.5 1.5 0 0 0 1.5 1.2h8.6a1.5 1.5 0 0 0 1.5-1.2L20.5 8H7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="20" r="1.2" fill="currentColor"/><circle cx="17" cy="20" r="1.2" fill="currentColor"/>`,
+  api: `<path d="M7 12h10M12 7v10M5 5l2 2M19 5l-2 2M5 19l2-2M19 19l-2-2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.4"/>`,
+  automation: `<path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="12" r="3.5" fill="none" stroke="currentColor" stroke-width="1.6"/>`,
+  migrate: `<path d="M7 7h7v3l4-4-4-4v3H5v6h2V7Zm10 10H10v-3l-4 4 4 4v-3h9v-6h-2v4Z" fill="currentColor"/>`,
+  web: `<rect x="3.5" y="5" width="17" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 9h17M8 5v14" fill="none" stroke="currentColor" stroke-width="1.6"/>`,
+  speed: `<path d="M12 19a7 7 0 1 0-7-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M12 12l4-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>`,
+};
+---
+
+<article class="card service-card">
+  <div class="card__icon" aria-hidden="true">
+    <svg width="22" height="22" viewBox="0 0 24 24" set:html={icons[icon] || icons.code}></svg>
+  </div>
+  <h3 class="card__title">{title}</h3>
+  <p class="card__text">{description}</p>
+  <a class="card__link" href={href}>Learn more <span aria-hidden="true">→</span></a>
+</article>

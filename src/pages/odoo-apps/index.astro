@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import FinalCta from '../../components/FinalCta.astro';
+import { odooApps } from '../../data/apps';
+import { pagesSeo } from '../../data/seo';
+import { breadcrumbJsonLd, webpageJsonLd } from '../../utils/schema';
+
+const seo = pagesSeo.odooApps;
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  path={seo.path}
+  ogImage={seo.ogImage}
+  jsonLd={[
+    webpageJsonLd({ name: seo.title, description: seo.description, path: seo.path }),
+    breadcrumbJsonLd([
+      { name: 'Home', path: '/' },
+      { name: 'Odoo Apps', path: seo.path },
+    ]),
+  ]}
+>
+  <section class="page-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Odoo Apps' }]} />
+      <h1 class="page-hero__title">{seo.h1}</h1>
+      <p class="page-hero__lead">
+        Packaged Odoo apps and connectors for Shopify, WooCommerce, Amazon, Tally, QuickBooks, AI commerce, pallet management and more.
+        No invented marketplace ratings — only real modules I build and maintain.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container grid-2">
+      {
+        odooApps.map((app) => (
+          <article class="card app-card">
+            <img src={app.icon} alt={`${app.name} icon`} width="72" height="72" loading="lazy" />
+            <div>
+              <p class="badge">{app.version} · {app.category}</p>
+              <h2 class="card__title">{app.name}</h2>
+              <p class="card__text">{app.shortDescription}</p>
+              <a class="card__link" href={app.href}>View App →</a>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+  <FinalCta title="Need a custom Odoo App?" lead="Describe the module or storefront capability you need packaged for Odoo." />
+</BaseLayout>
+
+<style>
+  .app-card {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    gap: 1rem;
+  }
+
+  .app-card img {
+    border-radius: 14px;
+  }
+</style>

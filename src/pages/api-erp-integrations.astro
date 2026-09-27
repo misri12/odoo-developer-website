@@ -1,0 +1,71 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import FaqSection from '../components/FaqSection.astro';
+import FinalCta from '../components/FinalCta.astro';
+import { faqs } from '../data/site';
+import { pagesSeo } from '../data/seo';
+import { breadcrumbJsonLd, faqJsonLd, serviceJsonLd, webpageJsonLd } from '../utils/schema';
+
+const seo = pagesSeo.apiErp;
+const pageFaqs = [faqs[5], faqs[7], faqs[8], faqs[0]];
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  path={seo.path}
+  ogImage={seo.ogImage}
+  jsonLd={[
+    webpageJsonLd({ name: seo.title, description: seo.description, path: seo.path }),
+    serviceJsonLd({ name: 'Odoo API & ERP Integrations', description: seo.description, path: seo.path }),
+    breadcrumbJsonLd([
+      { name: 'Home', path: '/' },
+      { name: 'API & ERP Integrations', path: seo.path },
+    ]),
+    faqJsonLd(pageFaqs),
+  ]}
+>
+  <section class="page-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'API & ERP Integrations' }]} />
+      <h1 class="page-hero__title">{seo.h1}</h1>
+      <p class="page-hero__lead">
+        Connect Odoo to payment gateways, shipping platforms, accounting tools and custom services with REST APIs designed for operations — not demos.
+      </p>
+      <div style="margin-top:1.25rem;display:flex;flex-wrap:wrap;gap:.75rem;">
+        <a class="btn btn--primary" href="/contact">Discuss Your Project</a>
+        <a class="btn btn--secondary" href="/ecommerce-integrations">eCommerce integrations</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container prose">
+      <h2>API-first ERP automation</h2>
+      <p>
+        Reliable integrations need clear contracts, authentication, error handling, logging and a plan for partial failures. Work typically includes Odoo external APIs, custom controllers, queue-friendly jobs and mapping between Odoo models and third-party payloads.
+      </p>
+      <h3>Common integration targets</h3>
+      <ul>
+        <li>Payment gateways ↔ Odoo</li>
+        <li>Shipping and logistics platforms ↔ Odoo</li>
+        <li>Custom internal systems and partner APIs</li>
+        <li>Accounting and reporting pipelines</li>
+        <li>Storefront and marketplace bridges (see <a href="/ecommerce-integrations">eCommerce integrations</a>)</li>
+      </ul>
+      <h2>ERP automation outcomes</h2>
+      <ul>
+        <li>Fewer manual handoffs between sales, warehouse and finance</li>
+        <li>Consistent order and inventory state across systems</li>
+        <li>Traceable sync history when something fails</li>
+      </ul>
+      <p>
+        Also explore <a href="/custom-odoo-modules">custom modules</a> when the business logic belongs inside Odoo rather than only in an external connector.
+      </p>
+    </div>
+  </section>
+
+  <FaqSection faqs={pageFaqs} title="API & ERP FAQ" />
+  <FinalCta />
+</BaseLayout>

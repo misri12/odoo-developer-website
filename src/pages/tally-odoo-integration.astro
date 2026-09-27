@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import FinalCta from '../components/FinalCta.astro';
+import { pagesSeo } from '../data/seo';
+import { breadcrumbJsonLd, serviceJsonLd, webpageJsonLd } from '../utils/schema';
+
+const seo = pagesSeo.tally;
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  path={seo.path}
+  ogImage={seo.ogImage}
+  jsonLd={[
+    webpageJsonLd({ name: seo.title, description: seo.description, path: seo.path }),
+    serviceJsonLd({ name: 'Tally Odoo Integration', description: seo.description, path: seo.path }),
+    breadcrumbJsonLd([
+      { name: 'Home', path: '/' },
+      { name: 'eCommerce Integrations', path: '/ecommerce-integrations' },
+      { name: 'Tally ↔ Odoo', path: seo.path },
+    ]),
+  ]}
+>
+  <section class="page-hero">
+    <div class="container">
+      <Breadcrumbs
+        items={[
+          { name: 'Home', href: '/' },
+          { name: 'Integrations', href: '/ecommerce-integrations' },
+          { name: 'Tally ↔ Odoo' },
+        ]}
+      />
+      <h1 class="page-hero__title">{seo.h1}</h1>
+      <p class="page-hero__lead">
+        Connect Tally and Odoo to reduce duplicate accounting entry and keep financial workflows aligned with ERP operations.
+      </p>
+      <div style="margin-top:1.25rem;display:flex;flex-wrap:wrap;gap:.75rem;">
+        <a class="btn btn--primary" href="/contact">Discuss Your Project</a>
+        <a class="btn btn--secondary" href="/api-erp-integrations">API &amp; ERP integrations</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container prose">
+      <h2>Tally ↔ Odoo integration goals</h2>
+      <ul>
+        <li>Reduce re-keying between accounting and ERP</li>
+        <li>Align masters and transactional data where the process requires it</li>
+        <li>Create a clear ownership model for what lives in Tally vs Odoo</li>
+      </ul>
+      <h2>Practical approach</h2>
+      <p>
+        Accounting integrations succeed when mapping rules are explicit: which system owns ledgers, invoices, parties and tax treatment. The implementation focuses on those rules, validation and a supportable sync path.
+      </p>
+      <p>
+        Related: <a href="/api-erp-integrations">API &amp; ERP integrations</a>,
+        <a href="/odoo-development">Odoo development</a>,
+        <a href="/contact">start a project discussion</a>.
+      </p>
+    </div>
+  </section>
+  <FinalCta />
+</BaseLayout>

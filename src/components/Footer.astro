@@ -1,0 +1,152 @@
+---
+import { brand, footerNav, social } from '../data/site';
+---
+
+<footer class="site-footer">
+  <div class="container site-footer__grid">
+    <div class="site-footer__brand">
+      <a class="logo" href="/">
+        <span class="logo__mark" aria-hidden="true">GK</span>
+        <span class="logo__text">
+          <span class="logo__name">{brand.name}</span>
+          <span class="logo__role">{brand.title}</span>
+        </span>
+      </a>
+      <p>{brand.tagline}</p>
+      <div class="site-footer__social">
+        <a href={social.github} rel="noopener noreferrer" target="_blank">GitHub</a>
+        <a href={social.linkedin} rel="noopener noreferrer" target="_blank">LinkedIn</a>
+        <a href="/contact">Contact</a>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="site-footer__heading">Services</h2>
+      <ul>
+        {footerNav.services.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="site-footer__heading">Integrations</h2>
+      <ul>
+        {footerNav.integrations.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="site-footer__heading">Explore</h2>
+      <ul>
+        {footerNav.company.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+      </ul>
+    </div>
+  </div>
+
+  <div class="container site-footer__bottom">
+    <p>© {new Date().getFullYear()} {brand.name}. Odoo development &amp; eCommerce integrations.</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: 2rem;
+    padding: 3.5rem 0 1.5rem;
+    background: #0b1220;
+    color: #c9d3df;
+  }
+
+  .site-footer a {
+    color: #dce5ef;
+    text-decoration: none;
+  }
+
+  .site-footer a:hover {
+    color: #fff;
+  }
+
+  .site-footer__grid {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .site-footer__brand p {
+    margin: 1rem 0;
+    max-width: 28rem;
+    color: #9aabbc;
+    font-size: 0.98rem;
+  }
+
+  .logo {
+    display: inline-flex;
+    gap: 0.7rem;
+    align-items: center;
+  }
+
+  .logo__mark {
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    border-radius: 11px;
+    background: linear-gradient(145deg, #1a4f4c, #0f6e6a);
+    color: #fff;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 700;
+  }
+
+  .logo__text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+
+  .logo__name {
+    color: #fff;
+    font-family: var(--font-display);
+    font-weight: 700;
+  }
+
+  .logo__role {
+    font-size: 0.75rem;
+    color: #8fa0b2;
+  }
+
+  .site-footer__heading {
+    margin: 0 0 0.85rem;
+    color: #fff;
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 650;
+  }
+
+  .site-footer ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .site-footer li + li {
+    margin-top: 0.45rem;
+  }
+
+  .site-footer__social {
+    display: flex;
+    gap: 1rem;
+    font-weight: 600;
+  }
+
+  .site-footer__bottom {
+    margin-top: 2.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 0.9rem;
+    color: #8092a5;
+  }
+
+  @media (min-width: 800px) {
+    .site-footer__grid {
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    }
+  }
+</style>

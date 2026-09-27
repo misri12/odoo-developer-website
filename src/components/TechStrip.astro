@@ -1,0 +1,57 @@
+---
+import { technologies } from '../data/site';
+---
+
+<section class="tech-strip" aria-label="Technologies">
+  <div class="container">
+    <p class="tech-strip__label">Working with</p>
+    <ul class="tech-strip__list">
+      {
+        technologies.map((tech) => (
+          <li>
+            <span class="tech-chip">{tech}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .tech-strip {
+    padding: 1.25rem 0;
+    border-block: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.65);
+  }
+
+  .tech-strip__label {
+    margin: 0 0 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 650;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted-2);
+  }
+
+  .tech-strip__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .tech-chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
+    padding: 0.35rem 0.8rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: #fff;
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+</style>

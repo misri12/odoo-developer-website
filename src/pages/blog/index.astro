@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { pagesSeo } from '../../data/seo';
+import { breadcrumbJsonLd, webpageJsonLd } from '../../utils/schema';
+
+const seo = pagesSeo.blog;
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  path={seo.path}
+  ogImage={seo.ogImage}
+  robots={seo.robots}
+  jsonLd={[
+    webpageJsonLd({ name: seo.title, description: seo.description, path: seo.path }),
+    breadcrumbJsonLd([
+      { name: 'Home', path: '/' },
+      { name: 'Blog', path: seo.path },
+    ]),
+  ]}
+>
+  <section class="page-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Blog' }]} />
+      <h1 class="page-hero__title">{seo.h1}</h1>
+      <p class="page-hero__lead">
+        This section is prepared for future Odoo development guides and integration notes. No placeholder articles are published.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container">
+      <div class="card card--static">
+        <h2 class="card__title">Planned content themes</h2>
+        <ul class="card__text" style="padding-left:1.1rem;">
+          <li>How to integrate Shopify with Odoo</li>
+          <li>Odoo Shopify inventory synchronization</li>
+          <li>WooCommerce Odoo integration guide</li>
+          <li>Building custom Odoo modules</li>
+          <li>Odoo REST API integration</li>
+          <li>Odoo migration considerations</li>
+        </ul>
+        <p class="card__text">
+          Meanwhile, explore <a href="/odoo-development">Odoo development</a>,
+          <a href="/ecommerce-integrations">eCommerce integrations</a> and
+          <a href="/contact">contact</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

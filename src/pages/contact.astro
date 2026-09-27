@@ -1,0 +1,85 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { brand } from '../data/site';
+import { pagesSeo } from '../data/seo';
+import { breadcrumbJsonLd, webpageJsonLd } from '../utils/schema';
+
+const seo = pagesSeo.contact;
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  path={seo.path}
+  ogImage={seo.ogImage}
+  jsonLd={[
+    webpageJsonLd({ name: seo.title, description: seo.description, path: seo.path }),
+    breadcrumbJsonLd([
+      { name: 'Home', path: '/' },
+      { name: 'Contact', path: seo.path },
+    ]),
+  ]}
+>
+  <section class="page-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Contact' }]} />
+      <h1 class="page-hero__title">{seo.h1}</h1>
+      <p class="page-hero__lead">
+        Share what you are trying to build, automate or integrate. The form below is the fastest way to start a qualified project conversation.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container contact-layout">
+      <div>
+        <h2 class="section__title" style="font-size:1.5rem;">Project inquiry</h2>
+        <p class="section__lead" style="margin-bottom:1.25rem;">
+          Include your current platform, Odoo version and the integration or module outcome you need. Clear briefs get clearer replies.
+        </p>
+        <ContactForm />
+      </div>
+      <aside class="contact-aside card card--static">
+        <h2 class="card__title">Before you write</h2>
+        <ul>
+          <li>What systems need to connect?</li>
+          <li>What is broken or missing today?</li>
+          <li>What does success look like in production?</li>
+        </ul>
+        <p class="card__text">
+          Prefer email? Use the form so messages are structured and spam-filtered. Direct email is available on request after your inquiry is received.
+        </p>
+        <p class="card__text">
+          <a href="/projects">View projects</a> · <a href="/odoo-apps">Odoo Apps</a> ·
+          <a href={brand.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+        </p>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .contact-layout {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .contact-aside ul {
+    margin: 0 0 1rem;
+    padding-left: 1.1rem;
+    color: var(--muted);
+  }
+
+  .contact-aside li + li {
+    margin-top: 0.35rem;
+  }
+
+  @media (min-width: 960px) {
+    .contact-layout {
+      grid-template-columns: 1.4fr 0.8fr;
+      align-items: start;
+    }
+  }
+</style>

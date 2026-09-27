@@ -1,0 +1,84 @@
+---
+interface Props {
+  title?: string;
+  lead?: string;
+  primaryHref?: string;
+  primaryLabel?: string;
+  secondaryHref?: string;
+  secondaryLabel?: string;
+  dark?: boolean;
+}
+
+const {
+  title = 'Have an Odoo or Integration Project?',
+  lead = "Tell me what you're trying to build, automate or integrate.",
+  primaryHref = '/contact',
+  primaryLabel = 'Discuss Your Project',
+  secondaryHref = '/contact#project-form',
+  secondaryLabel = 'Send Project Details',
+  dark = true,
+} = Astro.props;
+---
+
+<section class:list={['final-cta', { 'final-cta--dark': dark }]} aria-labelledby="final-cta-title">
+  <div class="container final-cta__inner">
+    <h2 id="final-cta-title">{title}</h2>
+    <p>{lead}</p>
+    <div class="final-cta__actions">
+      <a class:list={['btn', dark ? 'btn--ghost' : 'btn--primary']} href={primaryHref}>{primaryLabel}</a>
+      <a class:list={['btn', dark ? 'btn--secondary final-cta__secondary' : 'btn--secondary']} href={secondaryHref}
+        >{secondaryLabel}</a
+      >
+    </div>
+  </div>
+</section>
+
+<style>
+  .final-cta {
+    padding: clamp(3.5rem, 7vw, 5rem) 0;
+  }
+
+  .final-cta--dark {
+    background:
+      radial-gradient(700px 300px at 20% 0%, rgba(15, 110, 106, 0.35), transparent 60%),
+      linear-gradient(145deg, #0b1220, #12343a 70%);
+    color: #fff;
+  }
+
+  .final-cta__inner {
+    text-align: center;
+  }
+
+  .final-cta h2 {
+    margin: 0 0 0.75rem;
+    font-family: var(--font-display);
+    font-size: clamp(1.85rem, 3.5vw, 2.6rem);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+
+  .final-cta p {
+    margin: 0 auto 1.5rem;
+    max-width: 34rem;
+    color: #b7c5d3;
+    font-size: 1.1rem;
+  }
+
+  .final-cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+  }
+
+  .final-cta__secondary {
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #fff;
+  }
+
+  .final-cta__secondary:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+</style>

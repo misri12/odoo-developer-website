@@ -1,0 +1,97 @@
+---
+---
+
+<div class="hero-flow" aria-hidden="true">
+  <div class="hero-flow__card hero-flow__card--odoo">
+    <span class="hero-flow__label">ERP</span>
+    <strong>Odoo</strong>
+  </div>
+  <div class="hero-flow__connector">
+    <span></span>
+    <small>APIs / Automation</small>
+    <span></span>
+  </div>
+  <div class="hero-flow__platforms">
+    <div class="hero-flow__card">Shopify</div>
+    <div class="hero-flow__card">WooCommerce</div>
+    <div class="hero-flow__card">Amazon</div>
+    <div class="hero-flow__card">Tally</div>
+  </div>
+  <div class="hero-flow__connector">
+    <span></span>
+    <small>Connected operations</small>
+    <span></span>
+  </div>
+  <div class="hero-flow__card hero-flow__card--ops">
+    <span class="hero-flow__label">Outcome</span>
+    <strong>Business Operations</strong>
+  </div>
+</div>
+
+<style>
+  .hero-flow {
+    display: grid;
+    gap: 0.85rem;
+    padding: 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(232, 238, 243, 0.7)),
+      #fff;
+    box-shadow: var(--shadow-md);
+  }
+
+  .hero-flow__card {
+    padding: 0.9rem 1rem;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: #fff;
+    font-weight: 650;
+    text-align: center;
+    color: var(--ink-soft);
+  }
+
+  .hero-flow__card--odoo,
+  .hero-flow__card--ops {
+    background: linear-gradient(145deg, #12343a, #0f6e6a);
+    border-color: transparent;
+    color: #fff;
+    display: grid;
+    gap: 0.15rem;
+  }
+
+  .hero-flow__label {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.8;
+    font-weight: 600;
+  }
+
+  .hero-flow__platforms {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.55rem;
+  }
+
+  .hero-flow__connector {
+    display: grid;
+    justify-items: center;
+    gap: 0.25rem;
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 600;
+  }
+
+  .hero-flow__connector span {
+    width: 1px;
+    height: 12px;
+    background: linear-gradient(var(--accent), transparent);
+  }
+
+  @media (min-width: 768px) {
+    .hero-flow {
+      padding: 1.5rem;
+    }
+  }
+</style>

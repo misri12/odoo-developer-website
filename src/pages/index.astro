@@ -1,0 +1,351 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroFlow from '../components/HeroFlow.astro';
+import TechStrip from '../components/TechStrip.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import IntegrationsSection from '../components/IntegrationsSection.astro';
+import FaqSection from '../components/FaqSection.astro';
+import FinalCta from '../components/FinalCta.astro';
+import { brand, faqs, problems, processSteps, services, whyPoints } from '../data/site';
+import { projects } from '../data/projects';
+import { odooApps } from '../data/apps';
+import { pagesSeo } from '../data/seo';
+import { faqJsonLd, personJsonLd, webpageJsonLd, websiteJsonLd } from '../utils/schema';
+
+const seo = pagesSeo.home;
+const featured = projects.slice(0, 6);
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  path={seo.path}
+  ogImage={seo.ogImage}
+  jsonLd={[websiteJsonLd(), personJsonLd(), webpageJsonLd({ name: seo.title, description: seo.description, path: seo.path }), faqJsonLd(faqs)]}
+>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="container hero__grid">
+      <div class="hero__content">
+        <p class="hero__brand">{brand.name}</p>
+        <p class="hero__role">{brand.title}</p>
+        <h1 id="hero-title">{seo.h1}</h1>
+        <p class="hero__lead">
+          Odoo development, eCommerce integrations and ERP automation built around the way your business actually works.
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="/contact">Discuss Your Project</a>
+          <a class="btn btn--secondary" href="/projects">View My Work</a>
+        </div>
+        <p class="hero__note">{brand.locationFocus}</p>
+      </div>
+      <div class="hero__visual">
+        <HeroFlow />
+      </div>
+    </div>
+  </section>
+
+  <TechStrip />
+
+  <section class="section" aria-labelledby="services-title">
+    <div class="container">
+      <div class="section__header">
+        <p class="section__eyebrow">Services</p>
+        <h2 class="section__title" id="services-title">Odoo development and integration services</h2>
+        <p class="section__lead">
+          From custom modules to storefront sync — focused work for businesses, agencies and ERP implementation partners.
+        </p>
+      </div>
+      <div class="grid-4">
+        {
+          services.map((service) => (
+            <ServiceCard
+              href={service.href}
+              title={service.title}
+              description={service.description}
+              icon={service.icon}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <IntegrationsSection />
+
+  <section class="section" aria-labelledby="problems-title">
+    <div class="container">
+      <div class="section__header">
+        <p class="section__eyebrow">Problem → Solution</p>
+        <h2 class="section__title" id="problems-title">Fix the operational friction, not just the feature list</h2>
+        <p class="section__lead">
+          Most Odoo and integration projects start with a broken process. Here is how those problems typically get solved.
+        </p>
+      </div>
+      <div class="problem-grid">
+        {
+          problems.map((item) => (
+            <article class="problem-card">
+              <h3>{item.problem}</h3>
+              <p><span class="problem-card__arrow" aria-hidden="true">→</span> {item.solution}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tint" aria-labelledby="projects-title">
+    <div class="container">
+      <div class="section__header">
+        <p class="section__eyebrow">Featured work</p>
+        <h2 class="section__title" id="projects-title">Projects that connect systems and workflows</h2>
+        <p class="section__lead">
+          Real packaged work where available. Placeholders are clearly marked until additional case studies are documented.
+        </p>
+      </div>
+      <div class="grid-3">
+        {
+          featured.map((project) => (
+            <article class="card project-card">
+              {project.placeholder && <span class="badge badge--warn">Placeholder</span>}
+              <h3 class="card__title">{project.name}</h3>
+              <p class="card__text"><strong>Problem:</strong> {project.problem}</p>
+              <p class="card__text"><strong>Solution:</strong> {project.solution}</p>
+              <p class="card__text"><strong>Technology:</strong> {project.technology.join(', ')}</p>
+              <p class="card__text"><strong>Outcome:</strong> {project.outcome}</p>
+              {project.href ? (
+                <a class="card__link" href={project.href}>View Case Study →</a>
+              ) : (
+                <a class="card__link" href="/projects">View projects →</a>
+              )}
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="process-title">
+    <div class="container">
+      <div class="section__header">
+        <p class="section__eyebrow">Process</p>
+        <h2 class="section__title" id="process-title">A clear path from brief to production</h2>
+      </div>
+      <ol class="process">
+        {
+          processSteps.map((step) => (
+            <li class="process__item">
+              <span class="process__step">{step.step}</span>
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--tint" aria-labelledby="apps-title">
+    <div class="container">
+      <div class="section__header">
+        <p class="section__eyebrow">Odoo Apps</p>
+        <h2 class="section__title" id="apps-title">Packaged modules for Odoo Website &amp; eCommerce</h2>
+      </div>
+      <div class="grid-2">
+        {
+          odooApps.map((app) => (
+            <article class="card app-card">
+              <img
+                src={app.icon}
+                alt={`${app.name} icon`}
+                width="64"
+                height="64"
+                loading="lazy"
+              />
+              <div>
+                <p class="badge">{app.version} · {app.category}</p>
+                <h3 class="card__title">{app.name}</h3>
+                <p class="card__text">{app.shortDescription}</p>
+                <a class="card__link" href={app.href}>View App →</a>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="why-title">
+    <div class="container">
+      <div class="section__header">
+        <p class="section__eyebrow">Why work with me</p>
+        <h2 class="section__title" id="why-title">Practical Odoo engineering for international teams</h2>
+      </div>
+      <div class="grid-3">
+        {
+          whyPoints.map((point) => (
+            <article class="card card--static">
+              <h3 class="card__title">{point.title}</h3>
+              <p class="card__text">{point.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <FaqSection faqs={faqs} />
+  <FinalCta />
+</BaseLayout>
+
+<style>
+  .hero {
+    padding: calc(var(--header-h) + 2rem) 0 3rem;
+  }
+
+  .hero__grid {
+    display: grid;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  .hero__brand {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.35rem, 2.4vw, 1.7rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+
+  .hero__role {
+    margin: 0.25rem 0 1rem;
+    color: var(--accent);
+    font-weight: 650;
+    font-size: 0.98rem;
+  }
+
+  .hero h1 {
+    margin: 0 0 1rem;
+    font-family: var(--font-display);
+    font-size: clamp(2.15rem, 5vw, 3.4rem);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    font-weight: 700;
+  }
+
+  .hero__lead {
+    margin: 0 0 1.5rem;
+    max-width: 36rem;
+    color: var(--muted);
+    font-size: 1.15rem;
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .hero__note {
+    margin: 1.25rem 0 0;
+    color: var(--muted-2);
+    font-size: 0.92rem;
+  }
+
+  .problem-grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .problem-card {
+    padding: 1.35rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: #fff;
+  }
+
+  .problem-card h3 {
+    margin: 0 0 0.65rem;
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+  }
+
+  .problem-card p {
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .problem-card__arrow {
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .process {
+    display: grid;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .process__item {
+    padding: 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: #fff;
+  }
+
+  .process__step {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    color: var(--accent);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+  }
+
+  .process__item h3 {
+    margin: 0 0 0.4rem;
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+  }
+
+  .process__item p {
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .app-card {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 1rem;
+    align-items: start;
+  }
+
+  .app-card img {
+    border-radius: 12px;
+  }
+
+  .project-card .badge {
+    margin-bottom: 0.75rem;
+  }
+
+  @media (min-width: 640px) {
+    .problem-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (min-width: 900px) {
+    .hero__grid {
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 3rem;
+    }
+
+    .process {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+</style>
