@@ -153,4 +153,24 @@ export const projects: Project[] = [
     integration: 'Tally',
     placeholder: false,
   },
+  {
+    slug: 'jtl-wawi-odoo-import',
+    name: 'JTL-Wawi to Odoo Product Import Connector',
+    problem:
+      'Moving a large JTL-Wawi product catalog into Odoo requires explicit mapping across a wide source schema and a way to catch data issues before creating records.',
+    solution:
+      'Developed a controlled product-import workflow with source-field classification, mapping, validation, dry-run review, source identity, and create-only or create-and-update modes.',
+    technology: ['Odoo 19', 'Python', 'Microsoft SQL Server', 'CSV data mapping'],
+    outcome:
+      'Current scope centers on product-data import and validation. Production deployment and any order, inventory, or real-time synchronization scope require separate environment-specific verification.',
+    relatedServices: [
+      { label: 'JTL-Wawi ↔ Odoo', href: '/jtl-wawi-odoo-connector' },
+      { label: 'API & ERP Integrations', href: '/api-erp-integrations' },
+    ],
+    href: '/jtl-wawi-odoo-connector',
+    odooVersion: 'Odoo 19 target; validate against the deployment',
+    integration: 'JTL-Wawi product data / SQL Server source',
+    keyFunctionality: ['Field classification and mapping', 'Dry-run validation', 'Create-only and create-and-update import modes'],
+    placeholder: true,
+  },
 ];

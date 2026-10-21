@@ -239,7 +239,7 @@ const contactEmail = brand.email;
     const status = form.querySelector<HTMLElement>('[data-form-status]');
     const submitBtn = form.querySelector<HTMLButtonElement>('[data-submit]');
     const web3Key = (form.querySelector<HTMLInputElement>('[data-web3-key]')?.value || '').trim();
-    const contactEmail = form.dataset.contactEmail || 'gultajkhan980@gmail.com';
+    const contactEmail = form.dataset.contactEmail || '';
 
     const getField = (name: string) => {
       const el = form.elements.namedItem(name) as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | null;
@@ -247,13 +247,19 @@ const contactEmail = brand.email;
     };
 
     const setError = (name: string, message: string) => {
+      const field = form.querySelector<HTMLElement>(`[name="${name}"]`);
       const err = form.querySelector<HTMLElement>(`[data-error-for="${name}"]`);
-      if (!err) return;
+      if (!err || !field) return;
       if (!message) {
+        field.removeAttribute('aria-invalid');
+        field.removeAttribute('aria-describedby');
         err.hidden = true;
         err.textContent = '';
         return;
       }
+      field.setAttribute('aria-invalid', 'true');
+      field.setAttribute('aria-describedby', err.id || `career-error-${name}`);
+      err.id ||= `career-error-${name}`;
       err.hidden = false;
       err.textContent = message;
     };
@@ -335,6 +341,7 @@ const contactEmail = brand.email;
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
       if (!status || !submitBtn) return;
+      if (submitBtn.disabled) return;
       status.hidden = true;
       status.replaceChildren();
 
@@ -346,10 +353,7 @@ const contactEmail = brand.email;
       }
 
       if ((form.elements.namedItem('botcheck') as HTMLInputElement)?.checked) {
-        form.reset();
-        status.hidden = false;
-        status.dataset.state = 'success';
-        status.textContent = 'Thank you. Your application was sent.';
+        status.hidden = true;
         return;
       }
 
@@ -395,12 +399,12 @@ const contactEmail = brand.email;
         const msgLower = msg.toLowerCase();
         if (msgLower.includes('activate') || msgLower.includes('activation') || msgLower.includes('confirm')) {
           status.hidden = false;
-          status.dataset.state = 'success';
+          status.dataset.state = 'error';
           status.replaceChildren();
           const p1 = document.createElement('p');
           p1.style.margin = '0 0 0.5rem';
           p1.textContent =
-            'Almost ready — FormSubmit emailed an “Activate Form” link to gultajkhan980@gmail.com. Open that email, click Activate once, then submit again.';
+            `FormSubmit needs activation before it can deliver applications. Check ${contactEmail} for its activation email, then submit again.`;
           const p2 = document.createElement('p');
           p2.style.margin = '0';
           const link = document.createElement('a');
@@ -421,7 +425,7 @@ const contactEmail = brand.email;
         status.textContent = 'Thank you. Your application was sent. We will reply by email if there is a fit.';
       } catch {
         showMailtoFallback(
-          'Could not send through the email service right now. Use the draft link below, or try again after FormSubmit activation.',
+          'The email service did not accept this application. You can try again or open an email draft below.',
         );
       } finally {
         submitBtn.disabled = false;

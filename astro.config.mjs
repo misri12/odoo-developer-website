@@ -2,18 +2,21 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
-const siteUrl = (process.env.SITE_URL || 'https://yourdomain.com').replace(/\/$/, '');
+const siteUrl = (process.env.SITE_URL || 'https://misri12.github.io/odoo-developer-website').replace(/\/$/, '');
+let siteOrigin = 'https://misri12.github.io';
 let base = '/';
 try {
-  const pathname = new URL(siteUrl).pathname.replace(/\/$/, '');
+  const parsedSiteUrl = new URL(siteUrl);
+  siteOrigin = parsedSiteUrl.origin;
+  const pathname = parsedSiteUrl.pathname.replace(/\/$/, '');
   if (pathname) base = pathname;
 } catch {
-  base = '/';
+  // Keep safe deployment defaults if SITE_URL is malformed.
 }
 
 // https://astro.build/config
 export default defineConfig({
-  site: siteUrl,
+  site: siteOrigin,
   base,
   trailingSlash: 'never',
   compressHTML: true,
@@ -23,7 +26,6 @@ export default defineConfig({
       filter: (page) => !page.includes('/blog') && !page.includes('/careers'),
       changefreq: 'weekly',
       priority: 0.7,
-      lastmod: new Date(),
     }),
   ],
   build: {

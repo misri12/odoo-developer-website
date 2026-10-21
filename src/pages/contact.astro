@@ -50,7 +50,7 @@ import { p } from '../utils/paths';
           <li>What does success look like in production?</li>
         </ul>
         <p class="card__text">
-          Prefer email? Use the form so messages are structured and spam-filtered. Direct email is available on request after your inquiry is received.
+          Prefer email? <a href={`mailto:${brand.email}`}>{brand.email}</a>
         </p>
         <p class="card__text">
           <a href={p('/projects')}>View projects</a> · <a href={p('/odoo-apps')}>Odoo Apps</a> ·

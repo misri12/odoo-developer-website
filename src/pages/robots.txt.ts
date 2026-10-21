@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
 
-const site = (import.meta.env.SITE || 'https://yourdomain.com').replace(/\/$/, '');
+const site = (import.meta.env.SITE_URL || 'https://misri12.github.io/odoo-developer-website').replace(/\/$/, '');
 
 export const GET: APIRoute = () => {
   const body = `User-agent: *

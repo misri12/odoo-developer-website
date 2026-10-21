@@ -53,8 +53,8 @@ const founder = team[0];
         <p class="about-founder__role">{founder.role}</p>
         <p>{founder.bio}</p>
         <p>
-          Work covers custom Odoo addons, web scraping, Odoo Website &amp; eCommerce builds, Node.js applications,
-          and cybersecurity advisory — for international clients across the USA, UK, Europe, Middle East, Australia and other markets.
+          The core focus is Odoo development: custom modules, workflow changes, migrations and integrations between Odoo,
+          eCommerce platforms and external APIs. Related web and data work supports those systems where needed.
         </p>
         <ul class="skill-list">
           {founder.highlights.map((item) => <li>{item}</li>)}
@@ -78,7 +78,7 @@ const founder = team[0];
       </p>
       <div class="team-grid">
         {
-          team.map((member) => (
+          team.filter((member) => member.slug !== founder.slug).map((member) => (
             <article class="team-card">
               <img
                 src={p(member.photoCard)}

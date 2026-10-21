@@ -5,8 +5,7 @@
 
 export const SITE_URL = (
   import.meta.env.SITE_URL ||
-  import.meta.env.SITE ||
-  'https://yourdomain.com'
+  'https://misri12.github.io/odoo-developer-website'
 ).replace(/\/$/, '');
 
 export const brand = {
@@ -45,6 +44,7 @@ export const nav = [
       { label: 'Shopify ↔ Odoo', href: '/shopify-odoo-integration' },
       { label: 'WooCommerce ↔ Odoo', href: '/woocommerce-odoo-integration' },
       { label: 'Amazon ↔ Odoo', href: '/amazon-odoo-integration' },
+      { label: 'JTL-Wawi ↔ Odoo', href: '/jtl-wawi-odoo-connector' },
       { label: 'Tally ↔ Odoo', href: '/tally-odoo-integration' },
       { label: 'API & ERP', href: '/api-erp-integrations' },
     ],
@@ -66,6 +66,7 @@ export const footerNav = {
     { label: 'Shopify ↔ Odoo', href: '/shopify-odoo-integration' },
     { label: 'WooCommerce ↔ Odoo', href: '/woocommerce-odoo-integration' },
     { label: 'Amazon ↔ Odoo', href: '/amazon-odoo-integration' },
+    { label: 'JTL-Wawi ↔ Odoo', href: '/jtl-wawi-odoo-connector' },
     { label: 'Tally ↔ Odoo', href: '/tally-odoo-integration' },
   ],
   company: [
@@ -74,6 +75,7 @@ export const footerNav = {
     { label: 'About', href: '/about' },
     { label: 'Careers', href: '/careers' },
     { label: 'Contact', href: '/contact' },
+    { label: 'Privacy', href: '/privacy' },
   ],
 } as const;
 
@@ -112,7 +114,7 @@ export const services = [
     slug: 'ecommerce-integrations',
     href: '/ecommerce-integrations',
     title: 'eCommerce Integration',
-    description: 'Connect Shopify, WooCommerce, Amazon and other storefronts to Odoo with reliable sync and automation.',
+    description: 'Connect Shopify, WooCommerce, Amazon, JTL-Wawi and other business systems to Odoo with carefully scoped integration and migration workflows.',
     icon: 'cart',
   },
   {
@@ -156,6 +158,7 @@ export const integrations = [
   { name: 'Shopify', href: '/shopify-odoo-integration', label: 'Shopify ↔ Odoo' },
   { name: 'WooCommerce', href: '/woocommerce-odoo-integration', label: 'WooCommerce ↔ Odoo' },
   { name: 'Amazon', href: '/amazon-odoo-integration', label: 'Amazon ↔ Odoo' },
+  { name: 'JTL-Wawi', href: '/jtl-wawi-odoo-connector', label: 'JTL-Wawi ↔ Odoo' },
   { name: 'Tally', href: '/tally-odoo-integration', label: 'Tally ↔ Odoo' },
   { name: 'Payment Gateways', href: '/api-erp-integrations', label: 'Payment Gateways ↔ Odoo' },
   { name: 'Shipping Platforms', href: '/api-erp-integrations', label: 'Shipping Platforms ↔ Odoo' },
@@ -287,6 +290,7 @@ export const platforms = [
   'Shopify',
   'WooCommerce',
   'Amazon',
+  'JTL-Wawi',
   'Tally',
   'Multiple platforms',
   'Other / Custom',

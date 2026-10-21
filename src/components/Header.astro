@@ -463,7 +463,7 @@ import { p } from '../utils/paths';
 <script>
   const header = document.querySelector('[data-header]');
   const toggle = document.querySelector('[data-nav-toggle]');
-  const mobileNav = document.querySelector('[data-mobile-nav]');
+  const mobileNav = document.querySelector<HTMLElement>('[data-mobile-nav]');
 
   const onScroll = () => {
     header?.classList.toggle('is-scrolled', window.scrollY > 8);
@@ -471,7 +471,7 @@ import { p } from '../utils/paths';
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 
-  const setMobileOpen = (open) => {
+  const setMobileOpen = (open: boolean) => {
     toggle?.setAttribute('aria-expanded', String(open));
     header?.classList.toggle('is-open', open);
     if (!mobileNav) return;

@@ -1,0 +1,183 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import FaqSection from '../components/FaqSection.astro';
+import FinalCta from '../components/FinalCta.astro';
+import { pagesSeo } from '../data/seo';
+import { breadcrumbJsonLd, faqJsonLd, serviceJsonLd, webpageJsonLd } from '../utils/schema';
+import { p } from '../utils/paths';
+
+const seo = pagesSeo.jtlWawi;
+const pageFaqs = [
+  {
+    question: 'Does JTL-Wawi use SQL Server?',
+    answer: 'JTL-Wawi deployments use Microsoft SQL Server as their database platform. A migration or integration should use an appropriately authorized and version-aware data access method rather than assume every database field maps directly to Odoo.',
+  },
+  {
+    question: 'Can you import JTL-Wawi products into Odoo?',
+    answer: 'The current connector work focuses on a controlled product import pipeline: source data normalization, field mapping, validation, dry-run review and configurable create-only or create-and-update modes. Exact fields and edge cases should be confirmed against your export or source schema.',
+  },
+  {
+    question: 'Will every JTL-Wawi field be copied into Odoo?',
+    answer: 'No. Source columns need to be classified and mapped intentionally. Standard Odoo fields, source identifiers, metadata and fields that should be ignored or reviewed are treated separately to avoid importing irrelevant data or making unsafe assumptions.',
+  },
+  {
+    question: 'Does the connector already synchronize orders and stock in real time?',
+    answer: 'Real-time, bidirectional order and stock synchronization should not be assumed from the current product-import scope. Those workflows require a separate requirements review, mapping design and verification against the specific JTL-Wawi and Odoo versions.',
+  },
+  {
+    question: 'Which Odoo versions can be supported?',
+    answer: 'Version compatibility depends on the target Odoo release, installed modules, source schema and the required migration or synchronization scope. Share your JTL-Wawi version and Odoo version so compatibility can be assessed before implementation.',
+  },
+  {
+    question: 'Can you assess our JTL-Wawi database or CSV export first?',
+    answer: 'Yes. A first assessment can review the available export/schema, identify candidate field mappings, flag ambiguous columns and define a safe dry-run plan. Do not send database credentials or sensitive customer data through an unsecured channel.',
+  },
+];
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  path={seo.path}
+  ogImage={seo.ogImage}
+  jsonLd={[
+    webpageJsonLd({ name: seo.title, description: seo.description, path: seo.path }),
+    serviceJsonLd({ name: 'JTL-Wawi to Odoo Connector and Migration', description: seo.description, path: seo.path }),
+    breadcrumbJsonLd([
+      { name: 'Home', path: '/' },
+      { name: 'eCommerce Integrations', path: '/ecommerce-integrations' },
+      { name: 'JTL-Wawi to Odoo Connector', path: seo.path },
+    ]),
+    faqJsonLd(pageFaqs),
+  ]}
+>
+  <section class="page-hero jtl-hero">
+    <div class="container">
+      <Breadcrumbs items={[
+        { name: 'Home', href: '/' },
+        { name: 'eCommerce Integrations', href: '/ecommerce-integrations' },
+        { name: 'JTL-Wawi to Odoo Connector' },
+      ]} />
+      <div class="jtl-hero__grid">
+        <div>
+          <p class="section__eyebrow">JTL-Wawi · Odoo · ERP Data Migration</p>
+          <h1 class="page-hero__title">JTL-Wawi to Odoo Connector</h1>
+          <p class="jtl-hero__subhead">Move product data with a controlled, reviewable import process.</p>
+          <p class="page-hero__lead">Plan a JTL-Wawi to Odoo migration around your actual source schema, product catalog and ERP workflows. The connector approach emphasizes deliberate field mapping, validation and a dry run before records are created or updated.</p>
+          <div class="jtl-tags" aria-label="Connector workflow highlights">
+            <span>SQL Server source assessment</span>
+            <span>Field mapping</span>
+            <span>Dry-run validation</span>
+            <span>Controlled import modes</span>
+          </div>
+          <div class="jtl-actions">
+            <a class="btn btn--primary" href={p('/contact')}>Discuss Your JTL Migration</a>
+            <a class="btn btn--secondary" href={p('/projects')}>Explore Related Projects</a>
+          </div>
+        </div>
+        <figure class="jtl-hero__visual">
+          <img
+            src={p('/images/integrations/jtl-wawi-odoo-flow.webp')}
+            alt="Illustrative JTL-Wawi and Odoo integration concept showing product data moving between two ERP systems"
+            width="630"
+            height="355"
+            fetchpriority="high"
+            decoding="async"
+          />
+          <figcaption>Concept illustration only; not a live connector screenshot.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight" aria-labelledby="scope-title">
+    <div class="container">
+      <div class="section__header">
+        <p class="section__eyebrow">Current implementation focus</p>
+        <h2 class="section__title" id="scope-title">A safer path from JTL-Wawi product data to Odoo</h2>
+        <p class="section__lead">Import projects work best when the source data is understood and the mapping decisions are visible before they affect production records.</p>
+      </div>
+      <div class="grid-2 jtl-feature-grid">
+        <article class="card"><span class="jtl-step">01</span><h3 class="card__title">Source schema review</h3><p class="card__text">Assess the available JTL-Wawi export or authorized SQL Server schema. Classify fields before deciding what belongs in Odoo.</p></article>
+        <article class="card"><span class="jtl-step">02</span><h3 class="card__title">Explicit field mapping</h3><p class="card__text">Map source product identifiers and relevant business data to Odoo fields. Separate standard fields, source identity, metadata and fields requiring review.</p></article>
+        <article class="card"><span class="jtl-step">03</span><h3 class="card__title">Dry run and validation</h3><p class="card__text">Review proposed records and validation issues before applying changes. Resolve ambiguous data rather than silently guessing.</p></article>
+        <article class="card"><span class="jtl-step">04</span><h3 class="card__title">Controlled import modes</h3><p class="card__text">Choose a create-only flow or a create-and-update flow according to the migration plan, with source identity used to help recognize previously imported products.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tint" aria-labelledby="workflow-title">
+    <div class="container jtl-workflow">
+      <div class="prose">
+        <p class="section__eyebrow">Workflow</p>
+        <h2 id="workflow-title">From source data to reviewed Odoo records</h2>
+        <p>The import path is designed to make mapping and validation decisions explicit. The exact source access method depends on your JTL-Wawi setup and permissions.</p>
+        <ol>
+          <li>Provide a sanitized export or arrange authorized schema access.</li>
+          <li>Classify columns and agree on Odoo field mappings.</li>
+          <li>Run validation and inspect the dry-run output.</li>
+          <li>Approve the import mode and test on a non-production database.</li>
+          <li>Reconcile representative records before planning production rollout.</li>
+        </ol>
+      </div>
+      <div class="jtl-flow-card" aria-label="Data migration stages">
+        <div class="jtl-flow-node"><span>1</span><div><strong>JTL-Wawi source</strong><small>Export or authorized SQL Server access</small></div></div>
+        <div class="jtl-flow-arrow" aria-hidden="true">↓</div>
+        <div class="jtl-flow-node"><span>2</span><div><strong>Mapping and validation</strong><small>Classify, normalize and flag uncertain fields</small></div></div>
+        <div class="jtl-flow-arrow" aria-hidden="true">↓</div>
+        <div class="jtl-flow-node"><span>3</span><div><strong>Dry run</strong><small>Review proposed changes before import</small></div></div>
+        <div class="jtl-flow-arrow" aria-hidden="true">↓</div>
+        <div class="jtl-flow-node jtl-flow-node--final"><span>4</span><div><strong>Odoo product records</strong><small>Approved create-only or create-and-update flow</small></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight" aria-labelledby="scope-boundaries-title">
+    <div class="container prose">
+      <h2 id="scope-boundaries-title">Define the scope before connecting production systems</h2>
+      <p>Product import and full operational synchronization are different projects. Orders, stock levels, customers, prices, warehouses, suppliers, shipping status and channel-specific data need their own mapping and reconciliation rules.</p>
+      <p>The initial assessment should confirm:</p>
+      <ul>
+        <li>JTL-Wawi version, source schema and permitted data-access method.</li>
+        <li>Target Odoo version, edition, installed apps and custom fields.</li>
+        <li>Which product fields are required, optional, metadata-only or out of scope.</li>
+        <li>How duplicate products and updates should be identified and handled.</li>
+        <li>Whether later phases need orders, stock, customer or multi-warehouse workflows.</li>
+      </ul>
+      <p>For related services, see <a href={p('/api-erp-integrations')}>API and ERP integrations</a>, <a href={p('/odoo-development')}>Odoo development</a>, and <a href={p('/ecommerce-integrations')}>other eCommerce integrations</a>.</p>
+    </div>
+  </section>
+
+  <FaqSection faqs={pageFaqs} title="JTL-Wawi to Odoo integration FAQ" />
+  <FinalCta
+    title="Planning a JTL-Wawi to Odoo migration?"
+    lead="Share your JTL-Wawi and Odoo versions, data source type and the records you need to move. We can define a scoped assessment before committing to a production integration."
+    primaryLabel="Discuss Your Migration"
+    secondaryLabel="Send Project Details"
+  />
+</BaseLayout>
+
+<style>
+  .jtl-hero { overflow: hidden; }
+  .jtl-hero__grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(300px, .95fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: center; padding-top: 1.5rem; }
+  .jtl-hero__subhead { margin: 1rem 0 .75rem; color: var(--ink); font-family: var(--font-display); font-size: clamp(1.2rem, 2vw, 1.65rem); font-weight: 700; line-height: 1.3; }
+  .jtl-hero__visual { margin: 0; padding: .65rem; border: 1px solid var(--border); border-radius: var(--radius-xl); background: var(--bg-elevated); box-shadow: var(--shadow-glow); }
+  .jtl-hero__visual img { display: block; width: 100%; height: auto; border-radius: calc(var(--radius-xl) - .3rem); }
+  .jtl-hero__visual figcaption { padding: .55rem .3rem .1rem; color: var(--muted); font-size: .75rem; }
+  .jtl-tags { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.25rem; }
+  .jtl-tags span { padding: .4rem .65rem; border: 1px solid var(--border); border-radius: 999px; color: var(--ink-soft); font-size: .78rem; }
+  .jtl-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.5rem; }
+  .jtl-feature-grid { align-items: stretch; }
+  .jtl-step { display: inline-grid; place-items: center; width: 2rem; height: 2rem; margin-bottom: .9rem; border-radius: .65rem; background: var(--accent-soft); color: var(--accent); font-weight: 800; font-size: .8rem; }
+  .jtl-workflow { display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, .9fr); gap: clamp(2rem, 6vw, 5rem); align-items: center; }
+  .jtl-flow-card { padding: clamp(1rem, 3vw, 1.75rem); border: 1px solid var(--border); border-radius: var(--radius-xl); background: var(--bg-elevated); }
+  .jtl-flow-node { display: flex; align-items: flex-start; gap: .9rem; padding: 1rem; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--bg); }
+  .jtl-flow-node > span { display: grid; place-items: center; flex: 0 0 2rem; height: 2rem; border-radius: .65rem; background: var(--accent-soft); color: var(--accent); font-weight: 800; }
+  .jtl-flow-node strong, .jtl-flow-node small { display: block; }
+  .jtl-flow-node strong { color: var(--ink); }
+  .jtl-flow-node small { margin-top: .25rem; color: var(--muted); line-height: 1.5; }
+  .jtl-flow-node--final { border-color: color-mix(in srgb, var(--accent) 45%, var(--border)); }
+  .jtl-flow-arrow { padding: .25rem; color: var(--accent); text-align: center; font-size: 1.5rem; line-height: 1.2; }
+  @media (max-width: 850px) { .jtl-hero__grid, .jtl-workflow { grid-template-columns: 1fr; } .jtl-hero__visual { max-width: 42rem; } }
+</style>

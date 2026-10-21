@@ -50,7 +50,7 @@ import { p } from '../utils/paths';
       <div class="grid-2">
         {
           integrations
-            .filter((i) => ['Shopify', 'WooCommerce', 'Amazon', 'Tally'].includes(i.name))
+            .filter((i) => ['Shopify', 'WooCommerce', 'Amazon', 'JTL-Wawi', 'Tally'].includes(i.name))
             .map((item) => (
               <a class="card" href={p(item.href)} style="text-decoration:none;color:inherit;">
                 <h3 class="card__title">{item.label}</h3>

@@ -51,7 +51,7 @@ export const pagesSeo: Record<string, PageSeo> = {
     path: '/ecommerce-integrations',
     title: 'eCommerce & Odoo Integrations | Shopify, WooCommerce & Amazon',
     description:
-      'Connect your storefront to Odoo. Shopify, WooCommerce, Amazon and related eCommerce integrations with order, inventory and product synchronization.',
+      'Connect eCommerce and ERP systems to Odoo. Explore Shopify, WooCommerce, Amazon and JTL-Wawi integration or migration workflows scoped to your data and operations.',
     h1: 'eCommerce & Odoo Integrations',
     primaryKeyword: 'Odoo eCommerce integration',
     secondaryKeywords: ['Shopify Odoo integration', 'WooCommerce Odoo integration'],
@@ -88,10 +88,10 @@ export const pagesSeo: Record<string, PageSeo> = {
   },
   about: {
     path: '/about',
-    title: `About Us | ${brand.name} — Odoo Team & Cybersecurity`,
+    title: `About ${brand.name} | Odoo Developer & Integrations`,
     description:
-      'About Gultaj Khan and the team — Odoo development, custom addons, web scraping, Node.js, cybersecurity advisory, and finance & junior development support.',
-    h1: 'About Us',
+      'Meet Gultaj Khan and the team behind custom Odoo development, modules, migrations and eCommerce or API integrations.',
+    h1: 'Odoo Development, Modules & Integrations',
     primaryKeyword: 'Odoo developer team',
     ogType: 'profile',
     ogImage: '/images/team/gultaj-khan.webp',
@@ -115,6 +115,14 @@ export const pagesSeo: Record<string, PageSeo> = {
     h1: 'Discuss Your Odoo or Integration Project',
     primaryKeyword: 'hire Odoo developer',
     ogImage: '/images/og/contact.png',
+  },
+  privacy: {
+    path: '/privacy',
+    title: `Privacy Policy | ${brand.name}`,
+    description:
+      'How project inquiry and careers form information is processed when you contact Gultaj Khan through this website.',
+    h1: 'Privacy Policy',
+    primaryKeyword: 'privacy policy',
   },
   shopify: {
     path: '/shopify-odoo-integration',
@@ -142,6 +150,16 @@ export const pagesSeo: Record<string, PageSeo> = {
     h1: 'Amazon ↔ Odoo Integration',
     primaryKeyword: 'Amazon Odoo integration',
     ogImage: '/images/og/amazon-odoo.png',
+  },
+  jtlWawi: {
+    path: '/jtl-wawi-odoo-connector',
+    title: `JTL-Wawi to Odoo Connector & Migration | ${brand.name}`,
+    description:
+      'Plan a JTL-Wawi to Odoo integration or product-data migration with SQL Server source analysis, field mapping, validation and controlled import workflows.',
+    h1: 'JTL-Wawi to Odoo Connector',
+    primaryKeyword: 'JTL-Wawi to Odoo connector',
+    secondaryKeywords: ['JTL-Wawi Odoo integration', 'JTL-Wawi to Odoo migration', 'JTL-Wawi SQL Server import'],
+    ogImage: '/images/integrations/jtl-wawi-odoo-flow.webp',
   },
   tally: {
     path: '/tally-odoo-integration',

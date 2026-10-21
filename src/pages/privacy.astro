@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { brand } from '../data/site';
+import { pagesSeo } from '../data/seo';
+import { breadcrumbJsonLd, webpageJsonLd } from '../utils/schema';
+import { p } from '../utils/paths';
+
+const seo = pagesSeo.privacy;
+const usesWeb3Forms = Boolean(import.meta.env.PUBLIC_WEB3FORMS_KEY);
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  path={seo.path}
+  jsonLd={[
+    webpageJsonLd({ name: seo.title, description: seo.description, path: seo.path }),
+    breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Privacy', path: seo.path }]),
+  ]}
+>
+  <section class="page-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Privacy' }]} />
+      <h1 class="page-hero__title">{seo.h1}</h1>
+      <p class="page-hero__lead">Information about the details you send through this website’s inquiry and careers forms.</p>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container prose">
+      <h2>Information submitted</h2>
+      <p>
+        The project inquiry form can collect your name, email, company, project type, platform, Odoo version,
+        integration needs, project description, budget range and timeline. The careers form can collect your
+        name, email, phone, location, role, experience, work preference, portfolio link, skills and message.
+        Please avoid including passwords, payment details or other sensitive information.
+      </p>
+      <h2>How submissions are processed</h2>
+      <p>
+        Forms submit to {usesWeb3Forms ? 'Web3Forms' : 'FormSubmit'} for email delivery. The form provider receives
+        the information you submit and processes it under its own terms and privacy practices. If remote delivery
+        fails, the site offers an email draft addressed to <a href={`mailto:${brand.email}`}>{brand.email}</a>;
+        that draft is not sent until you choose to send it from your email application.
+      </p>
+      <h2>Purpose and questions</h2>
+      <p>
+        Submitted details are used to review and respond to the inquiry or application. For questions about a
+        submission, contact <a href={`mailto:${brand.email}`}>{brand.email}</a>.
+      </p>
+      <p><a href={p('/contact')}>Contact us about a project</a></p>
+    </div>
+  </section>
+</BaseLayout>
