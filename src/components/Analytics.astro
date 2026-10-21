@@ -1,0 +1,83 @@
+---
+/**
+ * Optional, privacy-conscious analytics.
+ * - Plausible: set PUBLIC_PLAUSIBLE_DOMAIN (cookie-free by default)
+ * - GA4: set PUBLIC_GA_MEASUREMENT_ID (review consent/privacy before enabling)
+ * Events never include names, emails, phone numbers, or message bodies.
+ */
+const plausibleDomain = (import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN || '').trim();
+const gaMeasurementId = (import.meta.env.PUBLIC_GA_MEASUREMENT_ID || '').trim();
+---
+
+{
+  plausibleDomain ? (
+    <script
+      defer
+      data-domain={plausibleDomain}
+      src="https://plausible.io/js/script.tagged-events.js"
+    />
+  ) : null
+}
+
+{
+  gaMeasurementId ? (
+    <>
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`} />
+      <script is:inline set:html={`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        window.gtag = gtag;
+        gtag('js', new Date());
+        gtag('config', ${JSON.stringify(gaMeasurementId)}, { anonymize_ip: true });
+      `} />
+    </>
+  ) : null
+}
+
+<script>
+  type TrackProps = Record<string, string | number | boolean | undefined>;
+
+  const ALLOWED_PROP_KEYS = new Set(['form', 'cta', 'location', 'path', 'destination']);
+
+  const sanitizeProps = (props?: TrackProps): Record<string, string | number | boolean> => {
+    if (!props) return {};
+    const out: Record<string, string | number | boolean> = {};
+    for (const [key, value] of Object.entries(props)) {
+      if (!ALLOWED_PROP_KEYS.has(key) || value === undefined) continue;
+      if (typeof value === 'string' && value.length > 80) continue;
+      out[key] = value;
+    }
+    return out;
+  };
+
+  const track = (eventName: string, props?: TrackProps) => {
+    if (!eventName || /@|password|email|phone|message/i.test(eventName)) return;
+    const safe = sanitizeProps(props);
+    const w = window as Window & {
+      plausible?: (event: string, options?: { props?: Record<string, string | number | boolean> }) => void;
+      gtag?: (...args: unknown[]) => void;
+    };
+
+    if (typeof w.plausible === 'function') w.plausible(eventName, { props: safe });
+    if (typeof w.gtag === 'function') w.gtag('event', eventName, safe);
+    document.dispatchEvent(new CustomEvent('site:track', { detail: { eventName, props: safe } }));
+  };
+
+  (window as Window & { __siteTrack?: typeof track }).__siteTrack = track;
+
+  document.addEventListener(
+    'click',
+    (event) => {
+      const el = (event.target as HTMLElement | null)?.closest?.('[data-track]') as HTMLElement | null;
+      if (!el) return;
+      const eventName = el.getAttribute('data-track');
+      if (!eventName) return;
+      track(eventName, {
+        cta: el.getAttribute('data-track-cta') || undefined,
+        location: el.getAttribute('data-track-location') || undefined,
+        path: window.location.pathname,
+      });
+    },
+    { capture: true },
+  );
+</script>

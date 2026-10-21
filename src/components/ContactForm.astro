@@ -346,6 +346,8 @@ const contactEmail = brand.email;
       const link = document.createElement('a');
       link.href = buildMailto();
       link.className = 'card__link';
+      link.setAttribute('data-track', 'email_contact_click');
+      link.setAttribute('data-track-location', 'contact_form_fallback');
       link.textContent = 'Open email draft instead →';
 
       status.append(message, link);
@@ -446,6 +448,11 @@ const contactEmail = brand.email;
         status.hidden = false;
         status.dataset.state = 'success';
         status.textContent = 'Thank you. Your project inquiry was sent. I will reply by email.';
+        // Conversion event only after confirmed success — no PII in the payload
+        (window as Window & { __siteTrack?: (name: string, props?: Record<string, string>) => void }).__siteTrack?.(
+          'contact_form_success',
+          { form: 'project' },
+        );
       } catch {
         showMailtoFallback(
           'The email service did not accept this inquiry. You can try again or open an email draft below.',

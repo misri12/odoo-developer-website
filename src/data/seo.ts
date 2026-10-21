@@ -49,12 +49,12 @@ export const pagesSeo: Record<string, PageSeo> = {
   },
   ecommerceIntegrations: {
     path: '/ecommerce-integrations',
-    title: 'eCommerce & Odoo Integrations | Shopify, WooCommerce & Amazon',
+    title: 'eCommerce & Odoo Integrations | Shopify, WooCommerce, Amazon & JTL-Wawi',
     description:
       'Connect eCommerce and ERP systems to Odoo. Explore Shopify, WooCommerce, Amazon and JTL-Wawi integration or migration workflows scoped to your data and operations.',
     h1: 'eCommerce & Odoo Integrations',
     primaryKeyword: 'Odoo eCommerce integration',
-    secondaryKeywords: ['Shopify Odoo integration', 'WooCommerce Odoo integration'],
+    secondaryKeywords: ['Shopify Odoo integration', 'WooCommerce Odoo integration', 'JTL-Wawi Odoo migration'],
     ogImage: '/images/og/ecommerce-integrations.png',
   },
   apiErp: {
@@ -80,10 +80,10 @@ export const pagesSeo: Record<string, PageSeo> = {
     path: '/odoo-apps',
     title: `Odoo Apps & Custom Modules | ${brand.name}`,
     description:
-      'Odoo Apps and connectors for Shopify, WooCommerce, Amazon, Tally, QuickBooks, AI commerce, pallet management and more — built by Gultaj Khan.',
+      'Odoo Apps and connectors for Shopify, WooCommerce, Amazon, JTL-Wawi, Tally, QuickBooks, AI commerce, pallet management and more — built by Gultaj Khan.',
     h1: 'Odoo Apps & Connectors',
     primaryKeyword: 'Odoo Apps',
-    secondaryKeywords: ['Odoo modules', 'Odoo eCommerce app', 'Shopify Odoo connector'],
+    secondaryKeywords: ['Odoo modules', 'Odoo eCommerce app', 'Shopify Odoo connector', 'JTL-Wawi Odoo connector'],
     ogImage: '/images/og/odoo-apps.png',
   },
   about: {

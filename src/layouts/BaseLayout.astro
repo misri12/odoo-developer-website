@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Analytics from '../components/Analytics.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { brand } from '../data/site';
@@ -93,6 +94,7 @@ const bingVerification = import.meta.env.BING_SITE_VERIFICATION;
       <slot />
     </main>
     <Footer />
+    <Analytics />
     <script>
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const nodes = document.querySelectorAll('.reveal');

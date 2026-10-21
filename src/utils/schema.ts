@@ -44,6 +44,7 @@ export function personJsonLd(): Record<string, unknown> {
       'Shopify Odoo integration',
       'WooCommerce Odoo integration',
       'Amazon Odoo integration',
+      'JTL-Wawi Odoo migration',
       'Tally Odoo integration',
       'REST API integration',
       'ERP automation',

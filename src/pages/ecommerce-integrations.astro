@@ -54,7 +54,11 @@ import { p } from '../utils/paths';
             .map((item) => (
               <a class="card" href={p(item.href)} style="text-decoration:none;color:inherit;">
                 <h3 class="card__title">{item.label}</h3>
-                <p class="card__text">Explore synchronization scope, typical problems and how the integration is approached.</p>
+                <p class="card__text">
+                  {item.name === 'JTL-Wawi'
+                    ? 'Plan a controlled JTL-Wawi to Odoo migration with SQL Server source review, mapping, dry run and cutover safeguards.'
+                    : 'Explore synchronization scope, typical problems and how the integration is approached.'}
+                </p>
                 <span class="card__link">Open page →</span>
               </a>
             ))
@@ -75,8 +79,9 @@ import { p } from '../utils/paths';
         <li>Logging, retries and conflict handling for production reliability</li>
       </ul>
       <p>
-        Related: <a href={p('/api-erp-integrations')}>payment gateways, shipping platforms and REST APIs</a>, plus
-        <a href={p('/odoo-development')}>broader Odoo development</a>.
+        Related: <a href={p('/api-erp-integrations')}>payment gateways, shipping platforms and REST APIs</a>,
+        <a href={p('/odoo-development')}>broader Odoo development</a>, and the
+        <a href={p('/odoo-apps/jtl-odoo-connector')}>JTL-Wawi to Odoo Connector</a> in the apps catalog.
       </p>
     </div>
   </section>
