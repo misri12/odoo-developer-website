@@ -18,7 +18,13 @@ import { p } from '../utils/paths';
         {
           nav.map((item) => (
             <li class:list={['nav__item', { 'nav__item--has-children': 'children' in item && !!item.children }]}>
-              <a class="nav__link" href={p(item.href)}>
+              <a
+                class="nav__link"
+                href={p(item.href)}
+                {...('children' in item && item.children
+                  ? { 'aria-haspopup': 'true', 'aria-expanded': 'false', 'data-nav-dropdown-trigger': true }
+                  : {})}
+              >
                 {item.label}
                 {'children' in item && item.children && (
                   <svg class="nav__chevron" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
@@ -27,7 +33,7 @@ import { p } from '../utils/paths';
                 )}
               </a>
               {'children' in item && item.children && (
-                <ul class="nav__dropdown" aria-label={`${item.label} submenu`}>
+                <ul class="nav__dropdown" role="list" aria-label={`${item.label} submenu`}>
                   {item.children.map((child) => (
                     <li>
                       <a href={p(child.href)}>{child.label}</a>
@@ -198,6 +204,21 @@ import { p } from '../utils/paths';
     position: relative;
   }
 
+  /*
+   * Hover bridge on the parent (not the transformed dropdown): fills the
+   * visual gap under the trigger so pointerleave never fires while moving
+   * into the panel. Absolutely positioned children do not expand the item box,
+   * so without this bridge the 0.5rem offset under the trigger is dead space.
+   */
+  .nav__item--has-children::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    height: 0.5rem;
+  }
+
   .nav__link {
     position: relative;
     display: inline-flex;
@@ -250,6 +271,7 @@ import { p } from '../utils/paths';
 
   .nav__dropdown {
     position: absolute;
+    /* Visual offset from the trigger; ::before fills the gap so hover never drops */
     top: calc(100% + 0.5rem);
     left: 0;
     min-width: 260px;
@@ -265,7 +287,8 @@ import { p } from '../utils/paths';
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transform: translateY(8px) scale(0.98);
+    /* Opacity-only open: translateY would shift hit-testing away from the bridge */
+    transform: scale(0.98);
     transform-origin: top left;
     transition:
       opacity 0.22s var(--ease),
@@ -274,11 +297,12 @@ import { p } from '../utils/paths';
   }
 
   .nav__item--has-children:hover .nav__dropdown,
-  .nav__item--has-children:focus-within .nav__dropdown {
+  .nav__item--has-children:focus-within .nav__dropdown,
+  .nav__item--has-children.is-open .nav__dropdown {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
-    transform: translateY(0) scale(1);
+    transform: scale(1);
   }
 
   .nav__dropdown a {
@@ -494,5 +518,33 @@ import { p } from '../utils/paths';
   toggle?.addEventListener('click', () => {
     const open = toggle.getAttribute('aria-expanded') === 'true';
     setMobileOpen(!open);
+  });
+
+  // Desktop dropdowns: keep hover continuous, sync aria-expanded, Escape closes
+  const dropdownItems = document.querySelectorAll<HTMLElement>('.nav__item--has-children');
+
+  const setDropdownOpen = (item: HTMLElement, open: boolean) => {
+    const trigger = item.querySelector<HTMLElement>('[data-nav-dropdown-trigger]');
+    item.classList.toggle('is-open', open);
+    trigger?.setAttribute('aria-expanded', String(open));
+  };
+
+  dropdownItems.forEach((item) => {
+    const trigger = item.querySelector<HTMLElement>('[data-nav-dropdown-trigger]');
+
+    item.addEventListener('pointerenter', () => setDropdownOpen(item, true));
+    item.addEventListener('pointerleave', () => setDropdownOpen(item, false));
+
+    item.addEventListener('focusin', () => setDropdownOpen(item, true));
+    item.addEventListener('focusout', (event) => {
+      const next = event.relatedTarget as Node | null;
+      if (!next || !item.contains(next)) setDropdownOpen(item, false);
+    });
+
+    item.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape') return;
+      setDropdownOpen(item, false);
+      trigger?.focus();
+    });
   });
 </script>

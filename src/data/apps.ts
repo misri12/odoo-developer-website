@@ -515,6 +515,87 @@ export const odooApps: OdooApp[] = [
       { label: 'Odoo Development', href: '/odoo-development' },
     ],
   },
+  {
+    slug: 'jtl-odoo-connector',
+    name: 'JTL-Wawi to Odoo Connector',
+    version: 'Odoo 20',
+    category: 'ERP Integration / Data Migration',
+    shortDescription:
+      'Migrate products, customers, orders, purchases and inventory from JTL-Wawi to native Odoo 20 with mapping, preview, dry run and full sync. JTL remains read-only (SELECT only).',
+    description:
+      'JTL-Wawi to Odoo Connector connects a JTL-Wawi SQL Server database (read-only SELECT), scans schema, maps fields, runs Dry Run previews, then executes Full Sync into native Odoo products, partners, sales/purchase documents and stock-related masters with entity-level results. It is a controlled migration/import path — not real-time or bidirectional synchronization.',
+    details: [
+      'Built for German e-commerce (DACH) and UK teams migrating from JTL-Wawi to Odoo 20.',
+      'Requires authorized read-only SQL Server access to the JTL-Wawi database (SELECT only — no INSERT, UPDATE or DELETE against JTL).',
+      'Controlled cutover with mapping, validation, dry-run previews and a durable import ledger before actual writes in Odoo.',
+      'Independent third-party Odoo app. No official partnership with JTL-Software-GmbH.',
+    ],
+    features: [
+      'JTL Operations workbenches in Odoo (products, customers, sales, procurement, inventory, shipping, returns, payments, marketplaces, statistics)',
+      'Product migration with SKUs, barcodes, prices and variants (child articles)',
+      'Customer/partner and open sales/purchase document migration into native Odoo models',
+      'Connect JTL-Wawi via read-only SQL connection',
+      'Field mapping and validation before sync',
+      'Dry run preview without writing Odoo records',
+      'Full sync with created/skipped/error reporting and import ledger',
+      'Cutover policy controls for open SO/PO, payment/fulfillment references, and scoped stock/returns handling',
+    ],
+    href: '/odoo-apps/jtl-odoo-connector',
+    icon: '/images/apps/jtl-odoo-connector-icon.png',
+    banner: '/images/apps/jtl-odoo-connector-banner.jpg',
+    hero: '/images/apps/jtl-odoo-connector-hero.jpg',
+    screenshots: [
+      {
+        src: '/images/apps/screenshots/jtl-connector-settings.jpg',
+        alt: 'JTL Odoo Connector settings with SQL connection and cutover policy',
+        caption: 'Connector settings and cutover policy',
+      },
+      {
+        src: '/images/apps/screenshots/jtl-connector-mapping.jpg',
+        alt: 'Field mapping screen from JTL-Wawi schema to Odoo fields',
+        caption: 'Schema scan and field mapping',
+      },
+      {
+        src: '/images/apps/screenshots/jtl-connector-dry-run.jpg',
+        alt: 'Dry Run full sync results preview before writing Odoo records',
+        caption: 'Dry run preview before actual sync',
+      },
+      {
+        src: '/images/apps/screenshots/jtl-connector-import-jobs.jpg',
+        alt: 'Import jobs list for JTL to Odoo migration runs',
+        caption: 'Import job history',
+      },
+      {
+        src: '/images/apps/screenshots/jtl-connector-full-sync-detail.jpg',
+        alt: 'Full Sync job detail with entity-level import ledger',
+        caption: 'Full sync job detail and import ledger',
+      },
+      {
+        src: '/images/apps/screenshots/jtl-connector-full-sync-history.jpg',
+        alt: 'Full Sync history of completed JTL migration jobs',
+        caption: 'Full sync history',
+      },
+      {
+        src: '/images/apps/screenshots/jtl-operations-dashboard.jpg',
+        alt: 'JTL Operations dashboard in Odoo 20 after migration',
+        caption: 'Operations dashboard overview',
+      },
+      {
+        src: '/images/apps/screenshots/jtl-operations-artikel.jpg',
+        alt: 'Product migration workbench showing JTL Artikel in Odoo',
+        caption: 'Product master data workbench',
+      },
+      {
+        src: '/images/apps/screenshots/jtl-operations-produktkatalog.jpg',
+        alt: 'Product catalog in Odoo after JTL-Wawi migration',
+        caption: 'Product catalog after migration',
+      },
+    ],
+    relatedServices: [
+      { label: 'JTL-Wawi ↔ Odoo Integration', href: '/jtl-wawi-odoo-connector' },
+      { label: 'eCommerce Integrations', href: '/ecommerce-integrations' },
+    ],
+  },
 ];
 
 export function getAppBySlug(slug: string): OdooApp | undefined {
