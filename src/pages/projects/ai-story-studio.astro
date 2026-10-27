@@ -1,0 +1,374 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import FinalCta from '../../components/FinalCta.astro';
+import { pagesSeo } from '../../data/seo';
+import { breadcrumbJsonLd, webpageJsonLd } from '../../utils/schema';
+import { p } from '../../utils/paths';
+
+const seo = pagesSeo.aiStoryStudio;
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  path={seo.path}
+  ogImage={seo.ogImage}
+  jsonLd={[
+    webpageJsonLd({ name: seo.title, description: seo.description, path: seo.path }),
+    breadcrumbJsonLd([
+      { name: 'Home', path: '/' },
+      { name: 'Projects', path: '/projects' },
+      { name: 'AI Story Studio', path: seo.path },
+    ]),
+  ]}
+>
+  <section class="page-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Projects', href: '/projects' }, { name: 'AI Story Studio' }]} />
+      <h1 class="page-hero__title">{seo.h1}</h1>
+      <p class="page-hero__lead">
+        Local, resumable research-to-original-fiction video workbench with AI-assisted story creation, visual storytelling, and content generation workflows.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section__header reveal">
+        <p class="section__eyebrow">Project Overview</p>
+        <h2 class="section__title">AI-Assisted Story Creation and Visual Storytelling</h2>
+        <p class="section__lead">
+          AI Story Studio is a local-first software workbench that transforms research sources into original fiction videos through a structured, AI-assisted pipeline. The system handles story generation, character development, scene visualization, voice narration, and video production while maintaining source attribution and policy compliance.
+        </p>
+      </div>
+
+      <div class="content-block reveal">
+        <h3>The Problem</h3>
+        <p>
+          Creating original video content from research sources requires coordinating multiple specialized workflows: story writing, character design, scene visualization, voice production, and video rendering. Existing tools often fragment these processes, lack proper source attribution, or require cloud services that compromise creative control and data privacy.
+        </p>
+
+        <h3>The Solution</h3>
+        <p>
+          AI Story Studio provides a unified local pipeline that connects research ingestion, AI-assisted story generation, visual scene creation, voice synthesis, and video rendering. The system runs entirely on local hardware, supports resumable workflows, and maintains traceable links between output content and source materials.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section__header reveal">
+        <p class="section__eyebrow">Workflow & Capabilities</p>
+        <h2 class="section__title">From Research to Finished Video</h2>
+        <p class="section__lead">
+          A structured pipeline that coordinates AI models, human review, and production automation while preserving creative control and source attribution.
+        </p>
+      </div>
+
+      <div class="grid-2 reveal">
+        <div class="feature-card">
+          <h3>Research Ingestion</h3>
+          <p>
+            Import PDFs, web URLs, and text sources with automatic rights classification. The system extracts key facts, themes, and uncertainties while maintaining source references for attribution.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <h3>Story Generation</h3>
+          <p>
+            AI-assisted story creation using local LLM models (Qwen3). Generate original narratives, character profiles, and scene breakdowns with configurable tone, duration, and audience targeting.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <h3>Character Development</h3>
+          <p>
+            Create consistent character references with visual identity generation. The system tracks character appearances across scenes and maintains visual consistency through AI-assisted reference creation.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <h3>Scene Visualization</h3>
+          <p>
+            Generate scene-by-scene visuals using AI image models. Support for multiple visual styles, pose control via OpenPose, and character identity conditioning. CPU-only image workers available when GPU resources are limited.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <h3>Voice Narration</h3>
+          <p>
+            Multi-language voice synthesis with engine selection (Kokoro, Piper). Support for English, Hindi, and Urdu narration with configurable voice profiles, speed, and style. Voice preview capabilities before full generation.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <h3>Video Production</h3>
+          <p>
+            Cinematic motion video generation with configurable resolution and frame rate. The system produces final video files with synchronized narration, scene transitions, and policy compliance checks.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section__header reveal">
+        <p class="section__eyebrow">Technology Stack</p>
+        <h2 class="section__title">Architecture and Implementation</h2>
+        <p class="section__lead">
+          Built with Python, FastAPI, and local AI models for a privacy-preserving, offline-capable workflow.
+        </p>
+      </div>
+
+      <div class="tech-grid reveal">
+        <div class="tech-item">
+          <strong>Backend Framework</strong>
+          <p>Python 3.10+, FastAPI, Uvicorn</p>
+        </div>
+
+        <div class="tech-item">
+          <strong>AI Models</strong>
+          <p>Qwen3 LLM (4B/8B), Stable Diffusion 1.5, Kokoro TTS, Piper TTS</p>
+        </div>
+
+        <div class="tech-item">
+          <strong>Model Runtime</strong>
+          <p>Ollama for LLM inference, ComfyUI for image generation (optional GPU)</p>
+        </div>
+
+        <div class="tech-item">
+          <strong>Data Storage</strong>
+          <p>SQLite for job queue and metadata, local file system for assets</p>
+        </div>
+
+        <div class="tech-item">
+          <strong>Image Processing</strong>
+          <p>OpenCV, PIL, NumPy for visual operations and quality checks</p>
+        </div>
+
+        <div class="tech-item">
+          <strong>Audio Processing</strong>
+          <p>Faster-Whisper for narration intelligibility validation</p>
+        </div>
+      </div>
+
+      <div class="content-block reveal">
+        <h3>Key Implementation Challenges</h3>
+        <ul>
+          <li>
+            <strong>Resource-Aware Model Selection:</strong> The installer detects system RAM, GPU VRAM, and disk space to select appropriate AI models (qwen3:4b for systems with 8GB RAM, qwen3:8b for 16GB+). This ensures the software runs on a range of hardware configurations.
+          </li>
+          <li>
+            <strong>Local-First Architecture:</strong> All AI inference runs locally using Ollama and optional ComfyUI. This eliminates cloud API dependencies and ensures data privacy. The system supports CPU-only image generation when GPU resources are unavailable.
+          </li>
+          <li>
+            <strong>Resumable Workflows:</strong> Job queue architecture with SQLite persistence allows long-running generation tasks to be paused, resumed, and retried without losing progress. Each stage (research, story, characters, scenes, voice, video) can be independently re-run.
+          </li>
+          <li>
+            <strong>Source Attribution:</strong> The system maintains traceable links between generated content and source materials throughout the pipeline. Rights classification and policy checks are integrated into the workflow.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section__header reveal">
+        <p class="section__eyebrow">Project Status</p>
+        <h2 class="section__title">Current Implementation and Future Possibilities</h2>
+        <p class="section__lead">
+          The core pipeline is implemented and functional. Some advanced features are experimental or require additional validation.
+        </p>
+      </div>
+
+      <div class="status-grid reveal">
+        <div class="status-item status-item--implemented">
+          <h4>✓ Implemented</h4>
+          <ul>
+            <li>Research source ingestion and rights classification</li>
+            <li>AI story generation with Qwen3 LLM models</li>
+            <li>Character reference creation and identity tracking</li>
+            <li>Scene visualization with Stable Diffusion 1.5</li>
+            <li>Multi-language voice synthesis (English, Hindi, Urdu)</li>
+            <li>Job queue with resumable workflows</li>
+            <li>Web-based UI for project management</li>
+            <li>Automated setup installer with hardware detection</li>
+          </ul>
+        </div>
+
+        <div class="status-item status-item--experimental">
+          <h4>⚠ Experimental / Validation Required</h4>
+          <ul>
+            <li>AI video generation (LTX-Video model - temporal validation passes but resolution is low)</li>
+            <li>Higher-quality image models (RealVisXL V5 - benchmarked but slower with limited controls)</li>
+            <li>Advanced character identity conditioning (SDXL IP-Adapter - not installed)</li>
+          </ul>
+        </div>
+
+        <div class="status-item status-item--planned">
+          <h4>○ Future Enhancements</h4>
+          <ul>
+            <li>Additional language support beyond English, Hindi, Urdu</li>
+            <li>Enhanced video generation models with better temporal consistency</li>
+            <li>Cloud deployment option for users without local GPU resources</li>
+            <li>Collaborative editing features for multi-user workflows</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section__header reveal">
+        <p class="section__eyebrow">My Role</p>
+        <h2 class="section__title">Software Development and Architecture</h2>
+      </div>
+
+      <div class="content-block reveal">
+        <p>
+          I designed and implemented the entire AI Story Studio architecture, including the local-first pipeline, job queue system, web UI, and automated installer. Key contributions include:
+        </p>
+        <ul>
+          <li>Architected the resumable workflow system with SQLite-backed job queue</li>
+          <li>Integrated Ollama for local LLM inference with resource-aware model selection</li>
+          <li>Built the FastAPI web server with loopback-only security and CSRF protection</li>
+          <li>Implemented character identity tracking and visual consistency systems</li>
+          <li>Created the production-grade setup installer with hardware detection and health checks</li>
+          <li>Designed the source attribution and rights classification workflow</li>
+        </ul>
+        <p>
+          The project is open-source and available on GitHub: <a href="https://github.com/misri12/ai-story-studio" target="_blank" rel="noopener noreferrer">github.com/misri12/ai-story-studio</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <FinalCta />
+</BaseLayout>
+
+<style>
+  .content-block {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .content-block h3 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .content-block p {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+  }
+
+  .content-block ul {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+  }
+
+  .content-block li {
+    margin-bottom: 0.75rem;
+    line-height: 1.7;
+  }
+
+  .feature-card {
+    background: var(--surface);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+  }
+
+  .feature-card h3 {
+    margin-bottom: 1rem;
+    color: var(--ink);
+  }
+
+  .feature-card p {
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .tech-item {
+    background: var(--surface);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+
+  .tech-item strong {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--ink);
+  }
+
+  .tech-item p {
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+  }
+
+  .status-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .status-item {
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid;
+  }
+
+  .status-item h4 {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+  }
+
+  .status-item ul {
+    padding-left: 1.25rem;
+  }
+
+  .status-item li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+
+  .status-item--implemented {
+    background: rgba(16, 185, 129, 0.1);
+    border-color: var(--success);
+  }
+
+  .status-item--implemented h4 {
+    color: var(--success);
+  }
+
+  .status-item--experimental {
+    background: rgba(245, 158, 11, 0.1);
+    border-color: var(--warning);
+  }
+
+  .status-item--experimental h4 {
+    color: var(--warning);
+  }
+
+  .status-item--planned {
+    background: rgba(99, 102, 241, 0.1);
+    border-color: var(--primary);
+  }
+
+  .status-item--planned h4 {
+    color: var(--primary);
+  }
+</style>

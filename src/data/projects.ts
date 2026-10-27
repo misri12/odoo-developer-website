@@ -173,4 +173,56 @@ export const projects: Project[] = [
     keyFunctionality: ['Field classification and mapping', 'Dry-run validation', 'Create-only and create-and-update import modes'],
     placeholder: true,
   },
+  {
+    slug: 'ai-story-studio',
+    name: 'AI Story Studio',
+    problem:
+      'Creating original video content from research sources requires coordinating multiple specialized workflows—story writing, character design, scene visualization, voice production, and video rendering—while maintaining source attribution and creative control.',
+    solution:
+      'Built a local-first AI-assisted pipeline that transforms research sources into original fiction videos. The system handles story generation, character development, scene visualization, voice narration, and video production using local AI models (Qwen3 LLM, Stable Diffusion, Kokoro/Piper TTS) with resumable workflows and full source traceability.',
+    technology: ['Python', 'FastAPI', 'Ollama', 'Qwen3 LLM', 'Stable Diffusion', 'Kokoro TTS', 'Piper TTS', 'SQLite', 'OpenCV', 'NumPy'],
+    outcome:
+      'Open-source project with complete pipeline implementation, web UI, automated installer with hardware detection, and support for CPU-only and GPU-accelerated workflows.',
+    relatedServices: [
+      { label: 'View Project', href: '/projects/ai-story-studio' },
+      { label: 'API & ERP Integrations', href: '/api-erp-integrations' },
+    ],
+    href: '/projects/ai-story-studio',
+    architecture: 'Local-first with optional ComfyUI for GPU acceleration',
+    keyFunctionality: [
+      'Research source ingestion with rights classification',
+      'AI story generation with Qwen3 LLM models',
+      'Character reference creation and identity tracking',
+      'Scene visualization with Stable Diffusion',
+      'Multi-language voice synthesis (English, Hindi, Urdu)',
+      'Resumable job queue with SQLite persistence',
+    ],
+    placeholder: false,
+  },
+  {
+    slug: 'industrial-job-work-management',
+    name: 'Industrial Job Work Management System',
+    problem:
+      'Industrial job work operations—particularly electroplating and surface treatment—face material traceability challenges, fragmented production status, manual quality inspection, and dispatch documentation errors.',
+    solution:
+      'Designed a comprehensive workflow connecting warehouse management, production tracking, SCADA/PLC integration, quality inspection, and dispatch. The system features configurable electroplating process tanks, ERP data synchronization, and complete material traceability from receiving through dispatch.',
+    technology: ['ERP Integration', 'SCADA/PLC', 'Python', 'Barcode Systems', 'SQLite', 'Web Application'],
+    outcome:
+      'Complete solution design with configurable electroplating workflow architecture, ERP integration patterns, and quality inspection workflows. Ready for implementation scoped to specific factory requirements.',
+    relatedServices: [
+      { label: 'View Project', href: '/projects/industrial-job-work-management' },
+      { label: 'API & ERP Integrations', href: '/api-erp-integrations' },
+    ],
+    href: '/projects/industrial-job-work-management',
+    architecture: 'Modular workflow system with ERP and SCADA integration layers',
+    keyFunctionality: [
+      'Material receiving and warehouse bin management',
+      'Configurable electroplating process tank workflow',
+      'ERP data synchronization for part masters and loading matrices',
+      'SCADA/PLC integration design for production events',
+      'Quality inspection workflows with acceptance/rejection tracking',
+      'Dispatch documentation and billing integration',
+    ],
+    placeholder: false,
+  },
 ];

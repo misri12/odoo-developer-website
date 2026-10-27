@@ -180,6 +180,26 @@ export const pagesSeo: Record<string, PageSeo> = {
     robots: 'noindex, follow',
     ogImage: '/images/og/home.png',
   },
+  aiStoryStudio: {
+    path: '/projects/ai-story-studio',
+    title: `AI Story Studio Project | AI Content & Storytelling Software | ${brand.name}`,
+    description:
+      'Explore my AI Story Studio project, its story creation workflow, software architecture, visual storytelling features, and development approach.',
+    h1: 'AI Story Studio',
+    primaryKeyword: 'AI story creation software',
+    secondaryKeywords: ['AI storytelling project', 'AI content generation workflow', 'AI software development portfolio'],
+    ogImage: '/images/og/projects.png',
+  },
+  industrialJobWork: {
+    path: '/projects/industrial-job-work-management',
+    title: `Industrial Job Work Management System | ERP & SCADA Workflow | ${brand.name}`,
+    description:
+      'Explore an industrial job work management solution for material traceability, warehouse operations, production tracking, electroplating workflows, quality inspection, and dispatch.',
+    h1: 'Industrial Job Work Management System',
+    primaryKeyword: 'Industrial job work management system',
+    secondaryKeywords: ['Manufacturing workflow software', 'ERP and SCADA integration', 'Electroplating process tracking software', 'Industrial material traceability'],
+    ogImage: '/images/og/projects.png',
+  },
 };
 
 export function absoluteUrl(path: string): string {

@@ -1,0 +1,603 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import FinalCta from '../../components/FinalCta.astro';
+import { pagesSeo } from '../../data/seo';
+import { breadcrumbJsonLd, webpageJsonLd } from '../../utils/schema';
+import { p } from '../../utils/paths';
+
+const seo = pagesSeo.industrialJobWork;
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  path={seo.path}
+  ogImage={seo.ogImage}
+  jsonLd={[
+    webpageJsonLd({ name: seo.title, description: seo.description, path: seo.path }),
+    breadcrumbJsonLd([
+      { name: 'Home', path: '/' },
+      { name: 'Projects', path: '/projects' },
+      { name: 'Industrial Job Work Management', path: seo.path },
+    ]),
+  ]}
+>
+  <section class="page-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Projects', href: '/projects' }, { name: 'Industrial Job Work Management' }]} />
+      <h1 class="page-hero__title">{seo.h1}</h1>
+      <p class="page-hero__lead">
+        A comprehensive software workflow for industrial job work operations, connecting warehouse management, production, SCADA integration, quality inspection, billing, and dispatch into one structured process.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section__header reveal">
+        <p class="section__eyebrow">Project Overview</p>
+        <h2 class="section__title">From Material Receiving to Customer Dispatch</h2>
+        <p class="section__lead">
+          An Industrial Job Work Management Solution designed to improve material traceability, streamline production workflows, and connect ERP data with automated electroplating operations.
+        </p>
+      </div>
+
+      <div class="content-block reveal">
+        <h3>The Business Problem</h3>
+        <p>
+          Industrial job work operations—particularly electroplating and surface treatment—face significant operational challenges: material movement is difficult to track, production status is often manual or fragmented, quality inspection lacks structured workflows, and dispatch documentation is prone to errors. Without a unified system, manufacturers struggle with material traceability, production visibility, and accurate billing.
+        </p>
+
+        <h3>The Solution</h3>
+        <p>
+          This solution designs a comprehensive workflow that connects warehouse operations, production tracking, SCADA/PLC integration, quality inspection, and dispatch into a single structured system. The workflow is designed to accommodate different factory configurations with a configurable number of electroplating process tanks, ensuring flexibility across manufacturing environments.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section__header reveal">
+        <p class="section__eyebrow">Complete Workflow</p>
+        <h2 class="section__title">End-to-End Job Work Operations</h2>
+        <p class="section__lead">
+          A structured pipeline from material receiving through finished goods dispatch, with integrated quality checks and documentation at each stage.
+        </p>
+      </div>
+
+      <div class="workflow-steps reveal">
+        <div class="workflow-step">
+          <div class="workflow-step__number">1</div>
+          <div class="workflow-step__content">
+            <h3>Material Receiving</h3>
+            <p>
+              Inward challan verification, material inspection, and warehouse bin assignment. The system records material type, quantity, weight, and source details for traceability.
+            </p>
+          </div>
+        </div>
+
+        <div class="workflow-step">
+          <div class="workflow-step__number">2</div>
+          <div class="workflow-step__content">
+            <h3>Warehouse Management</h3>
+            <p>
+              Barcode/tag printing for material identification, bin storage tracking, and inventory visibility. Material issuance to production is recorded with full traceability.
+            </p>
+          </div>
+        </div>
+
+        <div class="workflow-step">
+          <div class="workflow-step__number">3</div>
+          <div class="workflow-step__content">
+            <h3>ERP Integration</h3>
+            <p>
+              Connection to ERP systems for part specifications, loading matrices, quantities, and weights. The system pulls production requirements and pushes completion status back to the ERP.
+            </p>
+          </div>
+        </div>
+
+        <div class="workflow-step">
+          <div class="workflow-step__number">4</div>
+          <div class="workflow-step__content">
+            <h3>Production Loading</h3>
+            <p>
+              Material movement to production lines, job order creation, and loading configuration. The system tracks which materials are loaded into which production batches.
+            </p>
+          </div>
+        </div>
+
+        <div class="workflow-step">
+          <div class="workflow-step__number">5</div>
+          <div class="workflow-step__content">
+            <h3>SCADA/PLC Integration</h3>
+            <p>
+              Designed workflow for PLC communication and production loading events. The system is architected to receive real-time status from electroplating tanks and production equipment.
+            </p>
+          </div>
+        </div>
+
+        <div class="workflow-step">
+          <div class="workflow-step__number">6</div>
+          <div class="workflow-step__content">
+            <h3>Electroplating Process</h3>
+            <p>
+              Configurable electroplating workflow with a variable number of process tanks depending on factory requirements. The system visualizes tank status, process timing, and material movement through the treatment line.
+            </p>
+          </div>
+        </div>
+
+        <div class="workflow-step">
+          <div class="workflow-step__number">7</div>
+          <div class="workflow-step__content">
+            <h3>Quality Inspection</h3>
+            <p>
+              Structured inspection workflows for accepted material, rework, and rejection. The system records inspection results, defect classification, and disposition decisions.
+            </p>
+          </div>
+        </div>
+
+        <div class="workflow-step">
+          <div class="workflow-step__number">8</div>
+          <div class="workflow-step__content">
+            <h3>Finished Goods</h3>
+            <p>
+              Completed job work storage, quality certification, and inventory update. The system maintains traceability from original material through to finished product.
+            </p>
+          </div>
+        </div>
+
+        <div class="workflow-step">
+          <div class="workflow-step__number">9</div>
+          <div class="workflow-step__content">
+            <h3>Dispatch & Invoicing</h3>
+            <p>
+              Outward challan generation, customer dispatch documentation, and billing integration. The system ensures accurate invoicing based on actual processed quantities and agreed rates.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section__header reveal">
+        <p class="section__eyebrow">Key Capabilities</p>
+        <h2 class="section__title">System Modules and Features</h2>
+      </div>
+
+      <div class="grid-2 reveal">
+        <div class="feature-card">
+          <h3>Material Traceability</h3>
+          <p>
+            Full traceability from inward challan through dispatch. Each material batch is tracked through warehouse, production, quality, and dispatch stages with complete audit trails.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <h3>Configurable Process Tanks</h3>
+          <p>
+            The electroplating workflow is designed to accommodate different factory configurations. The number of process tanks is configurable based on actual production requirements, not hard-coded.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <h3>ERP Data Synchronization</h3>
+          <p>
+            Bi-directional integration with ERP systems for part masters, loading matrices, and production data. The system ensures ERP records reflect actual production status.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <h3>Quality Control Workflows</h3>
+          <p>
+            Structured inspection processes with acceptance criteria, defect classification, and disposition tracking. Rework workflows are supported with full history.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <h3>Barcode & Tag Management</h3>
+          <p>
+            Automatic barcode/tag generation for material identification. Scanning at each stage ensures accurate material tracking and reduces manual entry errors.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <h3>Production Load/Unload Status</h3>
+          <p>
+            Real-time tracking of material loading into electroplating tanks and unloading after completion. The system records timing, tank assignments, and process parameters.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section__header reveal">
+        <p class="section__eyebrow">Project Screenshots</p>
+        <h2 class="section__title">System Interface and Workflow</h2>
+      </div>
+
+      <div class="gallery reveal">
+        <figure class="gallery-item">
+          <img src={p('/images/projects/job_work.jpeg')} alt="Industrial job work management system dashboard showing material receiving and warehouse operations" loading="lazy" />
+          <figcaption>Job work management dashboard with material tracking</figcaption>
+        </figure>
+
+        <figure class="gallery-item">
+          <img src={p('/images/projects/joborder123.jpeg')} alt="Job order creation screen showing production loading configuration and ERP integration" loading="lazy" />
+          <figcaption>Job order creation with production loading</figcaption>
+        </figure>
+
+        <figure class="gallery-item">
+          <img src={p('/images/projects/joborder321.jpeg')} alt="Production status screen showing electroplating tank status and material movement" loading="lazy" />
+          <figcaption>Production status and electroplating workflow</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section__header reveal">
+        <p class="section__eyebrow">Technical Implementation</p>
+        <h2 class="section__title">Architecture and Technology</h2>
+      </div>
+
+      <div class="content-block reveal">
+        <h3>System Architecture</h3>
+        <p>
+          The solution is designed as an integrated workflow system that connects multiple operational domains:
+        </p>
+        <ul>
+          <li>
+            <strong>Warehouse Module:</strong> Material receiving, bin management, barcode generation, and inventory tracking
+          </li>
+          <li>
+            <strong>Production Module:</strong> Job order creation, material issuance, production loading, and status tracking
+          </li>
+          <li>
+            <strong>SCADA Integration Layer:</strong> Designed interface for PLC communication, tank status monitoring, and production event logging
+          </li>
+          <li>
+            <strong>Quality Module:</strong> Inspection workflows, defect classification, rework tracking, and certification
+          </li>
+          <li>
+            <strong>Dispatch Module:</strong> Outward challan generation, dispatch documentation, and billing integration
+          </li>
+        </ul>
+
+        <h3>ERP and SCADA Integration</h3>
+        <p>
+          The system is architected to integrate with existing ERP platforms for part master data, loading matrices, and production requirements. The SCADA/PLC integration is designed as a configurable workflow layer that can adapt to different factory automation setups. The number of electroplating tanks and process steps is configurable based on the actual factory layout and requirements.
+        </p>
+
+        <h3>Important Technical Distinction</h3>
+        <p>
+          The electroplating workflow is designed with a configurable number of process tanks. This is not a fixed, hard-coded number. The system architecture supports different factory configurations, allowing the process tank count to be set based on actual production requirements. This flexibility ensures the solution can be deployed across various manufacturing environments without requiring core workflow changes.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section__header reveal">
+        <p class="section__eyebrow">Business Value</p>
+        <h2 class="section__title">Operational Benefits</h2>
+      </div>
+
+      <div class="benefits-grid reveal">
+        <div class="benefit-item">
+          <h4>Material Traceability</h4>
+          <p>
+            Complete traceability from inward material through finished goods dispatch. Each batch can be tracked through every stage with full audit history.
+          </p>
+        </div>
+
+        <div class="benefit-item">
+          <h4>Workflow Visibility</h4>
+          <p>
+            Real-time visibility into production status, tank utilization, and material movement. Management can see exactly where each job order is in the process.
+          </p>
+        </div>
+
+        <div class="benefit-item">
+          <h4>Controlled Material Movement</h4>
+          <p>
+            Structured material issuance and movement tracking prevents unauthorized material transfers and ensures accountability at each stage.
+          </p>
+        </div>
+
+        <div class="benefit-item">
+          <h4>Structured Operations</h4>
+          <p>
+            Standardized workflows reduce variability, improve quality consistency, and make training new operators faster and more effective.
+          </p>
+        </div>
+
+        <div class="benefit-item">
+          <h4>Quality Documentation</h4>
+          <p>
+            Complete inspection records with defect classification and disposition decisions support quality certifications and customer requirements.
+          </p>
+        </div>
+
+        <div class="benefit-item">
+          <h4>Accurate Billing</h4>
+          <p>
+            Dispatch documentation based on actual processed quantities ensures accurate invoicing and reduces disputes with customers.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section__header reveal">
+        <p class="section__eyebrow">Project Status</p>
+        <h2 class="section__title">Current Scope and Future Enhancements</h2>
+      </div>
+
+      <div class="status-grid reveal">
+        <div class="status-item status-item--implemented">
+          <h4>✓ Designed and Documented</h4>
+          <ul>
+            <li>Complete workflow design from material receiving to dispatch</li>
+            <li>Configurable electroplating tank architecture</li>
+            <li>ERP integration architecture and data flow design</li>
+            <li>SCADA/PLC integration workflow specification</li>
+            <li>Quality inspection workflow design</li>
+            <li>Barcode and material identification system design</li>
+          </ul>
+        </div>
+
+        <div class="status-item status-item--planned">
+          <h4>○ Implementation Scope</h4>
+          <ul>
+            <li>Core warehouse and production tracking modules</li>
+            <li>ERP data synchronization implementation</li>
+            <li>SCADA/PLC interface development</li>
+            <li>Quality inspection module deployment</li>
+            <li>Dispatch and billing integration</li>
+            <li>Mobile barcode scanning interface</li>
+          </ul>
+        </div>
+
+        <div class="status-item status-item--planned">
+          <h4>○ Future Enhancements</h4>
+          <ul>
+            <li>Advanced analytics and reporting dashboards</li>
+            <li>Predictive maintenance integration for electroplating equipment</li>
+            <li>Mobile app for shop-floor operators</li>
+            <li>Multi-factory deployment support</li>
+            <li>Customer portal for order tracking</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="content-block reveal">
+        <h3>Scope Boundaries</h3>
+        <p>
+          This project represents a comprehensive solution design for job work management. The workflow architecture, data models, and integration patterns are fully specified. Implementation of specific SCADA/PLC connections, ERP adapters, and factory-specific configurations would be scoped based on client requirements and existing infrastructure.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section__header reveal">
+        <p class="section__eyebrow">Contact</p>
+        <h2 class="section__title">Discuss Your Industrial Workflow Requirements</h2>
+        <p class="section__lead">
+          Manufacturers, ERP consultants, and industrial automation businesses: let's discuss how this solution design can adapted to your specific requirements.
+        </p>
+      </div>
+
+      <div class="cta-center reveal">
+        <a class="btn btn--primary" href={p('/contact')}>Discuss Your Project</a>
+      </div>
+    </div>
+  </section>
+
+  <FinalCta />
+</BaseLayout>
+
+<style>
+  .content-block {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .content-block h3 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .content-block p {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+  }
+
+  .content-block ul {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+  }
+
+  .content-block li {
+    margin-bottom: 0.75rem;
+    line-height: 1.7;
+  }
+
+  .feature-card {
+    background: var(--surface);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+  }
+
+  .feature-card h3 {
+    margin-bottom: 1rem;
+    color: var(--ink);
+  }
+
+  .feature-card p {
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+
+  .workflow-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .workflow-step {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .workflow-step__number {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .workflow-step__content h3 {
+    margin-bottom: 0.5rem;
+    color: var(--ink);
+  }
+
+  .workflow-step__content p {
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .gallery-item {
+    background: var(--surface);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .gallery-item figcaption {
+    padding: 1rem;
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .benefit-item {
+    background: var(--surface);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+
+  .benefit-item h4 {
+    margin-bottom: 0.75rem;
+    color: var(--ink);
+  }
+
+  .benefit-item p {
+    color: var(--ink-soft);
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+
+  .status-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .status-item {
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid;
+  }
+
+  .status-item h4 {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+  }
+
+  .status-item ul {
+    padding-left: 1.25rem;
+  }
+
+  .status-item li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+
+  .status-item--implemented {
+    background: rgba(16, 185, 129, 0.1);
+    border-color: var(--success);
+  }
+
+  .status-item--implemented h4 {
+    color: var(--success);
+  }
+
+  .status-item--planned {
+    background: rgba(99, 102, 241, 0.1);
+    border-color: var(--primary);
+  }
+
+  .status-item--planned h4 {
+    color: var(--primary);
+  }
+
+  .cta-center {
+    text-align: center;
+    padding: 2rem 0;
+  }
+
+  @media (max-width: 768px) {
+    .workflow-step {
+      grid-template-columns: auto 1fr;
+      gap: 1rem;
+    }
+
+    .workflow-step__number {
+      width: 40px;
+      height: 40px;
+      font-size: 1rem;
+    }
+  }
+</style>
